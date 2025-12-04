@@ -16,40 +16,56 @@ export default async function Navbar() {
   };
 
   return (
-    <nav className="border-b border-zinc-100 bg-white px-6 py-4 dark:border-zinc-800 dark:bg-black">
+    <nav className="sticky top-0 z-50 border-b border-zinc-100 bg-white/80 px-6 py-4 backdrop-blur-md dark:border-zinc-800 dark:bg-black/80">
       <div className="mx-auto flex max-w-5xl items-center justify-between">
-        {/* Logo / Name */}
-        <Link href="/" className="font-bold text-zinc-900 dark:text-zinc-50">
+        {/* Logo */}
+        <Link
+          href="/"
+          className="text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-50"
+        >
           Academic Portfolio
         </Link>
 
-        {/* Links */}
-        <div className="flex items-center gap-6 text-sm font-medium text-zinc-600 dark:text-zinc-400">
-          <Link href="/blog" className="hover:text-black dark:hover:text-white">
-            Research & Blog
+        {/* Navigation Links */}
+        <div className="flex items-center gap-6">
+          <Link
+            href="/blog"
+            className="text-sm font-medium text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white"
+          >
+            Research
           </Link>
 
           {user ? (
-            <>
+            /* Logged In State */
+            <div className="flex items-center gap-4">
               <Link
                 href="/protected/dashboard"
-                className="text-black dark:text-white"
+                className="text-sm font-medium text-black dark:text-white"
               >
                 Dashboard
               </Link>
               <form action={signOut}>
-                <button className="rounded-md bg-zinc-900 px-3 py-1.5 text-xs text-white hover:bg-zinc-700 dark:bg-zinc-50 dark:text-black">
+                <button className="rounded-full bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700">
                   Sign Out
                 </button>
               </form>
-            </>
+            </div>
           ) : (
-            <Link
-              href="/auth/login"
-              className="hover:text-black dark:hover:text-white"
-            >
-              Log in
-            </Link>
+            /* Logged Out State (Sign In / Sign Up) */
+            <div className="flex items-center gap-4">
+              <Link
+                href="/auth/login"
+                className="text-sm font-medium text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white"
+              >
+                Sign In
+              </Link>
+              <Link
+                href="/auth/login"
+                className="rounded-full bg-black px-4 py-2 text-sm font-medium text-white transition hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
+              >
+                Sign Up
+              </Link>
+            </div>
           )}
         </div>
       </div>
