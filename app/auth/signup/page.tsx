@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
-// We don't need useRouter anymore since we aren't redirecting automatically
 import { Input, SolidButton } from "@/components/ui";
 
 export default function SignupPage() {
@@ -13,8 +12,6 @@ export default function SignupPage() {
   const [subscribe, setSubscribe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
-
-  // New state to handle the success view
   const [isSuccess, setIsSuccess] = useState(false);
 
   const supabase = createClient();
@@ -34,7 +31,6 @@ export default function SignupPage() {
       email,
       password,
       options: {
-        // Redirect to Login page after they click the email link
         emailRedirectTo: `${location.origin}/auth/callback?next=/login`,
         data: {
           newsletter_subscribed: subscribe
@@ -46,18 +42,15 @@ export default function SignupPage() {
       setMessage("Error: " + error.message);
       setIsLoading(false);
     } else {
-      // Show the success message instead of the form
       setIsSuccess(true);
       setIsLoading(false);
     }
   };
 
-  // ---------------------------------------------------------
-  // SUCCESS VIEW (Shown after submission)
-  // ---------------------------------------------------------
   if (isSuccess) {
+    // UPDATED: Fixed screen, no scroll
     return (
-      <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-white px-4 py-12 dark:bg-zinc-950">
+      <div className="fixed inset-0 z-50 flex h-screen w-screen items-center justify-center overflow-hidden bg-white px-4 py-12 dark:bg-zinc-950">
         <div className="w-full max-w-md rounded-2xl border border-zinc-200 bg-white p-8 text-center shadow-sm dark:border-zinc-800 dark:bg-zinc-900/50">
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
             <svg
@@ -97,11 +90,9 @@ export default function SignupPage() {
     );
   }
 
-  // ---------------------------------------------------------
-  // FORM VIEW
-  // ---------------------------------------------------------
   return (
-    <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-white px-4 py-12 dark:bg-zinc-950">
+    // UPDATED: Fixed screen, no scroll
+    <div className="fixed inset-0 z-50 flex h-screen w-screen items-center justify-center overflow-hidden bg-white px-4 py-12 dark:bg-zinc-950">
       <div className="w-full max-w-md space-y-8 rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/50">
         <div>
           <h2 className="text-3xl font-bold tracking-wide text-zinc-900 uppercase dark:text-zinc-100">
@@ -121,8 +112,8 @@ export default function SignupPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            // Fix Mobile Zoom: text-base on mobile (16px), text-sm on desktop
-            className="text-base md:text-sm"
+            // UPDATED: text-[16px] forces mobile browser not to zoom.
+            className="text-[16px] md:text-sm"
           />
 
           <Input
@@ -133,7 +124,8 @@ export default function SignupPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="text-base md:text-sm"
+            // UPDATED: text-[16px] forces mobile browser not to zoom.
+            className="text-[16px] md:text-sm"
           />
 
           <Input
@@ -144,7 +136,8 @@ export default function SignupPage() {
             value={repeatPassword}
             onChange={(e) => setRepeatPassword(e.target.value)}
             required
-            className="text-base md:text-sm"
+            // UPDATED: text-[16px] forces mobile browser not to zoom.
+            className="text-[16px] md:text-sm"
           />
 
           <div className="flex items-center gap-2">
@@ -172,7 +165,7 @@ export default function SignupPage() {
           <p>
             Already have an account?{" "}
             <Link
-              href="/auth/login"
+              href="/login"
               className="font-medium text-black underline hover:text-zinc-700 dark:text-white"
             >
               Login

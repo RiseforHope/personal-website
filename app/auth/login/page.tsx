@@ -51,7 +51,8 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-white px-4 py-12 dark:bg-zinc-950">
+    // UPDATED: h-screen and overflow-hidden removes scrolling
+    <div className="fixed inset-0 z-50 flex h-screen w-screen items-center justify-center overflow-hidden bg-white px-4 py-12 dark:bg-zinc-950">
       <div className="w-full max-w-md space-y-8 rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/50">
         <div>
           <h2 className="text-3xl font-bold tracking-wide text-zinc-900 uppercase dark:text-zinc-100">
@@ -71,8 +72,8 @@ export default function LoginPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            // Fix Mobile Zoom: text-base on mobile (16px), text-sm on desktop
-            className="text-base md:text-sm"
+            // UPDATED: text-[16px] forces mobile browser not to zoom.
+            className="text-[16px] md:text-sm"
           />
 
           <div>
@@ -98,7 +99,8 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="text-base md:text-sm"
+              // UPDATED: text-[16px] forces mobile browser not to zoom.
+              className="text-[16px] md:text-sm"
             />
           </div>
 
@@ -145,7 +147,7 @@ export default function LoginPage() {
           <p>
             Don't have an account?{" "}
             <Link
-              href="/auth/signup"
+              href="/signup"
               className="font-medium text-black underline hover:text-zinc-700 dark:text-white"
             >
               Sign up
