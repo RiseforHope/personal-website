@@ -1,19 +1,14 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Montserrat } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { ThemeProvider } from "@/components/theme-provider"; // <--- Import this
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
-const titleFont = localFont({
-  src: "./fonts/title.woff2",
-  variable: "--font-title",
-  display: "swap",
-});
-
-const bodyFont = localFont({
-  src: "./fonts/body.woff2",
-  variable: "--font-body",
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-montserrat",
   display: "swap",
 });
 
@@ -28,11 +23,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-    <body
-      className={`${bodyFont.variable} ${titleFont.variable} antialiased`}
-    >
-    {/* Wrap everything inside ThemeProvider */}
+    <html lang="en" suppressHydrationWarning className={montserrat.variable}>
+    <body className="antialiased">
     <ThemeProvider
       attribute="class"
       defaultTheme="system"

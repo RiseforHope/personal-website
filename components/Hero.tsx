@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 
 export function Hero() {
   return (
@@ -43,16 +42,6 @@ export function Hero() {
                   intellectual space, and there’s plenty of support to help you
                   make the most of Oxford.
                 </p>
-
-                {/* decorative mark on the right */}
-                <div className="pointer-events-none absolute right-0 top-0 h-full w-40 overflow-hidden">
-                  <Image
-                    src="/images/hero-mark.png" // <-- replace or remove if you don’t want it
-                    alt=""
-                    fill
-                    className="object-contain object-right"
-                  />
-                </div>
               </div>
             </div>
           </div>
@@ -60,30 +49,33 @@ export function Hero() {
       </div>
 
       {/* BOTTOM STRIP */}
-      <div className="relative z-10 w-full bg-zinc-100/90 backdrop-blur">
-        <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-8 px-6 py-10 md:grid-cols-4 md:gap-10 md:px-10">
-          <QuickLink
-            title="UNDERGRADUATE STUDY"
-            subtitle="Lots of subjects, lots of support"
-            href="/"
-          />
-          <QuickLink
-            title="GRADUATE STUDY"
-            subtitle="A vibrant, friendly community"
-            href="/"
-          />
-          <QuickLink
-            title="PUPILS AND TEACHERS"
-            subtitle="Demystifying Oxford and prosla"
-            href="/"
-          />
-          <QuickLink
-            title="ALUMNI"
-            subtitle="A diverse and growing community"
-            href="/"
-          />
+      <div className="relative z-10 w-full bg-[#f3efe6]">
+        <div className="mx-auto w-full max-w-7xl px-6 py-12 md:px-10 md:py-10">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-4 md:gap-10">
+            <QuickLink
+              title="UNDERGRADUATE STUDY"
+              subtitle="Lots of subjects, lots of support"
+              href="/"
+            />
+            <QuickLink
+              title="GRADUATE STUDY"
+              subtitle="A vibrant, friendly community"
+              href="/"
+            />
+            <QuickLink
+              title="PUPILS AND TEACHERS"
+              subtitle="Demystifying Oxford and prosla"
+              href="/"
+            />
+            <QuickLink
+              title="ALUMNI"
+              subtitle="A diverse and growing community"
+              href="/"
+            />
+          </div>
         </div>
       </div>
+
     </section>
   );
 }
@@ -99,11 +91,23 @@ function QuickLink({
 }) {
   return (
     <Link href={href} className="group block">
-      <div className="flex items-center gap-3 text-sm font-semibold tracking-widest text-zinc-800">
-        {title}
-        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+      {/* Mobile: title left, arrow far right */}
+      <div className="flex items-center justify-between">
+        <div className="text-3xl font-light uppercase tracking-[0.14em] text-zinc-800 md:text-sm md:font-semibold md:tracking-widest">
+          {title}
+        </div>
+
+        <img
+          src="/icons/right-arrow.svg"
+          alt=""
+          className="h-6 w-24 transition-transform group-hover:translate-x-1 md:h-4 md:w-4"
+        />
       </div>
-      <div className="mt-2 text-sm text-zinc-600">{subtitle}</div>
+
+      {/* Subtitle hidden on mobile, shown on desktop */}
+      <div className="mt-2 hidden text-sm text-zinc-600 md:block">
+        {subtitle}
+      </div>
     </Link>
   );
 }
