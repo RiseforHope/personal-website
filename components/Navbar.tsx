@@ -1,79 +1,152 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/server";
-import { redirect } from "next/navigation";
+import { Menu, X } from "lucide-react";
+import { User } from "@supabase/supabase-js";
+// Ensure these components exist in your @/components/ui folder, or replace with standard HTML buttons if needed.
 import { OutlineButton, SolidButton } from "@/components/ui";
 
-export default async function Navbar() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+interface NavbarClientProps {
+  user: User | null;
+  signOut: () => Promise<void>;
+}
 
-  const signOut = async () => {
-    "use server";
-    const supabase = await createClient();
-    await supabase.auth.signOut();
-    redirect("/");
-  };
+export default function NavbarClient({ user, signOut }: NavbarClientProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Prevent scrolling when menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    // Cleanup function to reset overflow when component unmounts
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
 
   return (
-    // bg-transparent and consistent padding (px-6 md:px-10)
     <nav className="sticky top-0 z-50 w-full border-b border-transparent bg-transparent px-6 py-4 dark:border-transparent md:px-10">
       <div className="flex w-full items-center justify-between">
-
-        {/* SECTION 1: Logo (Now on the LEFT) */}
+        {/* LOGO (Far Left) */}
         <Link
           href="/"
-          className="text-2xl font-bold tracking-tight text-zinc-900 italic dark:text-zinc-50"
+          className="z-50 text-2xl font-bold tracking-tight text-zinc-900 italic dark:text-zinc-50"
+          onClick={closeMenu}
         >
           prosla
         </Link>
 
-        {/* SECTION 2: Navigation Links & Auth (Now on the RIGHT) */}
         <div className="flex items-center gap-4">
-          {/* Navigation Links */}
-          <Link
-            href="/blog"
-            className="hidden text-sm font-medium text-zinc-600 hover:text-black md:block dark:text-zinc-400 dark:hover:text-white"
+          {/* --- DESKTOP NAVIGATION LINKS (Hidden on Mobile) --- */}
+          <div className="hidden items-center gap-6 md:flex">
+            <NavLinks />
+          </div>
+
+          {/* --- AUTH BUTTONS (Visible on Mobile & Desktop) --- */}
+          <AuthButtons user={user} signOut={signOut} />
+
+          {/* --- MOBILE HAMBURGER BUTTON (Visible on Mobile) --- */}
+          <button
+            onClick={toggleMenu}
+            className="z-50 block p-2 text-zinc-900 focus:outline-none md:hidden dark:text-white"
+            aria-label="Toggle menu"
           >
-            Research
-          </Link>
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
+      </div>
 
-          {user ? (
-            /* Logged In State */
-            <div className="flex items-center gap-4">
-              <Link
-                href="/protected/dashboard"
-                className="hidden text-sm font-medium text-black md:block dark:text-white"
-              >
-                Dashboard
-              </Link>
-              <form action={signOut}>
-                <SolidButton className="py-2 text-xs">Sign Out</SolidButton>
-              </form>
-            </div>
-          ) : (
-            /* Logged Out State */
-            <div className="flex items-center gap-2">
-              {/* SIGN IN = Outline */}
-              <Link
-                href="/auth/login"
-                className="flex items-center justify-center rounded-md border border-zinc-300 bg-transparent px-4 py-2 text-sm font-bold tracking-wider text-zinc-900 uppercase transition hover:border-zinc-900 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50 dark:hover:border-zinc-200 dark:hover:bg-zinc-900/40"
-              >
-                SIGN IN
-              </Link>
+      {/* --- MOBILE FULL SCREEN MENU OVERLAY --- */}
+      <div
+        className={`fixed inset-0 z-40 flex flex-col items-center justify-center bg-white transition-all duration-500 ease-in-out dark:bg-black ${
+          isOpen
+            ? "opacity-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 -translate-y-4 pointer-events-none"
+        }`}
+      >
+        <div className="flex flex-col items-center gap-8 text-center">
+          <div className="flex flex-col gap-6" onClick={closeMenu}>
+            <NavLinks mobile />
+          </div>
 
-              {/* SIGN UP = Solid */}
-              <Link
-                href="/auth/signup"
-                className="flex items-center justify-center rounded-md bg-black px-4 py-2 text-sm font-bold tracking-wider text-white uppercase transition hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
-              >
-                SIGN UP
-              </Link>
-            </div>
-          )}
+          {/* Auth buttons are now in the header, so we removed them from here to avoid duplication */}
         </div>
       </div>
     </nav>
+  );
+}
+
+// --- Helper Components ---
+
+function NavLinks({ mobile = false }: { mobile?: boolean }) {
+  const baseClass = mobile
+    ? "text-2xl font-bold text-zinc-900 dark:text-white hover:text-zinc-600"
+    : "text-sm font-medium text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white";
+
+  return (
+    <>
+      {["Home", "Teaching", "Research", "Projects", "About", "Contact"].map(
+        (item) => (
+          <Link
+            key={item}
+            href={item === "Home" ? "/" : "/blog"}
+            className={baseClass}
+          >
+            {item}
+          </Link>
+        )
+      )}
+    </>
+  );
+}
+
+function AuthButtons({
+                       user,
+                       signOut,
+                     }: {
+  user: User | null;
+  signOut: () => Promise<void>;
+}) {
+  if (user) {
+    return (
+      <div className="flex items-center gap-4">
+        <Link
+          href="/protected/dashboard"
+          className="hidden text-sm font-medium text-black md:block dark:text-white"
+        >
+          Dashboard
+        </Link>
+        <form action={signOut}>
+          <button className="rounded-md bg-zinc-900 px-4 py-2 text-xs font-bold text-white uppercase dark:bg-white dark:text-black">
+            Sign Out
+          </button>
+        </form>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex items-center gap-2">
+      <Link
+        href="/auth/login"
+        className="flex items-center justify-center rounded-md border border-zinc-300 bg-transparent px-3 py-2 text-xs font-bold tracking-wider text-zinc-900 uppercase transition hover:border-zinc-900 hover:bg-zinc-50 md:px-4 md:text-sm dark:border-zinc-700 dark:text-zinc-50 dark:hover:border-zinc-200 dark:hover:bg-zinc-900/40"
+      >
+        SIGN IN
+      </Link>
+      <Link
+        href="/auth/signup"
+        className="flex items-center justify-center rounded-md bg-black px-3 py-2 text-xs font-bold tracking-wider text-white uppercase transition hover:bg-zinc-800 md:px-4 md:text-sm dark:bg-white dark:text-black dark:hover:bg-zinc-200"
+      >
+        SIGN UP
+      </Link>
+    </div>
   );
 }
