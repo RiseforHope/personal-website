@@ -53,22 +53,22 @@ export function Hero() {
         <div className="mx-auto w-full max-w-7xl px-6 py-12 md:px-10 md:py-10">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-4 md:gap-10">
             <QuickLink
-              title="UNDERGRADUATE STUDY"
+              title="TEACHING"
               subtitle="Lots of subjects, lots of support"
               href="/"
             />
             <QuickLink
-              title="GRADUATE STUDY"
+              title="RESEARCH & WRITING"
               subtitle="A vibrant, friendly community"
               href="/"
             />
             <QuickLink
-              title="PUPILS AND TEACHERS"
+              title="PROJECTS"
               subtitle="Demystifying Oxford and prosla"
               href="/"
             />
             <QuickLink
-              title="ALUMNI"
+              title="ABOUT"
               subtitle="A diverse and growing community"
               href="/"
             />
