@@ -6,30 +6,19 @@ export function Hero() {
     <section className="relative isolate -mt-20 flex min-h-screen w-full flex-col overflow-hidden pt-20">
       {/* BACKGROUND IMAGE */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/hero.jpg"
-          alt=""
-          fill
-          priority
-          className="object-cover"
-        />
+        <Image src="/images/hero.jpg" alt="" fill priority className="object-cover" />
         <div className="absolute inset-0 bg-white/10" />
       </div>
 
       {/* MAIN CONTENT */}
-      <div className="relative z-10 flex flex-1 items-end px-6 md:items-center md:px-10">
-        <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center lg:grid-cols-12">
+      <div className="relative z-10 flex flex-1 items-end px-6 md:items-center md:pl-10 md:pr-0">
+        <div className="grid w-full grid-cols-1 items-center lg:grid-cols-12">
           <div className="hidden lg:col-span-6 lg:block" />
 
-          <div className="lg:col-span-6 lg:justify-self-end">
-            {/* Remove vertical gap on mobile so the box touches the strip */}
-            <div className="space-y-0 md:space-y-6">
-              {/* small pill (desktop only) */}
-              <div className="hidden md:inline-block bg-[#0b0f2b] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-sm">
-                Welcome to prosla
-              </div>
-
-              {/* MOBILE: single combined box (keeps horizontal padding via parent px-6) */}
+          {/* Right column */}
+          <div className="lg:col-span-6 flex justify-end">
+            <div className="space-y-0 md:space-y-6 w-full">
+              {/* MOBILE: single combined box */}
               <div className="md:hidden bg-[#0b0f2b] px-8 py-10 text-white text-center shadow-lg">
                 <div className="text-sm font-medium tracking-wide text-white/90">
                   Welcome to prosla
@@ -46,17 +35,23 @@ export function Hero() {
                 </p>
               </div>
 
-              {/* DESKTOP: main block */}
-              <div className="hidden md:block relative bg-[#0b0f2b] px-8 py-10 text-white shadow-lg md:px-10">
-                <h1 className="text-5xl font-light leading-tight tracking-tight md:text-6xl">
-                  Vibrant and open
-                </h1>
+              {/* DESKTOP: pill + box share the same width, aligned LEFT forever */}
+              <div className="hidden md:flex md:flex-col md:items-start md:w-[min(680px,100%)]">
+                <div className="bg-[#0b0f2b] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-sm">
+                  Welcome to prosla
+                </div>
 
-                <p className="mt-6 max-w-xl text-base leading-relaxed text-white/85 md:text-lg">
-                  We’re quite a big college, which makes for a thriving
-                  intellectual space, and there’s plenty of support to help you
-                  make the most of Oxford.
-                </p>
+                <div className="mt-6 w-full bg-[#0b0f2b] px-8 py-10 text-white shadow-lg md:px-10">
+                  <h1 className="text-5xl font-light leading-tight tracking-tight md:text-6xl">
+                    Vibrant and open
+                  </h1>
+
+                  <p className="mt-6 max-w-xl text-base leading-relaxed text-white/85 md:text-lg">
+                    We’re quite a big college, which makes for a thriving
+                    intellectual space, and there’s plenty of support to help you
+                    make the most of Oxford.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
