@@ -4,15 +4,14 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { User } from "@supabase/supabase-js";
-// Ensure these components exist in your @/components/ui folder, or replace with standard HTML buttons if needed.
-import { OutlineButton, SolidButton } from "@/components/ui";
 
-interface NavbarClientProps {
+
+interface NavbarProps {
   user: User | null;
   signOut: () => Promise<void>;
 }
 
-export default function NavbarClient({ user, signOut }: NavbarClientProps) {
+export default function Navbar({ user, signOut }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   // Prevent scrolling when menu is open
