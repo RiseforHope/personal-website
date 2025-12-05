@@ -55,7 +55,15 @@ export default async function Navbar() {
           ) : (
             /* Logged Out State */
             <div className="flex items-center gap-2">
-              <OutlineButton href="/auth/login">SIGN IN</OutlineButton>
+              {/* SIGN IN = Outline */}
+              <Link
+                href="/auth/login"
+                className="flex items-center justify-center rounded-md border border-zinc-300 bg-transparent px-4 py-2 text-sm font-bold tracking-wider text-zinc-900 uppercase transition hover:border-zinc-900 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50 dark:hover:border-zinc-200 dark:hover:bg-zinc-900/40"
+              >
+                SIGN IN
+              </Link>
+
+              {/* SIGN UP = Solid */}
               <Link
                 href="/auth/signup"
                 className="flex items-center justify-center rounded-md bg-black px-4 py-2 text-sm font-bold tracking-wider text-white uppercase transition hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"

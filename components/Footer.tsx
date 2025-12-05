@@ -98,17 +98,6 @@ export function Footer() {
           </p>
 
           {/* Footer Links */}
-          <div className="flex gap-6 text-sm text-zinc-600 dark:text-zinc-400">
-            <Link href="#" className="hover:text-black dark:hover:text-white">
-              Privacy
-            </Link>
-            <Link href="#" className="hover:text-black dark:hover:text-white">
-              Terms
-            </Link>
-            <Link href="#" className="hover:text-black dark:hover:text-white">
-              Contact
-            </Link>
-          </div>
         </div>
       </div>
     </footer>
