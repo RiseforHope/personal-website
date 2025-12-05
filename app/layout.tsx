@@ -1,6 +1,21 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/Navbar"; // <--- Import it
+import localFont from "next/font/local"; // <--- Import this
+import Navbar from "@/components/Navbar";
 import "./globals.css";
+
+// 1. Configure the Title Font
+const titleFont = localFont({
+  src: "./fonts/title.woff2", // <--- Simple and clean
+  variable: "--font-title",
+  display: "swap",
+});
+
+// 2. Configure the Body Font
+const bodyFont = localFont({
+  src: "./fonts/body.woff2", // <--- Simple and clean
+  variable: "--font-body",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Academic Portfolio",
@@ -14,8 +29,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-white text-zinc-900 antialiased dark:bg-black dark:text-zinc-50">
-        <Navbar /> {/* <--- Add it here */}
+      {/* 3. Add both variables to the body className */}
+      <body
+        className={`${bodyFont.variable} ${titleFont.variable} antialiased`}
+      >
+        <Navbar />
         {children}
       </body>
     </html>

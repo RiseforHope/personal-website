@@ -1,6 +1,8 @@
+// components/Navbar.tsx
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
+import { OutlineButton, SolidButton } from "@/components/ui";
 
 export default async function Navbar() {
   const supabase = await createClient();
@@ -16,54 +18,49 @@ export default async function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-zinc-100 bg-white/80 px-6 py-4 backdrop-blur-md dark:border-zinc-800 dark:bg-black/80">
+    <nav className="sticky top-0 z-50 border-b border-zinc-100 bg-white/90 px-4 py-3 backdrop-blur-md dark:border-zinc-800 dark:bg-black/90">
       <div className="mx-auto flex max-w-5xl items-center justify-between">
-        {/* Logo */}
+        {/* Logo (Using text for now to match image placement) */}
         <Link
           href="/"
-          className="text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-50"
+          className="text-2xl font-bold tracking-tight text-zinc-900 italic dark:text-zinc-50"
         >
-          Academic Portfolio
+          prosla
         </Link>
 
         {/* Navigation Links */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-2 md:gap-4">
+          {/* This link is hidden on small screens (mobile) */}
           <Link
             href="/blog"
-            className="text-sm font-medium text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white"
+            className="hidden text-sm font-medium text-zinc-600 hover:text-black md:block dark:text-zinc-400 dark:hover:text-white"
           >
             Research
           </Link>
 
           {user ? (
             /* Logged In State */
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 md:gap-4">
               <Link
                 href="/protected/dashboard"
-                className="text-sm font-medium text-black dark:text-white"
+                className="hidden text-sm font-medium text-black md:block dark:text-white"
               >
                 Dashboard
               </Link>
               <form action={signOut}>
-                <button className="rounded-full bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700">
-                  Sign Out
-                </button>
+                <SolidButton className="py-2 text-xs">Sign Out</SolidButton>
               </form>
             </div>
           ) : (
-            /* Logged Out State (Sign In / Sign Up) */
-            <div className="flex items-center gap-4">
+            /* Logged Out State - Matches Image 7 */
+            <div className="flex items-center gap-2">
+              <OutlineButton href="/auth/login">SIGN IN</OutlineButton>
+              {/* Using Link wrapper for the solid button style */}
               <Link
-                href="/auth/login"
-                className="text-sm font-medium text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white"
+                href="/auth/signup"
+                className="flex items-center justify-center rounded-md bg-black px-4 py-2 text-sm font-bold tracking-wider text-white uppercase transition hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
               >
-                Sign In
-              </Link>
-              <Link
-                href="/auth/login"
-                className="rounded-full bg-black px-4 py-2 text-sm font-medium text-white transition hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
-              >
-                Sign Up
+                SIGN UP
               </Link>
             </div>
           )}
