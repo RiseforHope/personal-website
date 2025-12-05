@@ -1,29 +1,20 @@
+
 "use client";
 
 import Link from "next/link";
-import { Instagram, Youtube, Linkedin, Bookmark, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { Instagram, Youtube, Linkedin, Bookmark } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle"; // Import the new component
 
 export function Footer() {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
     <footer className="w-full border-t border-zinc-100 bg-white py-12 transition-colors duration-300 dark:border-zinc-800 dark:bg-zinc-950">
-      {/* Container: Matches Navbar padding (px-6 md:px-10) with no max-width constraint */}
       <div className="flex w-full flex-col gap-6 px-6 md:px-10">
 
-        {/* TOP ROW: Social Icons (Left) and Sun Icon (Right) */}
+        {/* TOP ROW: Social Icons (Left) and Theme Toggle (Right) */}
         <div className="flex w-full items-center justify-between">
 
           {/* Social Icons Group */}
           <div className="flex items-center gap-5 text-zinc-400">
-            {/* TikTok Icon */}
             <Link href="#" className="hover:text-zinc-600 dark:hover:text-zinc-300">
               <svg
                 viewBox="0 0 24 24"
@@ -47,7 +38,6 @@ export function Footer() {
               <Linkedin className="h-4 w-4" />
             </Link>
 
-            {/* X (Twitter) Icon */}
             <Link href="#" className="hover:text-zinc-600 dark:hover:text-zinc-300">
               <svg
                 viewBox="0 0 24 24"
@@ -63,7 +53,6 @@ export function Footer() {
               <Bookmark className="h-4 w-4" />
             </Link>
 
-            {/* WhatsApp */}
             <Link href="#" className="hover:text-zinc-600 dark:hover:text-zinc-300">
               <svg
                 viewBox="0 0 24 24"
@@ -76,28 +65,27 @@ export function Footer() {
             </Link>
           </div>
 
-          {/* Theme Toggle (Right) */}
-          <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="rounded-full p-2 text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-black dark:hover:bg-zinc-800 dark:hover:text-white"
-            aria-label="Toggle Theme"
-          >
-            {mounted && theme === "dark" ? (
-              <Sun className="h-4 w-4" />
-            ) : (
-              <Sun className="h-4 w-4" />
-            )}
-          </button>
+          {/* New Theme Toggle Component */}
+          <ThemeToggle />
         </div>
 
         {/* BOTTOM ROWS: Text Content */}
         <div className="space-y-6">
-          {/* Copyright */}
           <p className="text-sm font-light text-zinc-500">
             © 2025 PROSLA™ Method. All rights reserved.
           </p>
 
-          {/* Footer Links */}
+          <div className="flex gap-6 text-sm text-zinc-600 dark:text-zinc-400">
+            <Link href="#" className="hover:text-black dark:hover:text-white">
+              Privacy
+            </Link>
+            <Link href="#" className="hover:text-black dark:hover:text-white">
+              Terms
+            </Link>
+            <Link href="#" className="hover:text-black dark:hover:text-white">
+              Contact
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
