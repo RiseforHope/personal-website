@@ -79,7 +79,7 @@ export default function SignupPage() {
 
           <div className="mt-8 border-t border-zinc-100 pt-6 dark:border-zinc-800">
             <Link
-              href="/login"
+              href="auth/login"
               className="text-sm font-medium text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white"
             >
               &larr; Back to Login
