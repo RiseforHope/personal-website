@@ -1,29 +1,21 @@
 import Link from "next/link";
 import { GraduationCap, ScrollText, FolderKanban, ArrowRight } from "lucide-react";
+import { Hero } from "@/components/Hero"; // Import the new Hero
 
 export default function Home() {
   return (
-    <main className="flex min-h-[calc(100vh-80px)] flex-col items-center justify-center px-6 py-20 md:px-10">
-      <div className="mx-auto w-full max-w-5xl space-y-16 text-center">
+    <main className="flex min-h-screen flex-col">
+      {/* 1. Hero Section (With Mesh Gradient) */}
+      <Hero />
 
-        {/* 1. Hero & Positioning Section */}
-        <div className="space-y-6 animate-in fade-in zoom-in duration-700">
-          <h1 className="font-title text-4xl font-bold tracking-tight text-zinc-900 md:text-6xl dark:text-zinc-50">
-            Educator, Researcher, and <br className="hidden md:block" />
-            Builder of Learning Systems
-          </h1>
+      {/* 2. Three Clickable Blocks (Below the fold) */}
+      <div className="flex flex-1 flex-col items-center justify-center bg-zinc-50 px-6 py-20 dark:bg-black md:px-10">
+        <div className="mx-auto grid w-full max-w-5xl grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
 
-          <p className="mx-auto max-w-2xl text-lg text-zinc-600 md:text-xl font-light leading-relaxed dark:text-zinc-400">
-            I work at the intersection of language, pedagogy, and humane innovation.
-          </p>
-        </div>
-
-        {/* 2. Three Clickable Blocks */}
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
           {/* Block 1: Teaching */}
           <Link
             href="/teaching"
-            className="group relative flex flex-col items-center justify-center space-y-4 rounded-xl border border-zinc-200 bg-white p-8 text-center transition-all hover:border-zinc-900 hover:shadow-sm dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-100"
+            className="group relative flex flex-col items-center justify-center space-y-4 rounded-xl border border-zinc-200 bg-white p-8 text-center shadow-sm transition-all hover:border-zinc-900 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-100"
           >
             <div className="rounded-full bg-zinc-50 p-4 transition-colors group-hover:bg-zinc-100 dark:bg-zinc-800 dark:group-hover:bg-zinc-700">
               <GraduationCap className="h-6 w-6 text-zinc-600 group-hover:text-black dark:text-zinc-400 dark:group-hover:text-white" />
@@ -44,7 +36,7 @@ export default function Home() {
           {/* Block 2: Research & Writing */}
           <Link
             href="/research"
-            className="group relative flex flex-col items-center justify-center space-y-4 rounded-xl border border-zinc-200 bg-white p-8 text-center transition-all hover:border-zinc-900 hover:shadow-sm dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-100"
+            className="group relative flex flex-col items-center justify-center space-y-4 rounded-xl border border-zinc-200 bg-white p-8 text-center shadow-sm transition-all hover:border-zinc-900 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-100"
           >
             <div className="rounded-full bg-zinc-50 p-4 transition-colors group-hover:bg-zinc-100 dark:bg-zinc-800 dark:group-hover:bg-zinc-700">
               <ScrollText className="h-6 w-6 text-zinc-600 group-hover:text-black dark:text-zinc-400 dark:group-hover:text-white" />
@@ -65,7 +57,7 @@ export default function Home() {
           {/* Block 3: Projects */}
           <Link
             href="/projects"
-            className="group relative flex flex-col items-center justify-center space-y-4 rounded-xl border border-zinc-200 bg-white p-8 text-center transition-all hover:border-zinc-900 hover:shadow-sm dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-100"
+            className="group relative flex flex-col items-center justify-center space-y-4 rounded-xl border border-zinc-200 bg-white p-8 text-center shadow-sm transition-all hover:border-zinc-900 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-100"
           >
             <div className="rounded-full bg-zinc-50 p-4 transition-colors group-hover:bg-zinc-100 dark:bg-zinc-800 dark:group-hover:bg-zinc-700">
               <FolderKanban className="h-6 w-6 text-zinc-600 group-hover:text-black dark:text-zinc-400 dark:group-hover:text-white" />
