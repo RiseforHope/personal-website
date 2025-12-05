@@ -28,13 +28,18 @@ export default function NavbarClient({ user, signOut }: NavbarClientProps) {
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
+  // Dynamic color for Logo and Button based on whether menu is open
+  const headerColorClass = isOpen
+    ? "text-white"
+    : "text-zinc-900 dark:text-zinc-50";
+
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-transparent bg-transparent px-6 py-4 dark:border-transparent md:px-10">
       <div className="flex w-full items-center justify-between">
         {/* LOGO */}
         <Link
           href="/"
-          className="z-50 text-2xl font-bold tracking-tight text-zinc-900 italic dark:text-zinc-50"
+          className={`z-50 text-2xl font-bold tracking-tight italic transition-colors ${headerColorClass}`}
           onClick={closeMenu}
         >
           prosla
@@ -46,13 +51,15 @@ export default function NavbarClient({ user, signOut }: NavbarClientProps) {
             <NavLinks />
           </div>
 
-          {/* AUTH BUTTONS (Visible on Mobile & Desktop) */}
-          <AuthButtons user={user} signOut={signOut} />
+          {/* AUTH BUTTONS */}
+          <div className="z-50">
+            <AuthButtons user={user} signOut={signOut} isOpen={isOpen} />
+          </div>
 
-          {/* HAMBURGER BUTTON (Mobile Only) */}
+          {/* HAMBURGER BUTTON */}
           <button
             onClick={toggleMenu}
-            className="z-50 block p-2 text-zinc-900 focus:outline-none md:hidden dark:text-white"
+            className={`z-50 block p-2 focus:outline-none md:hidden ${headerColorClass}`}
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -62,7 +69,8 @@ export default function NavbarClient({ user, signOut }: NavbarClientProps) {
 
       {/* MOBILE MENU OVERLAY */}
       <div
-        className={`fixed inset-0 z-40 flex flex-col items-center justify-center bg-white transition-all duration-500 ease-in-out dark:bg-black ${
+        // MATCHING GRADIENTS APPLIED HERE
+        className={`fixed inset-0 z-40 flex flex-col items-center justify-center transition-all duration-500 ease-in-out bg-[linear-gradient(to_top,#A7BFE8,#6190E8)] dark:bg-[linear-gradient(to_top,#0f172a,#1e293b)] ${
           isOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 -translate-y-4 pointer-events-none"
@@ -82,7 +90,7 @@ export default function NavbarClient({ user, signOut }: NavbarClientProps) {
 
 function NavLinks({ mobile = false }: { mobile?: boolean }) {
   const baseClass = mobile
-    ? "text-2xl font-bold text-zinc-900 dark:text-white hover:text-zinc-600"
+    ? "text-3xl font-bold text-white hover:text-white/80"
     : "text-sm font-medium text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white";
 
   const links = ["Home", "Teaching", "Research", "Projects", "About", "Contact"];
@@ -105,9 +113,11 @@ function NavLinks({ mobile = false }: { mobile?: boolean }) {
 function AuthButtons({
                        user,
                        signOut,
+                       isOpen,
                      }: {
   user: User | null;
   signOut: () => Promise<void>;
+  isOpen?: boolean;
 }) {
   if (user) {
     return (
@@ -131,10 +141,15 @@ function AuthButtons({
     <div className="flex items-center gap-2">
       <Link
         href="/auth/login"
-        className="flex items-center justify-center rounded-md border border-zinc-300 bg-transparent px-3 py-2 text-xs font-bold tracking-wider text-zinc-900 uppercase transition hover:border-zinc-900 hover:bg-zinc-50 md:px-4 md:text-sm dark:border-zinc-700 dark:text-zinc-50 dark:hover:border-zinc-200 dark:hover:bg-zinc-900/40"
+        className={`flex items-center justify-center rounded-md border bg-transparent px-3 py-2 text-xs font-bold tracking-wider uppercase transition md:px-4 md:text-sm ${
+          isOpen
+            ? "border-white text-white hover:bg-white/10"
+            : "border-zinc-300 text-zinc-900 hover:border-zinc-900 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50 dark:hover:border-zinc-200 dark:hover:bg-zinc-900/40"
+        }`}
       >
         SIGN IN
       </Link>
+
       <Link
         href="/auth/signup"
         className="flex items-center justify-center rounded-md bg-black px-3 py-2 text-xs font-bold tracking-wider text-white uppercase transition hover:bg-zinc-800 md:px-4 md:text-sm dark:bg-white dark:text-black dark:hover:bg-zinc-200"
