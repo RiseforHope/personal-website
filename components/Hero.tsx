@@ -7,32 +7,47 @@ export function Hero() {
       {/* BACKGROUND IMAGE */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/hero.jpg" // <-- replace with your background image
+          src="/images/hero.jpg"
           alt=""
           fill
           priority
           className="object-cover"
         />
-        {/* subtle wash like the reference */}
         <div className="absolute inset-0 bg-white/10" />
       </div>
 
       {/* MAIN CONTENT */}
-      <div className="relative z-10 flex flex-1 items-center px-6 md:px-10">
+      <div className="relative z-10 flex flex-1 items-end px-6 md:items-center md:px-10">
         <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center lg:grid-cols-12">
-          {/* left side intentionally empty on desktop (image carries it) */}
           <div className="hidden lg:col-span-6 lg:block" />
 
-          {/* right-side card stack */}
           <div className="lg:col-span-6 lg:justify-self-end">
-            <div className="space-y-6">
-              {/* small pill */}
-              <div className="inline-block bg-[#0b0f2b] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-sm">
+            {/* Remove vertical gap on mobile so the box touches the strip */}
+            <div className="space-y-0 md:space-y-6">
+              {/* small pill (desktop only) */}
+              <div className="hidden md:inline-block bg-[#0b0f2b] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-sm">
                 Welcome to prosla
               </div>
 
-              {/* main block */}
-              <div className="relative bg-[#0b0f2b] px-8 py-10 text-white shadow-lg md:px-10">
+              {/* MOBILE: single combined box (keeps horizontal padding via parent px-6) */}
+              <div className="md:hidden bg-[#0b0f2b] px-8 py-10 text-white text-center shadow-lg">
+                <div className="text-sm font-medium tracking-wide text-white/90">
+                  Welcome to prosla
+                </div>
+
+                <h1 className="mt-6 text-4xl font-light leading-tight tracking-tight">
+                  Vibrant and open
+                </h1>
+
+                <p className="mt-6 mx-auto max-w-xl text-base leading-relaxed text-white/85">
+                  We’re quite a big college, which makes for a thriving
+                  intellectual space, and there’s plenty of support to help you
+                  make the most of Oxford.
+                </p>
+              </div>
+
+              {/* DESKTOP: main block */}
+              <div className="hidden md:block relative bg-[#0b0f2b] px-8 py-10 text-white shadow-lg md:px-10">
                 <h1 className="text-5xl font-light leading-tight tracking-tight md:text-6xl">
                   Vibrant and open
                 </h1>
@@ -52,30 +67,13 @@ export function Hero() {
       <div className="relative z-10 w-full bg-[#f3efe6]">
         <div className="mx-auto w-full max-w-7xl px-6 py-12 md:px-10 md:py-10">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-4 md:gap-10">
-            <QuickLink
-              title="TEACHING"
-              subtitle="Lots of subjects, lots of support"
-              href="/"
-            />
-            <QuickLink
-              title="RESEARCH & WRITING"
-              subtitle="A vibrant, friendly community"
-              href="/"
-            />
-            <QuickLink
-              title="PROJECTS"
-              subtitle="Demystifying Oxford and prosla"
-              href="/"
-            />
-            <QuickLink
-              title="ABOUT"
-              subtitle="A diverse and growing community"
-              href="/"
-            />
+            <QuickLink title="TEACHING" subtitle="Lots of subjects, lots of support" href="/" />
+            <QuickLink title="RESEARCH & WRITING" subtitle="A vibrant, friendly community" href="/" />
+            <QuickLink title="PROJECTS" subtitle="Demystifying Oxford and prosla" href="/" />
+            <QuickLink title="ABOUT" subtitle="A diverse and growing community" href="/" />
           </div>
         </div>
       </div>
-
     </section>
   );
 }
@@ -91,7 +89,6 @@ function QuickLink({
 }) {
   return (
     <Link href={href} className="group block">
-      {/* Mobile: title left, arrow far right */}
       <div className="flex items-center justify-between">
         <div className="text-3xl font-light uppercase tracking-[0.14em] text-zinc-800 md:text-sm md:font-semibold md:tracking-widest">
           {title}
@@ -104,10 +101,7 @@ function QuickLink({
         />
       </div>
 
-      {/* Subtitle hidden on mobile, shown on desktop */}
-      <div className="mt-2 hidden text-sm text-zinc-600 md:block">
-        {subtitle}
-      </div>
+      <div className="mt-2 hidden text-sm text-zinc-600 md:block">{subtitle}</div>
     </Link>
   );
 }

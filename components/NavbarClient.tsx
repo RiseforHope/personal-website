@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { User } from "@supabase/supabase-js";
@@ -13,72 +13,66 @@ interface NavbarClientProps {
 export default function NavbarClient({ user, signOut }: NavbarClientProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Prevent scrolling when menu is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    document.body.style.overflow = isOpen ? "hidden" : "unset";
     return () => {
       document.body.style.overflow = "unset";
     };
   }, [isOpen]);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  const toggleMenu = () => setIsOpen((v) => !v);
   const closeMenu = () => setIsOpen(false);
 
-  // Dynamic color for Logo and Button based on whether menu is open
-  const headerColorClass = isOpen
-    ? "text-white"
-    : "text-zinc-900 dark:text-zinc-50";
-
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-transparent bg-transparent px-6 py-4 dark:border-transparent md:px-10">
-      <div className="flex w-full items-center justify-between">
-        {/* LOGO */}
-        <Link
-          href="/"
-          className={`z-50 text-2xl font-bold tracking-tight italic transition-colors ${headerColorClass}`}
-          onClick={closeMenu}
+    <nav className="sticky top-0 z-50 w-full bg-transparent px-6 py-4 md:px-10">
+      <div className="flex w-full items-center justify-end">
+        <button
+          onClick={toggleMenu}
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          className={`z-50 inline-flex h-11 w-11 items-center justify-center rounded-full border transition ${
+            isOpen
+              ? "border-white/30 bg-white/10 text-white"
+              : "border-zinc-200 bg-white/70 text-zinc-900 backdrop-blur hover:bg-white dark:border-white/15 dark:bg-white/10 dark:text-zinc-50"
+          }`}
         >
-          prosla
-        </Link>
-
-        <div className="flex items-center gap-4">
-          {/* DESKTOP LINKS (Hidden on Mobile) */}
-          <div className="hidden items-center gap-6 md:flex">
-            <NavLinks />
-          </div>
-
-          {/* AUTH BUTTONS */}
-          <div className="z-50">
-            <AuthButtons user={user} signOut={signOut} isOpen={isOpen} />
-          </div>
-
-          {/* HAMBURGER BUTTON */}
-          <button
-            onClick={toggleMenu}
-            className={`z-50 block p-2 focus:outline-none md:hidden ${headerColorClass}`}
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
+          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
       </div>
 
-      {/* MOBILE MENU OVERLAY */}
+      {/* Overlay + slide-in panel */}
       <div
-        // MATCHING GRADIENTS APPLIED HERE
-        className={`fixed inset-0 z-40 flex flex-col items-center justify-center transition-all duration-500 ease-in-out bg-[linear-gradient(to_top,#A7BFE8,#6190E8)] dark:bg-[linear-gradient(to_top,#0f172a,#1e293b)] ${
-          isOpen
-            ? "opacity-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 -translate-y-4 pointer-events-none"
+        className={`fixed inset-0 z-40 transition-opacity duration-500 ease-in-out ${
+          isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
+        aria-hidden={!isOpen}
       >
-        <div className="flex flex-col items-center gap-8 text-center">
-          <div className="flex flex-col gap-6" onClick={closeMenu}>
-            <NavLinks mobile />
+        {/* Backdrop (darker on desktop) */}
+        <button
+          type="button"
+          aria-label="Close menu backdrop"
+          onClick={closeMenu}
+          className={`absolute inset-0 h-full w-full transition-colors duration-500 ${
+            isOpen ? "bg-black/40 md:bg-black/50" : "bg-transparent"
+          }`}
+        />
+
+        {/* Panel: full width on mobile, half on desktop */}
+        <div
+          className={`absolute right-0 top-0 h-full w-full md:w-1/2 bg-[#0b0f2b] text-white transition-transform duration-500 ease-in-out ${
+            isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <div className="flex h-full flex-col px-6 py-10 md:px-10">
+            <div className="mt-16 flex flex-col gap-8" onClick={closeMenu}>
+              <MenuLink href="/teaching" label="Teaching" />
+              <MenuLink href="/research" label="Research &amp; Writing" />
+              <MenuLink href="/projects" label="Projects" />
+              <MenuLink href="/about" label="About" />
+            </div>
+
+            <div className="mt-auto pt-12">
+              <AuthRow user={user} signOut={signOut} closeMenu={closeMenu} />
+            </div>
           </div>
         </div>
       </div>
@@ -86,50 +80,45 @@ export default function NavbarClient({ user, signOut }: NavbarClientProps) {
   );
 }
 
-// --- Helper Components ---
-
-function NavLinks({ mobile = false }: { mobile?: boolean }) {
-  const baseClass = mobile
-    ? "text-3xl font-bold text-white hover:text-white/80"
-    : "text-sm font-medium text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white";
-
-  const links = ["Home", "Teaching", "Research", "Projects", "About", "Contact"];
-
+function MenuLink({ href, label }: { href: string; label: string }) {
   return (
-    <>
-      {links.map((item) => (
-        <Link
-          key={item}
-          href={item === "Home" ? "/" : "/blog"}
-          className={baseClass}
-        >
-          {item}
-        </Link>
-      ))}
-    </>
+    <Link
+      href={href}
+      className="text-4xl font-light tracking-tight transition-opacity hover:opacity-80 md:text-5xl"
+    >
+      {label}
+    </Link>
   );
 }
 
-function AuthButtons({
-                       user,
-                       signOut,
-                       isOpen,
-                     }: {
+function AuthRow({
+                   user,
+                   signOut,
+                   closeMenu,
+                 }: {
   user: User | null;
   signOut: () => Promise<void>;
-  isOpen?: boolean;
+  closeMenu: () => void;
 }) {
   if (user) {
     return (
-      <div className="flex items-center gap-4">
+      <div className="flex items-center justify-between gap-3">
         <Link
           href="/protected/dashboard"
-          className="hidden text-sm font-medium text-black md:block dark:text-white"
+          onClick={closeMenu}
+          className="flex-1 rounded-md border border-white/25 bg-white/10 px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider transition hover:bg-white/15"
         >
           Dashboard
         </Link>
-        <form action={signOut}>
-          <button className="rounded-md bg-zinc-900 px-4 py-2 text-xs font-bold text-white uppercase dark:bg-white dark:text-black">
+
+        <form
+          action={async () => {
+            await signOut();
+            closeMenu();
+          }}
+          className="flex-1"
+        >
+          <button className="w-full rounded-md bg-white px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider text-[#0b0f2b] transition hover:bg-white/90">
             Sign Out
           </button>
         </form>
@@ -138,23 +127,21 @@ function AuthButtons({
   }
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-3">
       <Link
-        href="/auth/login"
-        className={`flex items-center justify-center rounded-md border bg-transparent px-3 py-2 text-xs font-bold tracking-wider uppercase transition md:px-4 md:text-sm ${
-          isOpen
-            ? "border-white text-white hover:bg-white/10"
-            : "border-zinc-300 text-zinc-900 hover:border-zinc-900 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50 dark:hover:border-zinc-200 dark:hover:bg-zinc-900/40"
-        }`}
+        href="/auth/signup"
+        onClick={closeMenu}
+        className="flex-1 rounded-md bg-white px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider text-[#0b0f2b] transition hover:bg-white/90"
       >
-        SIGN IN
+        Sign Up
       </Link>
 
       <Link
-        href="/auth/signup"
-        className="flex items-center justify-center rounded-md bg-black px-3 py-2 text-xs font-bold tracking-wider text-white uppercase transition hover:bg-zinc-800 md:px-4 md:text-sm dark:bg-white dark:text-black dark:hover:bg-zinc-200"
+        href="/auth/login"
+        onClick={closeMenu}
+        className="flex-1 rounded-md border border-white/25 bg-white/10 px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-white/15"
       >
-        SIGN UP
+        Sign In
       </Link>
     </div>
   );
