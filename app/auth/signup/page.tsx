@@ -3,17 +3,19 @@
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+// We don't need useRouter anymore since we aren't redirecting automatically
 import { Input, SolidButton } from "@/components/ui";
 
 export default function SignupPage() {
-  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const [subscribe, setSubscribe] = useState(false); // Added state
+  const [subscribe, setSubscribe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+
+  // New state to handle the success view
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const supabase = createClient();
 
@@ -28,14 +30,13 @@ export default function SignupPage() {
       return;
     }
 
-    const { data, error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
       email,
       password,
       options: {
-        // Essential for the verification link to work properly
-        emailRedirectTo: `${location.origin}/auth/callback`,
+        // Redirect to Login page after they click the email link
+        emailRedirectTo: `${location.origin}/auth/callback?next=/login`,
         data: {
-          // Store the subscribe preference in user metadata
           newsletter_subscribed: subscribe
         }
       },
@@ -43,15 +44,62 @@ export default function SignupPage() {
 
     if (error) {
       setMessage("Error: " + error.message);
-    } else if (data.session) {
-      router.push("/");
-    } else if (data.user) {
-      setMessage("Account created! Check your email to verify your account.");
+      setIsLoading(false);
+    } else {
+      // Show the success message instead of the form
+      setIsSuccess(true);
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   };
 
+  // ---------------------------------------------------------
+  // SUCCESS VIEW (Shown after submission)
+  // ---------------------------------------------------------
+  if (isSuccess) {
+    return (
+      <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-white px-4 py-12 dark:bg-zinc-950">
+        <div className="w-full max-w-md rounded-2xl border border-zinc-200 bg-white p-8 text-center shadow-sm dark:border-zinc-800 dark:bg-zinc-900/50">
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
+            <svg
+              className="h-6 w-6 text-green-600 dark:text-green-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+          </div>
+          <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+            Check your email
+          </h2>
+          <p className="mt-2 text-zinc-600 dark:text-zinc-400">
+            We've sent a confirmation link to <strong>{email}</strong>.
+          </p>
+          <p className="mt-4 text-sm text-zinc-500">
+            Please click the link in the email to verify your account. Once verified, you will be redirected to the login page.
+          </p>
+
+          <div className="mt-8 border-t border-zinc-100 pt-6 dark:border-zinc-800">
+            <Link
+              href="/login"
+              className="text-sm font-medium text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white"
+            >
+              &larr; Back to Login
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ---------------------------------------------------------
+  // FORM VIEW
+  // ---------------------------------------------------------
   return (
     <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-white px-4 py-12 dark:bg-zinc-950">
       <div className="w-full max-w-md space-y-8 rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/50">
@@ -73,6 +121,8 @@ export default function SignupPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            // Fix Mobile Zoom: text-base on mobile (16px), text-sm on desktop
+            className="text-base md:text-sm"
           />
 
           <Input
@@ -83,6 +133,7 @@ export default function SignupPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            className="text-base md:text-sm"
           />
 
           <Input
@@ -93,6 +144,7 @@ export default function SignupPage() {
             value={repeatPassword}
             onChange={(e) => setRepeatPassword(e.target.value)}
             required
+            className="text-base md:text-sm"
           />
 
           <div className="flex items-center gap-2">
@@ -120,7 +172,7 @@ export default function SignupPage() {
           <p>
             Already have an account?{" "}
             <Link
-              href="/auth/login"
+              href="/login"
               className="font-medium text-black underline hover:text-zinc-700 dark:text-white"
             >
               Login

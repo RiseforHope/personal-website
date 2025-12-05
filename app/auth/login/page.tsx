@@ -11,7 +11,6 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  // Separate loading state for Google to give specific UI feedback
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
 
@@ -41,8 +40,6 @@ export default function LoginPage() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        // This is where Google will redirect after success
-        // We need to create this route next
         redirectTo: `${location.origin}/auth/callback`,
       },
     });
@@ -51,7 +48,6 @@ export default function LoginPage() {
       setMessage("Error: " + error.message);
       setIsGoogleLoading(false);
     }
-    // No need to set loading false on success, as we redirect away
   };
 
   return (
@@ -75,6 +71,8 @@ export default function LoginPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            // Fix Mobile Zoom: text-base on mobile (16px), text-sm on desktop
+            className="text-base md:text-sm"
           />
 
           <div>
@@ -100,6 +98,7 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              className="text-base md:text-sm"
             />
           </div>
 
