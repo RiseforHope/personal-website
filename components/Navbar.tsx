@@ -1,4 +1,3 @@
-// components/Navbar.tsx
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
@@ -18,9 +17,11 @@ export default async function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-zinc-100 bg-white/90 px-4 py-3 backdrop-blur-md dark:border-zinc-800 dark:bg-black/90">
-      <div className="mx-auto flex max-w-5xl items-center justify-between">
-        {/* Logo (Using text for now to match image placement) */}
+    // bg-transparent and consistent padding (px-6 md:px-10)
+    <nav className="sticky top-0 z-50 w-full border-b border-transparent bg-transparent px-6 py-4 dark:border-transparent md:px-10">
+      <div className="flex w-full items-center justify-between">
+
+        {/* SECTION 1: Logo (Now on the LEFT) */}
         <Link
           href="/"
           className="text-2xl font-bold tracking-tight text-zinc-900 italic dark:text-zinc-50"
@@ -28,9 +29,9 @@ export default async function Navbar() {
           prosla
         </Link>
 
-        {/* Navigation Links */}
-        <div className="flex items-center gap-2 md:gap-4">
-          {/* This link is hidden on small screens (mobile) */}
+        {/* SECTION 2: Navigation Links & Auth (Now on the RIGHT) */}
+        <div className="flex items-center gap-4">
+          {/* Navigation Links */}
           <Link
             href="/blog"
             className="hidden text-sm font-medium text-zinc-600 hover:text-black md:block dark:text-zinc-400 dark:hover:text-white"
@@ -40,7 +41,7 @@ export default async function Navbar() {
 
           {user ? (
             /* Logged In State */
-            <div className="flex items-center gap-2 md:gap-4">
+            <div className="flex items-center gap-4">
               <Link
                 href="/protected/dashboard"
                 className="hidden text-sm font-medium text-black md:block dark:text-white"
@@ -52,10 +53,9 @@ export default async function Navbar() {
               </form>
             </div>
           ) : (
-            /* Logged Out State - Matches Image 7 */
+            /* Logged Out State */
             <div className="flex items-center gap-2">
               <OutlineButton href="/auth/login">SIGN IN</OutlineButton>
-              {/* Using Link wrapper for the solid button style */}
               <Link
                 href="/auth/signup"
                 className="flex items-center justify-center rounded-md bg-black px-4 py-2 text-sm font-bold tracking-wider text-white uppercase transition hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
