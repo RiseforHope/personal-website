@@ -61,9 +61,9 @@ export function Hero() {
       {/* BOTTOM STRIP */}
       <div className="relative z-10 w-full bg-[#f3efe6]">
         <div className="mx-auto w-full max-w-7xl px-6 py-12 md:px-10 md:py-10">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-4 md:gap-10">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-10">
             <QuickLink title="TEACHING" subtitle="Lots of subjects, lots of support" href="/" />
-            <QuickLink title="RESEARCH & WRITING" subtitle="A vibrant, friendly community" href="/" />
+            <QuickLink title="RESEARCH" subtitle="A vibrant, friendly community" href="/" />
             <QuickLink title="PROJECTS" subtitle="Demystifying Oxford and prosla" href="/" />
             <QuickLink title="ABOUT" subtitle="A diverse and growing community" href="/" />
           </div>
@@ -84,15 +84,16 @@ function QuickLink({
 }) {
   return (
     <Link href={href} className="group block">
-      <div className="flex items-center justify-between">
-        <div className="text-3xl font-light uppercase tracking-[0.14em] text-zinc-800 md:text-sm md:font-semibold md:tracking-widest">
+      {/* Title + arrow always stay together */}
+      <div className="inline-flex items-center gap-3">
+        <div className="text-lg font-light uppercase tracking-[0.12em] text-zinc-800 sm:text-xl md:text-sm md:font-semibold md:tracking-widest">
           {title}
         </div>
 
         <img
           src="/icons/right-arrow.svg"
           alt=""
-          className="h-6 w-24 transition-transform group-hover:translate-x-1 md:h-4 md:w-4"
+          className="h-9 w-9 transition-transform group-hover:translate-x-1"
         />
       </div>
 
@@ -100,3 +101,4 @@ function QuickLink({
     </Link>
   );
 }
+
