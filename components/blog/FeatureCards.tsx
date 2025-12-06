@@ -44,7 +44,7 @@ function FeatureCard({
             {title}
           </h2>
 
-          <p className="mt-10 md:mt-8 max-w-prose text-body text-zinc-950">{excerpt}</p>
+          <p className="mt-10 md:mt-8 max-w-prose text-body text-zinc-950 leading-relaxed">{excerpt}</p>
 
           {/* CTA row */}
           <Link
