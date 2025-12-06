@@ -86,9 +86,11 @@ function QuickLink({
     <Link href={href} className="group block">
       {/* Title + arrow always stay together */}
       <div className="inline-flex items-center gap-3">
-        <div className="text-lg font-light uppercase tracking-[0.12em] text-zinc-800 sm:text-xl md:text-sm md:font-semibold md:tracking-widest">
+        <div className="text-lg font-light uppercase tracking-[0.12em] text-zinc-800 sm:text-xl md:text-sm md:font-normal md:tracking-widest underline-offset-4 transition-colors group-hover:underline group-hover:text-[#722f37]">
           {title}
         </div>
+
+
 
         <img
           src="/icons/right-arrow-blk.svg"
