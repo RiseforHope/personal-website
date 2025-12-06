@@ -10,11 +10,11 @@ export default function BlogPage() {
           excerpt:
             "There’s a tremendous vibrancy of learning when students do tasks that resemble actual communication. Here’s how I structure routines, retrieval, and performance so it stays human and rigorous.",
           href: "/blog/teaching-real-life",
-          imageSrc: "/images/blog/teaching.jpg",
+          imageSrc: "/public/images/blog/teaching.jpg",
           imageAlt: "Students working together",
         },
         {
-          label: "RESEARCH & WRITING",
+          label: "RESEARCH",
           title: "How I structure chapters so they don’t collapse",
           excerpt:
             "A minimalist system for outlining arguments, keeping sources tight, and writing sections that connect without repeating yourself into oblivion.",

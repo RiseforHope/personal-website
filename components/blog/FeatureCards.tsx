@@ -36,7 +36,7 @@ function FeatureCard({
       <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12 md:gap-12">
         {/* TEXT */}
         <div className={`md:col-span-5 ${reverse ? "md:order-2" : "md:order-1"}`}>
-          <div className="hidden md:inline-flex bg-[#728779] px-10 py-4 text-sm font-medium tracking-wide text-white">
+          <div className="hidden md:inline-flex bg-[#722f37] px-10 py-4 text-sm font-medium tracking-wide text-white">
             {label}
           </div>
 
@@ -50,14 +50,14 @@ function FeatureCard({
           <Link
             href={href}
             className="group mt-12 inline-flex w-full items-center justify-between gap-6 md:w-auto md:min-w-[420px]"
-            style={{ color: "#007800" }}
+            style={{ color: "#722f37" }}
           >
 <span className="text-base font-medium underline-offset-4 group-hover:underline">
               Find out more about what {label.toLowerCase()} has to offer
             </span>
 
             <img
-              src="/icons/right-arrow-green.svg"
+              src="/icons/right-arrow.svg"
               alt=""
               className="h-6 w-12 transition-transform group-hover:translate-x-1"
             />
