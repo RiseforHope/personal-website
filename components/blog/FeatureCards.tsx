@@ -40,11 +40,11 @@ function FeatureCard({
             {label}
           </div>
 
-          <h2 className="mt-4 md:mt-10 text-4xl font-bold leading-[1.18] tracking-tight text-zinc-950 md:text-5xl md:leading-[1.15]">
+          <h2 className="mt-4 md:mt-10 text-4xl font-bold leading-[1.2] tracking-tight text-zinc-950 md:text-5xl md:leading-[1.2]">
             {title}
           </h2>
 
-          <p className="mt-10 md:mt-8 max-w-prose text-body text-zinc-950 leading-relaxed">{excerpt}</p>
+          <p className="mt-10 md:mt-8 max-w-prose text-body text-zinc-950 leading-[1.62] md:leading-[1.62]">{excerpt}</p>
 
           {/* CTA row */}
           <Link
