@@ -35,8 +35,11 @@ function FeatureCard({
     <article className="relative">
       <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12 md:items-start md:gap-12">
         {/* TEXT */}
-        <div className={`md:col-span-5 ${reverse ? "md:order-2" : "md:order-1"}`}>
-          <div className="hidden md:inline-flex bg-[#722f37] px-10 py-4 text-sm font-medium tracking-wide text-white">
+        <div
+          className={`order-2 md:col-span-5 ${
+            reverse ? "md:order-2" : "md:order-1"
+          }`}
+        >          <div className="hidden md:inline-flex bg-[#722f37] px-10 py-4 text-sm font-medium tracking-wide text-white">
             {label}
           </div>
 
@@ -65,8 +68,13 @@ function FeatureCard({
         </div>
 
         {/* IMAGE */}
-        <div className={`md:col-span-7 ${reverse ? "md:order-1" : "md:order-2"}`}>
-          {/* Image wrapper (no radius) */}
+        <div
+          className={`order-1 md:col-span-7 ${
+            reverse ? "md:order-1" : "md:order-2"
+          }`}
+        >
+
+        {/* Image wrapper (no radius) */}
           <div className="relative overflow-hidden bg-zinc-100">
             <div className="relative aspect-[16/10] md:aspect-[4/3]">
               <Image
