@@ -57,7 +57,7 @@ function FeatureCard({
             </span>
 
             <img
-              src="/icons/right-arrow.svg"
+              src="/icons/right-arrow-red.svg"
               alt=""
               className="h-6 w-12 transition-transform group-hover:translate-x-1"
             />

@@ -91,7 +91,7 @@ function QuickLink({
         </div>
 
         <img
-          src="/icons/right-arrow.svg"
+          src="/icons/right-arrow-blk.svg"
           alt=""
           className="h-9 w-9 transition-transform group-hover:translate-x-1"
         />
