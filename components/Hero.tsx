@@ -19,7 +19,7 @@ export function Hero() {
           <div className="lg:col-span-6 flex justify-end">
             <div className="space-y-0 md:space-y-6 w-full">
               {/* MOBILE: single combined box */}
-              <div className="md:hidden bg-[#0b0f2b] px-8 py-10 text-white text-center shadow-lg">
+              <div className="md:hidden bg-[#00003c] px-8 py-10 text-white text-center shadow-lg">
                 <div className="text-sm font-medium tracking-wide text-white/90">
                   Welcome to prosla
                 </div>
@@ -37,11 +37,11 @@ export function Hero() {
 
               {/* DESKTOP: pill + box share the same width, aligned LEFT forever */}
               <div className="hidden md:flex md:flex-col md:items-start md:w-[min(680px,100%)]">
-                <div className="bg-[#0b0f2b] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-sm">
+                <div className="bg-[#00003c] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-sm">
                   Welcome to prosla
                 </div>
 
-                <div className="mt-6 w-full bg-[#0b0f2b] px-8 py-10 text-white shadow-lg md:px-10">
+                <div className="mt-6 w-full bg-[#00003c] px-8 py-10 text-white shadow-lg md:px-10">
                   <h1 className="text-5xl font-light leading-tight tracking-tight md:text-6xl">
                     Vibrant and open
                   </h1>

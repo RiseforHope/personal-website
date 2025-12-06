@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 224.33 75.5">
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 225.77 74.91">
   <g id="Layer_1-2" data-name="Layer 1">
-    <line y1="37.66" x2="221.41" y2="37.66" stroke="#000" stroke-miterlimit="10" stroke-width="5"/>
-    <g>
-      <line x1="185.66" y1="1.77" x2="222.56" y2="38.67" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="5"/>
-      <line x1="222.49" y1="36.83" x2="185.59" y2="73.74" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="5"/>
-    </g>
+    <polygon points="225.77 37.45 222.75 34.43 221.49 33.17 221.49 33.18 188.31 0 184.03 4.28 214.18 34.43 0 34.43 0 40.48 214.18 40.48 184.03 70.63 188.31 74.91 221.49 41.74 221.49 41.74 222.75 40.48 225.77 37.46 225.77 37.46 225.77 37.45"/>
   </g>
 </svg>

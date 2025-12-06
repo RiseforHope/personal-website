@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={montserrat.variable}>
-    <body className="antialiased">
+    <body className="antialiased font-sans text-body">
     <ThemeProvider
       attribute="class"
       defaultTheme="system"
