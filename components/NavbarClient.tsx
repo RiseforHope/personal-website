@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 import { User } from "@supabase/supabase-js";
 
 interface NavbarClientProps {
@@ -58,16 +58,30 @@ export default function NavbarClient({ user, signOut }: NavbarClientProps) {
 
         {/* Panel: full width on mobile, half on desktop */}
         <div
-          className={`absolute right-0 top-0 h-full w-full md:w-1/2 bg-[#0b0f2b] text-white transition-transform duration-500 ease-in-out ${
+          className={`absolute right-0 top-0 h-full w-full md:w-1/2 bg-[#1b3047] text-white transition-transform duration-500 ease-in-out ${
             isOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
           <div className="flex h-full flex-col px-6 py-10 md:px-10">
-            <div className="mt-16 flex flex-col gap-8" onClick={closeMenu}>
-              <MenuLink href="/teaching" label="Teaching" />
-              <MenuLink href="/research" label="Research &amp; Writing" />
-              <MenuLink href="/projects" label="Projects" />
-              <MenuLink href="/about" label="About" />
+            <div className="mt-16 flex flex-col gap-8">
+              <div onClick={closeMenu} className="flex flex-col gap-8">
+                <MenuLink href="/teaching" label="Teaching" />
+                <MenuLink href="/research" label="Research &amp; Writing" />
+                <MenuLink href="/projects" label="Projects" />
+                <MenuLink href="/about" label="About" />
+              </div>
+
+              {/* Social icons under About */}
+              <div className="flex items-center gap-4">
+                <SocialIcon href="https://instagram.com/" label="Instagram">
+                  <Instagram className="h-4 w-4" />
+                </SocialIcon>
+
+                <SocialIcon href="https://x.com/" label="X">
+                  <Twitter className="h-4 w-4" />
+                </SocialIcon>
+
+              </div>
             </div>
 
             <div className="mt-auto pt-12">
@@ -91,6 +105,28 @@ function MenuLink({ href, label }: { href: string; label: string }) {
   );
 }
 
+function SocialIcon({
+                      href,
+                      label,
+                      children,
+                    }: {
+  href: string;
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={label}
+      className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white/90 transition hover:bg-white/15"
+    >
+      {children}
+    </a>
+  );
+}
+
 function AuthRow({
                    user,
                    signOut,
@@ -102,47 +138,55 @@ function AuthRow({
 }) {
   if (user) {
     return (
-      <div className="flex items-center justify-between gap-3">
-        <Link
-          href="/protected/dashboard"
-          onClick={closeMenu}
-          className="flex-1 rounded-md border border-white/25 bg-white/10 px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider transition hover:bg-white/15"
-        >
-          Dashboard
-        </Link>
+      <div>
+        <div className="flex items-center justify-between gap-3">
+          <Link
+            href="/protected/dashboard"
+            onClick={closeMenu}
+            className="flex-1 rounded-md border border-white/25 bg-white/10 px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider transition hover:bg-white/15"
+          >
+            Dashboard
+          </Link>
 
-        <form
-          action={async () => {
-            await signOut();
-            closeMenu();
-          }}
-          className="flex-1"
-        >
-          <button className="w-full rounded-md bg-white px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider text-[#0b0f2b] transition hover:bg-white/90">
-            Sign Out
-          </button>
-        </form>
+          <form
+            action={async () => {
+              await signOut();
+              closeMenu();
+            }}
+            className="flex-1"
+          >
+            <button className="w-full rounded-md bg-white px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider text-[#0b0f2b] transition hover:bg-white/90">
+              Sign Out
+            </button>
+          </form>
+        </div>
+
+        <div className="mt-3 text-left text-xs text-white/70">Site by Brinl</div>
       </div>
     );
   }
 
   return (
-    <div className="flex items-center gap-3">
-      <Link
-        href="/auth/signup"
-        onClick={closeMenu}
-        className="flex-1 rounded-md bg-white px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider text-[#0b0f2b] transition hover:bg-white/90"
-      >
-        Sign Up
-      </Link>
+    <div>
+      <div className="flex items-center gap-3">
+        <Link
+          href="/auth/signup"
+          onClick={closeMenu}
+          className="flex-1 rounded-md bg-white px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider text-[#0b0f2b] transition hover:bg-white/90"
+        >
+          Sign Up
+        </Link>
 
-      <Link
-        href="/auth/login"
-        onClick={closeMenu}
-        className="flex-1 rounded-md border border-white/25 bg-white/10 px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-white/15"
-      >
-        Sign In
-      </Link>
+        <Link
+          href="/auth/login"
+          onClick={closeMenu}
+          className="flex-1 rounded-md border border-white/25 bg-white/10 px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-white/15"
+        >
+          Sign In
+        </Link>
+      </div>
+
+      <div className="mt-3 text-left text-xs text-white/70">Site by Brinl</div>
     </div>
   );
 }

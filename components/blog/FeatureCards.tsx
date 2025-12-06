@@ -33,7 +33,7 @@ function FeatureCard({
 
   return (
     <article className="relative">
-      <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12 md:gap-12">
+      <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12 md:items-start md:gap-12">
         {/* TEXT */}
         <div className={`md:col-span-5 ${reverse ? "md:order-2" : "md:order-1"}`}>
           <div className="hidden md:inline-flex bg-[#722f37] px-10 py-4 text-sm font-medium tracking-wide text-white">
