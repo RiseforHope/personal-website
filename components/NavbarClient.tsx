@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Menu, X, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
+import { Menu, X, Instagram, Linkedin, Twitter, Facebook } from "lucide-react";
 import { User } from "@supabase/supabase-js";
 
 interface NavbarClientProps {
@@ -66,9 +66,9 @@ export default function NavbarClient({ user, signOut }: NavbarClientProps) {
             <div className="mt-16 flex flex-col gap-8">
               <div onClick={closeMenu} className="flex flex-col gap-8">
                 <MenuLink href="/teaching" label="Teaching" />
-                <MenuLink href="/research" label="Research &amp; Writing" />
+                <MenuLink href="/research" label="Research" />
                 <MenuLink href="/projects" label="Projects" />
-                <MenuLink href="/about" label="About" />
+                <MenuLink href="/components/about" label="About" />
               </div>
 
               {/* Social icons under About */}
@@ -81,7 +81,15 @@ export default function NavbarClient({ user, signOut }: NavbarClientProps) {
                   <Twitter className="h-4 w-4" />
                 </SocialIcon>
 
+                <SocialIcon href="https://facebook.com/" label="Facebook">
+                  <Facebook className="h-4 w-4" />
+                </SocialIcon>
+
+                <SocialIcon href="https://linkedin.com/" label="LinkedIn">
+                  <Linkedin className="h-4 w-4" />
+                </SocialIcon>
               </div>
+
             </div>
 
             <div className="mt-auto pt-12">
@@ -161,7 +169,7 @@ function AuthRow({
           </form>
         </div>
 
-        <div className="mt-3 text-left text-xs text-white/70">Site by Brinl</div>
+        <div className="mt-3 text-center text-xs text-white/70">Site by Brinl</div>
       </div>
     );
   }

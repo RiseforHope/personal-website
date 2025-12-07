@@ -39,7 +39,7 @@ function FeatureCard({
           className={`order-2 md:col-span-5 ${
             reverse ? "md:order-2" : "md:order-1"
           }`}
-        >          <div className="hidden md:inline-flex bg-[#722f37] px-10 py-4 text-sm font-medium tracking-wide text-white">
+        >          <div className="hidden md:inline-flex bg-[#e54b22] px-10 py-4 text-sm font-medium tracking-wide text-white">
             {label}
           </div>
 
@@ -89,7 +89,7 @@ function FeatureCard({
 
           {/* Mobile label bar OUTSIDE the image, flush to it */}
           <div className="md:hidden -mt-px">
-            <div className="inline-block w-fit max-w-[85%] bg-[#722f37] px-8 py-6 text-xl font-medium tracking-wide text-white">
+            <div className="inline-block w-fit max-w-[85%] bg-[#e54b22] px-8 py-6 text-xl font-medium tracking-wide text-white">
               {label}
             </div>
           </div>
