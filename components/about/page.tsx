@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+<MenuLink href="/about" label="About" />
+
 
 export default function AboutPage() {
   return (
@@ -8,11 +10,11 @@ export default function AboutPage() {
       <section className="bg-[#f3efe6]">
         <div className="mx-auto max-w-7xl px-6 py-12 md:px-10 md:py-16">
           {/* Breadcrumb */}
-          <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-widest text-[#722f37]">
-            <span className="inline-flex items-center bg-[#722f37] px-3 py-2 text-white">
+          <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-widest text-[#2e3f90]">
+            <span className="inline-flex items-center bg-[#2e3f90] px-3 py-2 text-white">
               PEOPLE &gt;
             </span>
-            <span className="text-[#722f37]/90">
+            <span className="text-[#2e3f90]/90">
               {/* swap this text to whatever you want */}
               About
             </span>
@@ -22,12 +24,12 @@ export default function AboutPage() {
             {/* LEFT */}
             <div className="md:col-span-8">
               <h1 className="text-5xl font-extrabold leading-[1.05] tracking-tight text-[#0b0f2b] md:text-6xl">
-                J. Bladimir García
+                J. Bladimir Garcia
               </h1>
 
               {/* small meta row */}
               <div className="mt-6 text-sm text-zinc-700">
-                <span className="text-[#722f37]">Teaching &amp; Research</span>
+                <span className="text-[#2e3f90]">Teaching &amp; Research</span>
                 <span className="mx-2 text-zinc-400">|</span>
                 <span>Language, pedagogy, border studies</span>
               </div>
@@ -35,7 +37,7 @@ export default function AboutPage() {
               <div className="mt-2 text-sm text-zinc-700">
                 Email{" "}
                 <a
-                  className="text-[#722f37] underline underline-offset-4"
+                  className="text-[#2e3f90] underline underline-offset-4"
                   href="mailto:you@example.com"
                 >
                   you@example.com
@@ -118,7 +120,7 @@ export default function AboutPage() {
               <div className="mt-8">
                 <Link
                   href="/teaching"
-                  className="inline-flex items-center gap-3 text-[#722f37] underline-offset-4 hover:underline"
+                  className="inline-flex items-center gap-3 text-[#2e3f90] underline-offset-4 hover:underline"
                 >
                   View teaching philosophy
                   <img
@@ -131,7 +133,7 @@ export default function AboutPage() {
             </div>
 
             <div>
-              <h2 className="text-3xl font-extrabold tracking-tight text-[#0b0f2b] md:text-4xl">
+              <h2 className="text-3xl font-extrabold tracking-tight text-[#2e3f90] md:text-4xl">
                 Projects
               </h2>
               <p className="mt-4 text-body text-zinc-900 leading-[1.62]">
@@ -143,7 +145,7 @@ export default function AboutPage() {
               <div className="mt-8">
                 <Link
                   href="/projects"
-                  className="inline-flex items-center gap-3 text-[#722f37] underline-offset-4 hover:underline"
+                  className="inline-flex items-center gap-3 text-[#2e3f90] underline-offset-4 hover:underline"
                 >
                   Explore projects
                   <img

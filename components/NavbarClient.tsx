@@ -68,7 +68,7 @@ export default function NavbarClient({ user, signOut }: NavbarClientProps) {
                 <MenuLink href="/teaching" label="Teaching" />
                 <MenuLink href="/research" label="Research" />
                 <MenuLink href="/projects" label="Projects" />
-                <MenuLink href="/components/about" label="About" />
+                <MenuLink href="/about" label="About" />
               </div>
 
               {/* Social icons under About */}
