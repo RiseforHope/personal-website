@@ -1,6 +1,6 @@
 import { Hero } from "@/components/Hero";
 import { FeatureCards } from "@/components/blog/FeatureCards";
-import AboutPage from "@/components/about/page";
+
 
 export default function Home() {
   return (
