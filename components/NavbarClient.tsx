@@ -58,7 +58,7 @@ export default function NavbarClient({ user, signOut }: NavbarClientProps) {
 
         {/* Panel: full width on mobile, half on desktop */}
         <div
-          className={`absolute right-0 top-0 h-full w-full md:w-1/2 bg-[#1b3047] text-white transition-transform duration-500 ease-in-out ${
+          className={`absolute right-0 top-0 h-full w-full md:w-1/2 bg-[#2e3f90] text-white transition-transform duration-500 ease-in-out ${
             isOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >

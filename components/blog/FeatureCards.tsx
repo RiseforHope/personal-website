@@ -53,14 +53,14 @@ function FeatureCard({
           <Link
             href={href}
             className="group mt-12 inline-flex w-full items-center justify-between gap-6 md:w-auto md:min-w-[420px]"
-            style={{ color: "#722f37" }}
+            style={{ color: "#2e3f90" }}
           >
 <span className="text-base font-medium underline-offset-4 group-hover:underline">
               Find out more about what {label.toLowerCase()} has to offer
             </span>
 
             <img
-              src="/icons/right-arrow-red.svg"
+              src="/icons/right-arrow-blue.svg"
               alt=""
               className="h-6 w-12 transition-transform group-hover:translate-x-1"
             />
