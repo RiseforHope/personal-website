@@ -4,50 +4,83 @@ import Image from "next/image";
 export default function AboutPage() {
   return (
     <main className="bg-[#f5f2ea]">
-      {/* Top section: name + photo */}
-      <section className="mx-auto flex max-w-7xl flex-col gap-10 px-6 pb-16 pt-12 md:flex-row md:items-start md:px-10 md:pt-20">
-        {/* Left: name + intro text */}
-        <div className="flex-1 md:pr-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#722f37]">
-            People
-          </p>
+      {/* HERO / INTRO */}
+      <section className="mx-auto max-w-7xl px-6 pb-14 pt-10 md:px-10 md:pb-20 md:pt-16">
+        <div className="relative">
+          {/* White card */}
+          <div className="bg-white px-6 pb-10 pt-[240px] md:px-12 md:py-14 md:pt-14">
 
-          <h1 className="mt-4 text-4xl font-bold leading-tight text-zinc-950 md:text-5xl lg:text-6xl">
-            Bladimir García
-            <br />
-            Educator & Researcher
-          </h1>
+            {/* Title */}
+            <h1 className="mt-6 text-5xl font-extrabold leading-[1.05] tracking-tight text-[#0b0f2b] md:text-6xl">
+              J. Bladimir Garcia
+            </h1>
 
-          <div className="mt-8 space-y-4 text-[17px] leading-[1.7] text-zinc-800">
-            <p>
-              I am a language teacher, nonprofit leader, and researcher working
-              at the intersection of pedagogy, technology, and humane
-              innovation.
-            </p>
-            <p>
-              My work focuses on helping students experience language learning
-              as real life, not just grammar drills—through meaningful tasks,
-              clear structures, and high expectations wrapped in care.
-            </p>
+            {/* Meta row (like department / role / email) */}
+            <div className="mt-8 space-y-2 text-sm text-zinc-900/80">
+              <div>
+                <span className="text-[#722f37]">Theology and Education</span>{" "}
+                <span className="text-zinc-700">|</span>{" "}
+                <span className="text-zinc-700">Language Teacher</span>
+              </div>
+              <div>
+                <span className="text-zinc-700">Email</span>{" "}
+                <span className="text-zinc-700">|</span>{" "}
+                <a
+                  href="mailto:bladimir@brinl.com"
+                  className="text-[#722f37] underline underline-offset-4"
+                >
+                  your@email.com
+                </a>
+              </div>
+            </div>
+
+            {/* Intro paragraph(s) */}
+            <div className="mt-8 max-w-2xl space-y-6 text-[18px] leading-[1.65] text-zinc-900">
+              <p>
+                I am a language teacher, nonprofit leader, and researcher working
+                at the intersection of pedagogy, technology, and humane
+                innovation.
+              </p>
+              <p>
+                My work focuses on helping students experience language learning
+                as real life, not just grammar drills—through meaningful tasks,
+                clear structures, and high expectations wrapped in care.
+              </p>
+            </div>
           </div>
-        </div>
 
-        {/* Right: photo */}
-        <div className="w-full max-w-xs self-start md:self-auto">
-          <div className="relative h-64 w-full md:h-80">
-            <Image
-              src="/images/about-portrait.jpg" // update to your real image path
-              alt="Portrait of Bladimir García"
-              fill
-              className="object-cover"
-            />
+          {/* Portrait — OUTSIDE the card, offset past the right edge on ALL screens */}
+          <div
+            className="
+              pointer-events-none absolute z-10
+              -right-6 -top-6
+              sm:-right-6
+              md:-right-8 md:-top-10
+            "
+          >
+            <div
+              className="
+                relative bg-white p-2 shadow-sm
+                h-[240px] w-[240px]
+                sm:h-[220px] sm:w-[220px]
+                md:h-[260px] md:w-[240px]
+              "
+            >
+              <Image
+                src="/images/about-portrait.jpg"
+                alt="Portrait of Bladimir García"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Lower sections */}
-      <section className="border-t border-zinc-200 bg-white">
-        <div className="mx-auto max-w-7xl px-6 py-12 md:px-10 md:py-16 space-y-12">
+      {/* LOWER SECTIONS */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-7xl space-y-12 px-6 py-14 md:px-10 md:py-16">
           <AboutSection title="Qualifications">
             <p>
               MA in Hispanic Studies; ongoing PhD research on border conflict,
@@ -63,7 +96,7 @@ export default function AboutPage() {
             </p>
           </AboutSection>
 
-          <AboutSection title="Teaching focus">
+          <AboutSection title="Undergraduate teaching">
             <p>
               My classes prioritize real-world language use, storytelling, and
               structured practice, so students can build confidence and agency
@@ -85,7 +118,7 @@ function AboutSection({
 }) {
   return (
     <section>
-      <h2 className="text-2xl font-semibold tracking-tight text-zinc-950 md:text-3xl">
+      <h2 className="text-2xl font-bold tracking-tight text-[#0b0f2b] md:text-3xl">
         {title}
       </h2>
       <div className="mt-3 text-[16px] leading-[1.7] text-zinc-800">
