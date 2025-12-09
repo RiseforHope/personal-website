@@ -77,7 +77,7 @@ export default function NavbarClient({ user, signOut }: NavbarClientProps) {
         />
 
         <div
-          className={`absolute right-0 top-0 h-full w-full md:w-[600px] bg-[#2e3f90] text-white shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+          className={`absolute right-0 top-0 h-full w-full md:w-[600px] bg-[#242730] text-white shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
             isOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
