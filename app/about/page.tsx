@@ -14,7 +14,7 @@ const publications = [
 export default function About() {
   return (
     // MAIN BACKGROUND: Base Dark (#242730)
-    <main className="min-h-screen text-zinc-900 dark:text-zinc-100 overflow-x-hidden">
+    <main className="min-h-screen text-zinc-900 dark:text-zinc-100 overflow-x-hidden transition-colors duration-300">
 
       <section className="mx-auto max-w-7xl px-6 py-12 md:px-16 md:py-20">
 
