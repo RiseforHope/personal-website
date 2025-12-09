@@ -1,5 +1,7 @@
 // app/about/page.tsx
+"use client";
 import Image from "next/image";
+import NewsSection from "@/components/NewsSection";
 
 export default function About() {
   return (
@@ -129,6 +131,10 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      <div className="mx-auto max-w-7xl px-6 py-12 md:px-16 md:py-20">
+        <NewsSection />
+      </div>
     </main>
   );
 }
