@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link"; // Import Link for publication URLs
 import NewsSection from "@/components/NewsSection";
+import Subscribe from "@/components/Subscribe";
 
 // 1. DATA: Add your publications here
 const publications = [
@@ -143,6 +144,8 @@ export default function About() {
 
       <div className="mx-auto max-w-7xl px-6 py-12 md:px-16 md:py-20">
         <NewsSection />
+        {/* Place it at the very bottom of the main content */}
+        <Subscribe />
       </div>
     </main>
   );
