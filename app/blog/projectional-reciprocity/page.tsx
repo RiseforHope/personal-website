@@ -48,9 +48,20 @@ export default function Page() {
         </blockquote>
 
         <h3> Feedback Loops, Integration, and a Non-Deterministic Pedagogy of Existence</h3>
-      <p>
-        It is because of this naturalised perspective that projectional reciprocity views interpersonal experiences as a system of feedback loops that refine internal models of self and world, or, put differently, inner and outer. From a metaphysical perspective, it may be read as a pedagogy of existence, in which reality itself becomes the field through which consciousness learns and becomes itself. Events and relationships, more than arbitrary sequences, appear as structured opportunities for integration and self-realisation. Another crucial point: this interpretation does not claim determinism; instead, it assumes that life possesses a formative intelligence that operates through encounters and relations.
-      </p>
+        <p>
+          It is because of this naturalised perspective that projectional reciprocity views interpersonal experiences as a system of feedback loops that refine internal models of self and world, or, put differently, inner and outer. From a metaphysical perspective, it may be read as a pedagogy of existence, in which reality itself becomes the field through which consciousness learns and becomes itself. Events and relationships, more than arbitrary sequences, appear as structured opportunities for integration and self-realisation. Another crucial point: this interpretation does not claim determinism; instead, it assumes that life possesses a formative intelligence that operates through encounters and relations.
+        </p>
+
+        {/* --- CONTACT CTA --- */}
+        {/* Added margin-top (mt-12) and a divider for visual separation */}
+        <div className="mt-12 border-t border-zinc-200 pt-8 dark:border-zinc-700">
+          <p className="text-base italic text-zinc-600 dark:text-zinc-400">
+            This entry outlines the core concepts of ongoing research. If you are interested in reading the full working paper, please{' '}
+            <a href="mailto:bladimir@riseforhope.org" className="font-semibold no-underline hover:underline">
+              get in touch
+            </a>.
+          </p>
+        </div>
 
       </div>
     </>

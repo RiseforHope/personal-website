@@ -17,10 +17,10 @@ export default function SubscribeCard() {
 
   return (
     // Background: Brand Blue (#2e3f90) ensures visibility in both Light and Dark modes
-    <div className="w-full max-w-2xl bg-[#2e3f90] p-6 md:p-10 shadow-lg rounded-sm">
+    <div className="w-full max-w-2xl bg-[#242730] p-6 md:p-10 shadow-lg rounded-sm">
 
       {/* Label: text-base for mobile legibility, text-sm for desktop */}
-      <h3 className="mb-6 text-base font-bold uppercase tracking-[0.2em] text-white/80 md:text-sm">
+      <h3 className="mb-6 text-base font-base uppercase tracking-[0.2em] text-white/80 md:text-sm">
         Newsletter
       </h3>
 
@@ -50,7 +50,7 @@ export default function SubscribeCard() {
             <button
               type="submit"
               // Button: Larger touch target on mobile
-              className="shrink-0 bg-white px-8 py-4 text-base font-bold uppercase tracking-widest text-[#2e3f90] transition-colors hover:bg-zinc-100 md:px-6 md:py-3 md:text-sm"
+              className="shrink-0 bg-white px-8 py-4 text-base font-base uppercase tracking-widest text-[#2e3f90] transition-colors hover:bg-zinc-100 md:px-6 md:py-3 md:text-sm"
             >
               Subscribe
             </button>
