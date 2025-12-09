@@ -24,7 +24,7 @@ export function ThemeToggle() {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-black dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-white"
+        className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-black dark:border-zinc-800 dark:bg-[#242730] dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-white"
         aria-label="Toggle theme menu"
       >
         {theme === "light" && <Sun className="h-4 w-4" />}

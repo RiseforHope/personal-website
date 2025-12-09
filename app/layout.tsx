@@ -9,7 +9,6 @@ const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
   display: "swap",
-
 });
 
 export const metadata: Metadata = {
@@ -24,7 +23,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={montserrat.variable}>
-    <body className="antialiased font-sans text-body bg-[#f5f2ea]">
+    {/* UPDATED BODY CLASS:
+         1. bg-[#f5f2ea]: Default light background
+         2. dark:bg-[#242730]: Your global dark background
+         3. dark:text-zinc-100: Global text color for dark mode (so text is readable)
+      */}
+    <body className="antialiased font-sans text-body bg-[#f5f2ea] dark:bg-[#242730] dark:text-zinc-100">
     <ThemeProvider
       attribute="class"
       defaultTheme="system"
