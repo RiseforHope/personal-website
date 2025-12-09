@@ -106,7 +106,7 @@ export default function NavbarClient() {
 
 function BrinlFooter() {
   return (
-    <div className="flex items-center justify-end gap-2 text-[10px] tracking-widest text-white/50">
+    <div className="flex items-center justify-end gap-2 text-[10px] text-white/50">
       <span>Site by Brinl</span>
       <a href="mailto:hello@brinl.com" className="hover:text-white transition-colors">
         <Mail className="h-3 w-3" />

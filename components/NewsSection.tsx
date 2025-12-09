@@ -5,11 +5,11 @@ import Link from "next/link";
 const projects = [
   {
     id: 1,
-    category: "Research",
-    title: "Bridging the Gap: Pedagogy in Border Contexts",
-    intro: "An exploration of how language acquisition shifts when cultural borders are fluid rather than fixed.",
-    date: "Oct 12, 2024",
-    href: "/blog/post-1",
+    category: "Theoretical Note",
+    title: "Projectional Reciprocity: A Relational Theory of Development",
+    intro: "I propose projectional reciprocity: we grow through reciprocal encounters.",
+    date: "9 Dec. 2025",
+    href: "/blog/projectional-reciprocity",
   },
   {
     id: 2,
