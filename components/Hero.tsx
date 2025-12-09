@@ -75,7 +75,7 @@ export function Hero() {
       </div>
 
       {/* --- BOTTOM STRIP --- */}
-      <div className="relative z-20 w-full bg-[#f3efe6] dark:bg-[#2f333f] border-t border-transparent dark:border-zinc-700 transition-colors duration-300">
+      <div className="relative z-20 w-full bg-[#f3efe6] dark:bg-[#2f333f] border-t border-transparent dark:border-none transition-colors duration-300">
         <div className="mx-auto w-full max-w-7xl px-6 py-12 md:px-10 md:py-10">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-4 md:gap-10">
             <QuickLink title="TEACHING" subtitle="Lots of subjects, lots of support" href="/teaching" />
