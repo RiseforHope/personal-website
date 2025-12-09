@@ -16,11 +16,13 @@ export default function SubscribeCard() {
   };
 
   return (
-    // Background: Brand Blue (#2e3f90) ensures visibility in both Light and Dark modes
-    <div className="w-full max-w-2xl bg-[#242730] p-6 md:p-10 shadow-lg rounded-sm">
+    // UPDATED BACKGROUND:
+    // - Light Mode: #242730 (Dark Gray)
+    // - Dark Mode: #2f333f (Lighter Gray - "Elevated")
+    <div className="w-full max-w-2xl bg-[#242730] dark:bg-[#2f333f] p-6 md:p-10 shadow-lg rounded-sm transition-colors duration-300">
 
-      {/* Label: text-base for mobile legibility, text-sm for desktop */}
-      <h3 className="mb-6 text-base font-base uppercase tracking-[0.2em] text-white/80 md:text-sm">
+      {/* Label */}
+      <h3 className="mb-6 text-base font-bold uppercase tracking-[0.2em] text-white/80 md:text-sm">
         Newsletter
       </h3>
 
@@ -43,20 +45,18 @@ export default function SubscribeCard() {
               placeholder="email@address.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              // Input text: 'text-base' prevents iOS automatic zooming
               className="w-full min-w-0 bg-white/10 px-4 py-4 text-base text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-white/50 border border-transparent transition-all"
             />
 
             <button
               type="submit"
-              // Button: Larger touch target on mobile
-              className="shrink-0 bg-white px-8 py-4 text-base font-base uppercase tracking-widest text-[#2e3f90] transition-colors hover:bg-zinc-100 md:px-6 md:py-3 md:text-sm"
+              // Text color adjusted to Brand Blue on white button
+              className="shrink-0 bg-white px-8 py-4 text-base font-bold uppercase tracking-widest text-[#2e3f90] transition-colors hover:bg-zinc-100 md:px-6 md:py-3 md:text-sm"
             >
               Subscribe
             </button>
           </div>
 
-          {/* Footer Text: Increased from 10px to xs (12px) for readability */}
           <p className="text-xs text-white/40">
             No spam. Unsubscribe at any time.
           </p>

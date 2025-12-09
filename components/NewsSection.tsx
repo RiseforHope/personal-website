@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ArrowRight } from "lucide-react"; // Import Arrow for the scroll hint
 
 const projects = [
   {
@@ -50,13 +51,29 @@ export default function NewsSection() {
               Updates
             </span>
           </div>
-          <h2 className="text-3xl font-bold tracking-tight md:text-5xl text-zinc-900 dark:text-white">
-            Current Projects &amp; News
-          </h2>
+
+          {/* Flex container to hold Title + Scroll Hint */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <h2 className="text-3xl font-bold tracking-tight md:text-5xl text-zinc-900 dark:text-white">
+              Current Projects &amp; News
+            </h2>
+
+            {/* Desktop Scroll Hint (Animated) */}
+            <div className="hidden md:flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 animate-pulse">
+              <span>Scroll</span>
+              <ArrowRight className="h-4 w-4" />
+            </div>
+
+            {/* Mobile Swipe Hint */}
+            <div className="md:hidden text-xs font-bold uppercase tracking-widest text-zinc-400 mt-2">
+              Swipe to explore →
+            </div>
+          </div>
         </div>
 
         {/* CARDS SCROLL */}
-        <div className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto pb-12 px-6 md:px-16 scrollbar-hide">
+        {/* Added cursor-grab to indicate interactivity */}
+        <div className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto pb-12 px-6 md:px-16 scrollbar-hide cursor-grab active:cursor-grabbing">
           {projects.map((item) => (
             <div
               key={item.id}
