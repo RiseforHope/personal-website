@@ -7,9 +7,9 @@ import "./globals.css";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
   variable: "--font-montserrat",
   display: "swap",
+
 });
 
 export const metadata: Metadata = {

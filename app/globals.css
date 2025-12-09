@@ -15,10 +15,21 @@
     --foreground: #ededed;
 }
 
+/* Add this */
+html {
+    text-rendering: optimizeLegibility;
+}
+
 body {
     background: var(--background);
     color: var(--foreground);
+
+    /* Keep your font */
     font-family: var(--font-body), Arial, Helvetica, sans-serif;
+
+    /* Add these (biggest “darker/cleaner” impact on macOS browsers) */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6, .font-title {
