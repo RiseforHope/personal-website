@@ -106,7 +106,7 @@ function MenuLink({ href, label }: { href: string; label: string }) {
   return (
     <Link
       href={href}
-      className="text-4xl font-light tracking-tight transition-opacity hover:opacity-80 md:text-5xl"
+      className="text-4xl font-medium tracking-tight transition-opacity hover:opacity-80 md:text-5xl"
     >
       {label}
     </Link>

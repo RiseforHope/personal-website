@@ -17,9 +17,7 @@ export default function About() {
             <span className="inline-flex bg-[#2e3f90] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.25em] text-white md:px-5">
               People
             </span>
-            <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#2e3f90]/80">
-              J. Bladimir García
-            </span>
+
           </div>
 
           {/* Main Title */}
@@ -106,7 +104,7 @@ export default function About() {
               - md:ml-24: (Desktop) Matches the desktop card indentation.
               - pl-6 / md:pl-8: Matches the footer padding relative to the card edge.
           */}
-          <div className="ml-6 pl-6 space-y-10 md:ml-24 md:pl-8 md:space-y-12">
+          <div className="ml-0 pl-6 space-y-10 md:ml-24 md:pl-8 md:space-y-12">
             <AboutSection title="Qualifications">
               <p>
                 MA in Hispanic Studies; ongoing PhD research on border conflict, pedagogy,
