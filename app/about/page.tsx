@@ -33,7 +33,7 @@ export default function About() {
           - ml-6: (Mobile/Tablet) Creates a small 24px indentation for the white card.
           - md:ml-24: (Desktop) Increases indentation to 96px.
         */}
-        <div className="relative ml-10 bg-white md:ml-24">
+        <div className="relative ml-0 bg-white md:ml-24">
 
           <div className="flex flex-col md:flex-row">
 
