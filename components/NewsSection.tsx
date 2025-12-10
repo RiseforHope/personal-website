@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react"; // Import Arrow for the scroll hint
+import { ArrowRight } from "lucide-react";
 
 const projects = [
   {
@@ -40,7 +40,6 @@ const projects = [
 
 export default function NewsSection() {
   return (
-    // Section Background: Beige -> Dark Base (#242730)
     <section className="bg-[#f5f2ea] dark:bg-[#242730] py-20 text-zinc-900 dark:text-zinc-100 transition-colors duration-300">
       <div className="mx-auto max-w-7xl">
 
@@ -52,19 +51,16 @@ export default function NewsSection() {
             </span>
           </div>
 
-          {/* Flex container to hold Title + Scroll Hint */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <h2 className="text-3xl font-bold tracking-tight md:text-5xl text-zinc-900 dark:text-white">
               Current Projects &amp; News
             </h2>
 
-            {/* Desktop Scroll Hint (Animated) */}
             <div className="hidden md:flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 animate-pulse">
               <span>Scroll</span>
               <ArrowRight className="h-4 w-4" />
             </div>
 
-            {/* Mobile Swipe Hint */}
             <div className="md:hidden text-xs font-bold uppercase tracking-widest text-zinc-400 mt-2">
               Swipe to explore →
             </div>
@@ -72,23 +68,20 @@ export default function NewsSection() {
         </div>
 
         {/* CARDS SCROLL */}
-        {/* Added cursor-grab to indicate interactivity */}
-        <div className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto pb-12 px-6 md:px-16 scrollbar-hide cursor-grab active:cursor-grabbing">
+        {/* FIX 1: Removed 'px-6 md:px-16' from this container line. */}
+        <div className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto pb-12 scrollbar-hide cursor-grab active:cursor-grabbing">
+
           {projects.map((item) => (
             <div
               key={item.id}
-              // CARD BACKGROUND: White -> Lighter Dark (#2f333f)
               className="group relative flex min-w-[85vw] flex-col bg-white dark:bg-[#2f333f] shadow-sm transition-all hover:shadow-md md:min-w-[400px] snap-start p-8"
             >
-              {/* Label */}
               <div className="mb-6">
-                {/* Label BG: Beige -> Dark Base (#242730) to contrast with the card */}
                 <span className="inline-block bg-[#f5f2ea] dark:bg-[#242730] px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#2e3f90] dark:text-zinc-300">
                   {item.category}
                 </span>
               </div>
 
-              {/* Content */}
               <div className="flex flex-1 flex-col">
                 <div className="mb-8">
                   <h3 className="mb-3 text-xl font-bold leading-tight text-[#0b0f2b] dark:text-white md:text-2xl">
@@ -101,12 +94,10 @@ export default function NewsSection() {
                   </p>
                 </div>
 
-                {/* EXACT ANIMATION STRUCTURE RESTORED */}
                 <div className="mt-auto">
                   <Link href={item.href} className="group block">
-                    {/* Title + arrow always stay together */}
                     <div className="inline-flex items-center gap-3">
-                      <div className="text-lg font-light uppercase tracking-[0.12em] text-zinc-800 dark:text-zinc-200 sm:text-xl md:text-sm md:font-normal md:tracking-widest underline-offset-4 transition-colors group-hover:underline group-hover:text-[#2e3f90] dark:group-hover:text-[#5c7cfa]">
+                      <div className="text-sm font-light uppercase tracking-[0.12em] text-zinc-800 dark:text-zinc-200 sm:text-xl md:text-sm md:font-normal md:tracking-widest underline-offset-4 transition-colors group-hover:underline group-hover:text-[#2e3f90] dark:group-hover:text-[#5c7cfa]">
                         {item.date}
                       </div>
 
@@ -121,6 +112,9 @@ export default function NewsSection() {
               </div>
             </div>
           ))}
+
+          {/* FIX 3: RIGHT SPACER */}
+          {/* Ensures the last card doesn't touch the right edge either */}
           <div className="w-6 shrink-0 md:w-16" />
         </div>
       </div>

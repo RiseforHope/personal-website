@@ -1,9 +1,49 @@
+"use client";
+
+import Image from "next/image";
+import { Share2 } from "lucide-react"; // Import Share icon
+
 export default function Page() {
+
+  // Logic for the Share Button
+  const handleShare = async () => {
+    // Check if the browser supports the native share API (Mobile/Modern Browsers)
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: "Projectional Reciprocity",
+          text: "Check out this theoretical note by J. Bladimir Garcia.",
+          url: window.location.href,
+        });
+      } catch (error) {
+        console.log("Error sharing:", error);
+      }
+    } else {
+      // Fallback for desktop browsers that don't support share (Copy to Clipboard)
+      navigator.clipboard.writeText(window.location.href);
+      alert("Link copied to clipboard!");
+    }
+  };
+
   return (
     <>
+      {/* 1. TOP IMAGE (Visible on ALL screens) */}
+      <div className="relative mb-10 aspect-[16/9] w-full overflow-hidden rounded-sm bg-zinc-100 dark:bg-zinc-800 md:mb-16">
+        {/* Replace src with your actual image path */}
+        <Image
+          src="/images/post-hero-1.jpg"
+          alt="Abstract representation of development"
+          fill
+          className="object-cover"
+          priority
+        />
+      </div>
+
       {/* --- HEADER --- */}
       <header className="mb-12 md:mb-16">
-        <div className="mb-6 flex items-center gap-4">
+
+        {/* 2. DATE UNDER LABEL (Changed to flex-col) */}
+        <div className="mb-6 flex flex-col items-start gap-3">
           <span className="inline-block bg-[#2e3f90] px-3 py-1 text-xs font-bold uppercase tracking-widest text-white">
             Theoretical Note
           </span>
@@ -52,9 +92,19 @@ export default function Page() {
           It is because of this naturalised perspective that projectional reciprocity views interpersonal experiences as a system of feedback loops that refine internal models of self and world, or, put differently, inner and outer. From a metaphysical perspective, it may be read as a pedagogy of existence, in which reality itself becomes the field through which consciousness learns and becomes itself. Events and relationships, more than arbitrary sequences, appear as structured opportunities for integration and self-realisation. Another crucial point: this interpretation does not claim determinism; instead, it assumes that life possesses a formative intelligence that operates through encounters and relations.
         </p>
 
-        {/* --- CONTACT CTA --- */}
-        {/* Added margin-top (mt-12) and a divider for visual separation */}
-        <div className="mt-12 border-t border-zinc-200 pt-8 dark:border-zinc-700">
+        {/* 3. FUNCTIONAL SHARE BUTTON (Before the divider) */}
+        <div className="mt-12 mb-8">
+          <button
+            onClick={handleShare}
+            className="group flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[#2e3f90] dark:text-[#5c7cfa] transition-colors hover:text-[#2e3f90]/80"
+          >
+            <Share2 className="h-4 w-4 transition-transform group-hover:-translate-y-1" />
+            Share this entry
+          </button>
+        </div>
+
+        {/* --- CONTACT CTA (The "Soft Line" Section) --- */}
+        <div className="border-t border-zinc-200 pt-8 dark:border-zinc-700">
           <p className="text-base italic text-zinc-600 dark:text-zinc-400">
             This entry outlines the core concepts of ongoing research. If you are interested in reading the full working paper, please{' '}
             <a href="mailto:bladimir@riseforhope.org" className="font-semibold no-underline hover:underline">
