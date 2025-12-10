@@ -10,30 +10,24 @@ export default function BlogLayout({
   children: React.ReactNode;
 }) {
   return (
-    // SHARED BACKGROUND & TRANSITIONS
     <main className="min-h-screen bg-[#f5f2ea] dark:bg-[#242730] text-zinc-900 dark:text-zinc-100 transition-colors duration-300">
 
-      {/* NAV BAR SPACER */}
-      <div className="h-24" />
-
-      <article className="mx-auto max-w-3xl px-6 py-12 md:py-20">
-
-        {/* SHARED BACK LINK */}
+      {/* Spacer & Article Container */}
+      <div className="h-20" />
+      <article className="mx-auto max-w-3xl px-6 pt-8 pb-20 md:pt-12 md:pb-24">
         <Link
           href="/about"
-          className="group mb-10 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-zinc-500 transition-colors hover:text-[#2e3f90] dark:text-zinc-400 dark:hover:text-[#5c7cfa]"
+          className="group mb-8 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-zinc-500 transition-colors hover:text-[#2e3f90] dark:text-zinc-400 dark:hover:text-[#5c7cfa]"
         >
           <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
           Back to Updates
         </Link>
-
-        {/* THE INDIVIDUAL POST CONTENT GOES HERE */}
         {children}
-
       </article>
 
-      {/* SHARED SUBSCRIBE FOOTER */}
-      <div className="mx-auto max-w-7xl px-6 pb-20">
+      {/* FOOTER AREA */}
+      {/* Added 'flex justify-center' here to center the form */}
+      <div className="mx-auto max-w-7xl px-6 pb-20 flex justify-center">
         <Subscribe />
       </div>
 

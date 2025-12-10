@@ -44,6 +44,7 @@ export default function NewsSection() {
       <div className="mx-auto max-w-7xl">
 
         {/* HEADER */}
+        {/* Has px-6 (Mobile) / px-16 (Desktop) */}
         <div className="mb-12 px-6 md:px-16">
           <div className="flex items-center gap-4 mb-6">
             <span className="inline-flex bg-[#2e3f90] px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-white md:text-sm">
@@ -68,8 +69,12 @@ export default function NewsSection() {
         </div>
 
         {/* CARDS SCROLL */}
-        {/* FIX 1: Removed 'px-6 md:px-16' from this container line. */}
+        {/* 1. NO PADDING HERE (px-0). We use spacers instead. */}
         <div className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto pb-12 scrollbar-hide cursor-grab active:cursor-grabbing">
+
+          {/* FIX: LEFT SPACER */}
+          {/* This matches the header padding: w-6 (24px) on mobile, w-16 (64px) on desktop */}
+          <div className="w-6 shrink-0 md:w-16" />
 
           {projects.map((item) => (
             <div
@@ -113,9 +118,10 @@ export default function NewsSection() {
             </div>
           ))}
 
-          {/* FIX 3: RIGHT SPACER */}
-          {/* Ensures the last card doesn't touch the right edge either */}
+          {/* FIX: RIGHT SPACER */}
+          {/* Matches Left Spacer to ensure symmetry at the end of the list */}
           <div className="w-6 shrink-0 md:w-16" />
+
         </div>
       </div>
 

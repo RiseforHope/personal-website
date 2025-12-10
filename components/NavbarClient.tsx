@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image"; // 1. Import Image
 import { X, Instagram, Linkedin, Twitter, Facebook, Mail } from "lucide-react";
 
 export default function NavbarClient() {
@@ -25,11 +26,31 @@ export default function NavbarClient() {
     <nav className="sticky top-0 z-[100] w-full px-6 py-4 md:px-10 pointer-events-none">
 
       {/* Top Bar */}
-      <div className="flex w-full items-center justify-end pointer-events-auto">
+      {/* UPDATED:
+          1. Changed 'justify-end' to 'justify-between' to push Logo left and Burger right.
+          2. Removed 'pointer-events-auto' from here (moved to individual items) so the gap between them remains clickable.
+      */}
+      <div className="flex w-full items-center justify-between">
+
+        {/* --- 1. LOGO (Left) --- */}
+        {/* mt-4 aligns it with the lowered burger. pointer-events-auto makes it clickable. */}
+        <Link href="/" className="pointer-events-auto relative z-[110] mt-4">
+          <Image
+            src="/images/logo.svg" // <--- REPLACE with your logo path (e.g., .svg or .png)
+            alt="Brand Logo"
+            width={120} // Adjust width based on your actual file
+            height={40} // Adjust height based on your actual file
+            className="h-10 w-auto object-contain dark:invert" // dark:invert makes black logos white in dark mode automatically
+            priority
+          />
+        </Link>
+
+        {/* --- 2. MENU TOGGLE (Right) --- */}
         <button
           onClick={toggleMenu}
           aria-label={isOpen ? "Close menu" : "Open menu"}
-          className={`relative z-[110] mt-4 inline-flex h-16 w-16 items-center justify-center rounded-full border transition-colors duration-300 ${
+          // Added 'pointer-events-auto' here so the button works
+          className={`pointer-events-auto relative z-[110] mt-4 inline-flex h-16 w-16 items-center justify-center rounded-full border transition-colors duration-300 ${
             isOpen
               ? "border-white/30 bg-white/10 text-white hover:bg-white/20"
               : "border-zinc-200 bg-white/70 text-zinc-900 backdrop-blur-md hover:bg-white dark:border-zinc-700 dark:bg-black/50 dark:text-zinc-50"
