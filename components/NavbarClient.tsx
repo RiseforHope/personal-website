@@ -66,7 +66,7 @@ export default function NavbarClient() {
       {/* --- OVERLAY MENU --- */}
       <div className={`fixed inset-0 z-[90] transition-all duration-500 ease-in-out ${isOpen ? "visible opacity-100" : "invisible opacity-0"}`}>
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={closeMenu} />
-        <div className={`absolute right-0 top-0 h-full w-full md:w-[600px] bg-[#242730] text-white shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${isOpen ? "translate-x-0" : "translate-x-full"}`}>
+        <div className={`absolute right-0 top-0 h-full w-full md:w-[600px] bg-[#25272f] text-white shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${isOpen ? "translate-x-0" : "translate-x-full"}`}>
           <div className="flex h-full flex-col px-8 py-12 md:px-12">
             <div className="mt-24 flex flex-col gap-8">
               <div className="flex flex-col gap-6">
