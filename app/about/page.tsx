@@ -25,9 +25,9 @@ export default function About() {
               People
             </span>
           </div>
-          <h1 className="text-4xl font-bold leading-[1.3] tracking-tight md:text-7xl lg:text-[5.5rem]">
+          <h1 className="text-3xl font-bold leading-[1.3] tracking-normal md:text-5xl lg:text-[3.5rem]">
             J. Bladimir Garcia
-            <span className="block">Educator &amp; Researcher</span>
+            <span className="block">Educator, Researcher &amp; Founder in Education Technology </span>
           </h1>
         </div>
 
@@ -41,15 +41,15 @@ export default function About() {
                   Changed -ml-6 to -ml-2.
                   This reduces the negative pull, creating a small left gap on mobile.
               */}
-              <div className="relative h-[300px] w-[300px] bg-gray-200 -ml-4 -mt-4 md:-ml-24 md:-mt-5 md:h-[380px] md:w-[320px]">
+              <div className="relative h-[250px] w-[250px] bg-gray-200 -ml-4 -mt-4 md:-ml-24 md:-mt-5 md:h-[380px] md:w-[320px]">
                 <Image src="/images/about-portrait.jpg" alt="Portrait" fill className="object-cover" priority />
               </div>
 
               <div className="flex flex-col gap-1 px-6 py-6 md:px-8 md:pt-10">
-                <span className="text-lg font-medium text-[#2e3f90] dark:text-[#5c7cfa]">
-                  Theology and Education
+                <span className="text-sm font-medium text-[#2e3f90] dark:text-[#5c7cfa]">
+                  Technology &amp; Education
                 </span>
-                <div className="mt-2 text-lg md:mt-4">
+                <div className="mt-2 text-sm md:mt-4">
                   <span className="mr-2 text-zinc-400">Email |</span>
                   <a href="mailto:your@email.com" className="text-[#2e3f90] underline decoration-[#2e3f90]/40 underline-offset-4 transition hover:decoration-[#2e3f90] dark:text-[#5c7cfa] dark:decoration-[#5c7cfa]/40">
                     bladimir@brinl.com
@@ -61,8 +61,8 @@ export default function About() {
             {/* Right Column */}
             <div className="px-6 pb-12 pt-4 md:px-16 md:py-20">
               <div className="max-w-2xl space-y-6 text-lg leading-relaxed md:space-y-10 md:text-2xl md:leading-relaxed">
-                <p>I am a language teacher, nonprofit leader, and researcher working in the fields of pedagogy, technology, and humane innovation.</p>
-                <p>As a PhD (ABD) in Hispanic Studies from Texas A&M University concentrating on Latin America, my research investigates borders, demographic changes, international conflicts, and their societal impacts.</p>
+                <p>I am a language and English literature teacher, nonprofit leader, and startup founder who combines academic research, machine learning tools, and classroom practice to improve how students learn.</p>
+                <p>As a PhD candidate (ABD) in Hispanic Studies at Texas A&M University with a focus on Latin America, I study borders, demographic change, international conflict, and their social impacts, while developing PROSLA-based language teaching approaches that use technology in a rigorous, personal, and humane way.</p>
               </div>
             </div>
           </div>
@@ -75,23 +75,33 @@ export default function About() {
           <div className="ml-0 pl-6 space-y-12 md:ml-24 md:pl-8 md:space-y-16">
 
             <AboutSection title="Qualifications">
-              <p>Ongoing PhD research ion border conflict; BA in Philosophy and Logic from Columbia University; Master’s in Political Science with distinction from Villanova University as a presidential fellow.</p>
+              <p>
+                I am currently completing PhD research on border conflict, and I hold a B.A. in Philosophy and Logic from Columbia University and an M.A. in Political Science (with distinction) from Villanova University, where I served as a Presidential Fellow.
+                </p>
             </AboutSection>
 
             <AboutSection title="Academic background">
-              <p>I have taught at Ursinus College and Texas A&M University, bringing an interdisciplinary perspective to my work.</p>
+              <p>
+                I have taught at Ursinus College and Texas A&M University, bringing an interdisciplinary perspective that connects political thought, border studies, and language learning to my teaching and research.
+              </p>
             </AboutSection>
 
             <AboutSection title="Teaching Philosophy">
-              <p>My classes prioritize real-world language use, storytelling, and structured practice, so students can build confidence and agency in the target language.</p>
+              <p>
+                My classes center on real-world language use, storytelling, and structured practice so that students can build genuine communicative ability, confidence, and agency in the target language. I design my courses using the PROSLA method, aligning technology and assessment with clear, humane learning goals.
+               </p>
             </AboutSection>
 
             <AboutSection title="Interests">
-              <p>As a hobbyist programmer, I explore the educational applications of machine learning, blending technology with academic expertise to advance innovative teaching methods. My work reflects a commitment to connecting language, technology, and education in practical and impactful ways.</p>
+              <p>
+                As a hobbyist programmer, I explore how machine learning can support teachers and students in practical ways—building tools that extend, rather than replace, human judgment in the classroom. My work reflects a sustained commitment to connecting language, technology, and education in concrete, impactful ways.
+                </p>
             </AboutSection>
 
             <AboutSection title="Featured Publications">
-              <p>My publications include review articles, translations into Spanish and Portuguese, and a forthcoming book, Beyond Borders: Technology and Sovereignty in Latin America (Ashgate, 2026).</p><br/>
+              <p>
+                My publications include review essays, translations into Spanish and Portuguese, and a forthcoming book, Beyond Borders: Technology and Sovereignty in Latin America (Ashgate, 2026).
+              </p><br/>
               <ul className="space-y-6">
                 {publications.map((pub) => (
                   <li key={pub.id} className="flex flex-col gap-1">
