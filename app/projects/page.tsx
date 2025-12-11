@@ -111,7 +111,7 @@ export default function Projects() {
   );
 }
 
-// --- ACCORDION COMPONENT ---
+/// --- ACCORDION COMPONENT ---
 function AccordionItem({ section, defaultOpen }: { section: any, defaultOpen: boolean }) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
@@ -121,7 +121,11 @@ function AccordionItem({ section, defaultOpen }: { section: any, defaultOpen: bo
       {/* TRIGGER BUTTON */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center justify-between px-6 py-6 text-left transition-colors hover:bg-black/5 dark:hover:bg-white/5"
+        // UPDATES:
+        // 1. Removed 'hover:bg-black/5' and 'dark:hover:bg-white/5' (No background change)
+        // 2. Added 'focus:outline-none' (Removes the blue/black border on click)
+        // 3. Added 'select-none' (Prevents text highlighting on double clicks)
+        className="flex w-full items-center justify-between px-6 py-6 text-left focus:outline-none select-none"
       >
         <h2 className="text-lg font-bold uppercase tracking-widest text-[#2e3f90] dark:text-white md:text-xl">
           {section.category}

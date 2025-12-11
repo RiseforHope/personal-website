@@ -73,6 +73,8 @@ export default function NavbarClient() {
                 <MenuLink href="/teaching" label="Teaching" onClick={closeMenu} />
                 <MenuLink href="/research" label="Research" onClick={closeMenu} />
                 <MenuLink href="/projects" label="Projects" onClick={closeMenu} />
+                {/* ADDED STORE LINK HERE */}
+                <MenuLink href="/store" label="Store" onClick={closeMenu} />
                 <MenuLink href="/about" label="About" onClick={closeMenu} />
               </div>
               <div className="flex items-center gap-4 mt-4">
