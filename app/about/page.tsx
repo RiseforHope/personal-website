@@ -6,7 +6,7 @@ import NewsSection from "@/components/NewsSection";
 import Subscribe from "@/components/Subscribe";
 
 const publications = [
-  { id: 1, title: "Pedagogy in Border Contexts: A Case Study", journal: "Journal of Latin American Educational Studies", year: "2024", url: "#" },
+  { id: 1, title: 'La poesía guineoecuatoriana en español en su contexto colonial y (trans)nacional', journal: 'Impossibilia', year: '2020', url: 'https://revistaseug.ugr.es/index.php/impossibilia/article/view/23088/21763'},
   { id: 2, title: "Digital Storytelling in the Heritage Language Classroom", journal: "Review of Applied Linguistics", year: "2023", url: "#" },
   { id: 3, title: "Community-Based Language Learning Models", journal: "Nonprofit & Education Quarterly", year: "2022", url: "#" },
 ];
@@ -52,7 +52,7 @@ export default function About() {
                 <div className="mt-2 text-lg md:mt-4">
                   <span className="mr-2 text-zinc-400">Email |</span>
                   <a href="mailto:your@email.com" className="text-[#2e3f90] underline decoration-[#2e3f90]/40 underline-offset-4 transition hover:decoration-[#2e3f90] dark:text-[#5c7cfa] dark:decoration-[#5c7cfa]/40">
-                    your@email.com
+                    bladimir@brinl.com
                   </a>
                 </div>
               </div>
@@ -61,8 +61,8 @@ export default function About() {
             {/* Right Column */}
             <div className="px-6 pb-12 pt-4 md:px-16 md:py-20">
               <div className="max-w-2xl space-y-6 text-lg leading-relaxed md:space-y-10 md:text-2xl md:leading-relaxed">
-                <p>I am a language teacher, nonprofit leader, and researcher working at the intersection of pedagogy, technology, and humane innovation.</p>
-                <p>My work focuses on helping students experience language learning as real life, not just grammar drills—through meaningful tasks, clear structures, and high expectations wrapped in care.</p>
+                <p>I am a language teacher, nonprofit leader, and researcher working in the fields of pedagogy, technology, and humane innovation.</p>
+                <p>As a PhD (ABD) in Hispanic Studies from Texas A&M University concentrating on Latin America, my research investigates borders, demographic changes, international conflicts, and their societal impacts.</p>
               </div>
             </div>
           </div>
@@ -75,18 +75,23 @@ export default function About() {
           <div className="ml-0 pl-6 space-y-12 md:ml-24 md:pl-8 md:space-y-16">
 
             <AboutSection title="Qualifications">
-              <p>MA in Hispanic Studies; ongoing PhD research on border conflict, pedagogy, and language education.</p>
+              <p>Ongoing PhD research ion border conflict; BA in Philosophy and Logic from Columbia University; Master’s in Political Science with distinction from Villanova University as a presidential fellow.</p>
             </AboutSection>
 
             <AboutSection title="Academic background">
-              <p>I have taught Spanish and literature across multiple levels, developing curricula that combine rigorous reading with authentic communication and writing.</p>
+              <p>I have taught at Ursinus College and Texas A&M University, bringing an interdisciplinary perspective to my work.</p>
             </AboutSection>
 
-            <AboutSection title="Undergraduate teaching">
+            <AboutSection title="Teaching Philosophy">
               <p>My classes prioritize real-world language use, storytelling, and structured practice, so students can build confidence and agency in the target language.</p>
             </AboutSection>
 
+            <AboutSection title="Interests">
+              <p>As a hobbyist programmer, I explore the educational applications of machine learning, blending technology with academic expertise to advance innovative teaching methods. My work reflects a commitment to connecting language, technology, and education in practical and impactful ways.</p>
+            </AboutSection>
+
             <AboutSection title="Featured Publications">
+              <p>My publications include review articles, translations into Spanish and Portuguese, and a forthcoming book, Beyond Borders: Technology and Sovereignty in Latin America (Ashgate, 2026).</p><br/>
               <ul className="space-y-6">
                 {publications.map((pub) => (
                   <li key={pub.id} className="flex flex-col gap-1">

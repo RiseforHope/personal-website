@@ -14,11 +14,11 @@ const projects = [
   },
   {
     id: 2,
-    category: "Workshop",
-    title: "Humane Innovation in the Classroom",
-    intro: "A practical guide to implementing technology without losing the human connection that drives learning.",
+    category: "Publication",
+    title: "La poesía guineoecuatoriana: Reseña académica",
+    intro: "La literatura guineoecuatoriana escrita en español en su entorno colonial y (trans)nacional.",
     date: "Sep 28, 2024",
-    href: "/blog/post-2",
+    href: "/blog/poesia-guineoecuatoriana",
   },
   {
     id: 3,
