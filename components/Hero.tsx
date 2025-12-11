@@ -32,14 +32,14 @@ export function Hero() {
               {/* Keep the content logic you already have */}
               <div className="md:hidden bg-[#242730] px-8 py-12 text-white text-center shadow-lg">
                 <div className="text-base font-medium tracking-wide text-white/90 uppercase">Welcome</div>
-                <h1 className="mt-6 text-4xl font-medium leading-tight tracking-tight">Futurist. Scholar.</h1>
-                <p className="mt-8 mx-auto max-w-xl text-lg leading-relaxed text-white/90">Exploring border conflict, inequality, and emerging technologies to offer new ways to understand global challenges. </p>
+                <h1 className="mt-6 text-2xl font-bold leading-tight tracking-tight">Educator. Scholar. Builder.</h1>
+                <p className="mt-8 mx-auto max-w-xl text-lg leading-relaxed text-white/90">I study how borders, technology, and language shape human agency, both in geopolitical conflicts and in classrooms.</p>
               </div>
               <div className="hidden md:flex md:flex-col md:items-start w-full">
                 <div className="bg-[#242730] px-8 py-3 text-base font-medium tracking-wide text-white shadow-sm uppercase">Welcome</div>
                 <div className="mt-6 w-full bg-[#242730] px-8 py-10 md:py-24 text-white shadow-lg md:px-10">
-                  <h1 className="text-5xl font-medium leading-tight tracking-tight md:text-6xl">Futurist. Scholar.</h1>
-                  <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85 md:text-xl">Exploring border conflict, inequality, and emerging technologies to offer new ways to understand global challenges. </p>
+                  <h1 className="text-2xl font-bold leading-tight tracking-tight md:text-6xl">Educator. Scholar. Builder.</h1>
+                  <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85 md:text-xl">I study how borders, technology, and language shape human agency, both in geopolitical conflicts and in classrooms. </p>
                 </div>
               </div>
             </div>
