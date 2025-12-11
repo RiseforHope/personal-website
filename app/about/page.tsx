@@ -124,7 +124,7 @@ export default function About() {
       <div>
         <NewsSection />
 
-        <section className="py-16 md:py-24 px-6 md:px-16">
+        <section className="pb-24 md:pb-24 px-6 md:px-16">
           <div className="mx-auto max-w-7xl flex justify-center">
             <Subscribe />
           </div>
