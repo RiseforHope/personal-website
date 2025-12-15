@@ -9,8 +9,11 @@ const products = [
     id: "prod_tshirt",
     name: "PROSLA Signature Tee",
     price: 3500,
-    image: "/images/merch-tshirt.jpg",
+    image: "/images/store/hoddie-beige.jpg",
     description: "Heavyweight cotton, oversized fit. puff print logo.",
+    // NEW: Printify IDs (Replace these with real numbers from Printify later)
+    printifyProductId: "REPLACE_WITH_PRODUCT_ID",
+    printifyVariantId: "REPLACE_WITH_VARIANT_ID",
   },
   {
     id: "prod_tote",
@@ -18,6 +21,8 @@ const products = [
     price: 2500,
     image: "/images/merch-tote.jpg",
     description: "Durable canvas for books and laptops. Internal pocket.",
+    printifyProductId: "REPLACE_WITH_PRODUCT_ID",
+    printifyVariantId: "REPLACE_WITH_VARIANT_ID",
   },
   {
     id: "prod_notebook",
@@ -25,6 +30,8 @@ const products = [
     price: 1800,
     image: "/images/merch-notebook.jpg",
     description: "Dot grid, 120gsm paper. Perfect for drafting theories.",
+    printifyProductId: "REPLACE_WITH_PRODUCT_ID",
+    printifyVariantId: "REPLACE_WITH_VARIANT_ID",
   },
   {
     id: "prod_cap",
@@ -32,6 +39,8 @@ const products = [
     price: 2800,
     image: "/images/merch-cap.jpg",
     description: "Embroidered logo, adjustable strap. 100% cotton.",
+    printifyProductId: "REPLACE_WITH_PRODUCT_ID",
+    printifyVariantId: "REPLACE_WITH_VARIANT_ID",
   },
 ];
 
@@ -62,7 +71,7 @@ export default function Store() {
 
             <div className="space-y-8 text-xl font-light leading-relaxed text-zinc-700 dark:text-zinc-300 md:text-2xl">
               <p>
-                On this page I share a small set of notebooks and prints connected to my work in language, borders, and humane technology. I sell them through my personal site, and all profits go to Rise for Hope, a nonprofit I founded to support families facing pediatric cancer.
+                On this page, I share a small, carefully designed collection connected to my work in language, borders, and humane technology. These items are sold through my personal site, and all profits support Rise for Hope, a nonprofit I founded to serve families facing pediatric cancer.
               </p>
 
               <p>
@@ -74,7 +83,6 @@ export default function Store() {
                   className="font-semibold text-[#2e3f90] hover:underline dark:text-white"
                 >
                   <span className="bg-gradient-to-r from-[#30d4ef] via-[#3b82f6] to-[#37e581] bg-clip-text text-transparent">
-
                   Rise for Hope website.
                   </span>
                 </a>{' '}
@@ -118,11 +126,11 @@ export default function Store() {
           {/* HEART SVG LOGO SPACE */}
           <div className="mb-6 flex justify-center">
             <Image
-              src="/images/hands-r4h-logo.svg" // <--- Make sure your file is named this
-              alt="Heart Logo"
-              width={100} // Width in pixels
-              height={100} // Height in pixels
-              className="w-15 h-15 object-contain" // Tailwind sizing
+              src="/images/hands-r4h-logo.svg"
+              alt="Rise for Hope Logo"
+              width={100}
+              height={100}
+              className="w-15 h-15 object-contain"
             />
           </div>
           <p className="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">

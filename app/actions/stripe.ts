@@ -3,14 +3,27 @@
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2025-11-17.clover",
+  apiVersion: "2025-11-17.clover", // Use your version
   typescript: true,
 });
 
-export async function checkout(name: string, priceInCents: number) {
+export async function checkout(
+  name: string,
+  priceInCents: number,
+  printifyProductId: string,
+  printifyVariantId: string,
+  quantity: number = 1 // <--- NEW: Accept quantity (default to 1)
+) {
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
+      shipping_address_collection: {
+        allowed_countries: ["US", "CA", "GB"],
+      },
+      metadata: {
+        printify_product_id: printifyProductId,
+        printify_variant_id: printifyVariantId,
+      },
       line_items: [
         {
           price_data: {
@@ -20,7 +33,14 @@ export async function checkout(name: string, priceInCents: number) {
             },
             unit_amount: priceInCents,
           },
-          quantity: 1,
+          quantity: quantity, // <--- NEW: Use the passed quantity
+
+          // OPTIONAL: Allow them to change it AGAIN on the Stripe page
+          adjustable_quantity: {
+            enabled: true,
+            minimum: 1,
+            maximum: 10,
+          },
         },
       ],
       mode: "payment",
@@ -29,8 +49,8 @@ export async function checkout(name: string, priceInCents: number) {
     });
 
     return { url: session.url };
-  } catch (error) {
+  } catch (error: any) {
     console.error("Stripe Error:", error);
-    return { error: "Error creating checkout session" };
+    return { error: error.message };
   }
 }
