@@ -56,8 +56,8 @@ export async function POST(req: Request) {
 
 // --- HELPER FUNCTION: The Printify Logic ---
 async function sendToPrintify(session: Stripe.Checkout.Session, productId: string, variantId: string) {
-  const shipping = session.shipping?.address;
-  const name = session.shipping?.name;
+  const shipping = session.collected_information?.shipping_details?.address;
+  const name = session.collected_information?.shipping_details?.name;
 
   if (!shipping || !name) throw new Error("Missing shipping info in Stripe Session");
 
