@@ -2,37 +2,217 @@
 @tailwind components;
 @tailwind utilities;
 
+/* -------------------------------------------------------------------------- */
+/* TYPOGRAPHY VARIABLES                                                       */
+/* Wires up the references that lived in body/heading rules but were never    */
+/* defined. --font-body keeps Montserrat as the workhorse. --font-serif       */
+/* surfaces a refined serif (Fraunces) for italics, quotes, and ornaments.    */
+/* -------------------------------------------------------------------------- */
 :root {
-    --background: #ffffff;
-    --foreground: #171717;
+    --background: #f5f2ea;
+    --foreground: #1a1c22;
+
+    --paper: #f5f2ea;
+    --ink: #1a1c22;
+    --ink-soft: #4a4d56;
+    --rule: #d9d3c4;
+
+    --accent: #2e3f90;
+    --accent-soft: #5c7cfa;
+
+    --font-body: var(--font-montserrat);
+    --font-title: var(--font-montserrat);
+    --font-serif: var(--font-fraunces);
 }
 
-/* CHANGED: Replaced @media (prefers-color-scheme: dark) with .dark
-   This allows the button to force this state by adding the class.
-*/
 .dark {
-    --background: #0a0a0a;
+    --background: #242730;
     --foreground: #ededed;
+
+    --paper: #242730;
+    --ink: #ededed;
+    --ink-soft: #a8acb8;
+    --rule: #3a3e4a;
 }
 
-/* Add this */
+/* -------------------------------------------------------------------------- */
+/* GLOBAL DEFAULTS                                                            */
+/* -------------------------------------------------------------------------- */
 html {
     text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
     background: var(--background);
     color: var(--foreground);
-
-    /* Keep your font */
     font-family: var(--font-body), Arial, Helvetica, sans-serif;
-
-    /* Add these (biggest “darker/cleaner” impact on macOS browsers) */
     @apply text-base;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "ss01", "ss02", "cv11";
 }
 
 h1, h2, h3, h4, h5, h6, .font-title {
     font-family: var(--font-title), Arial, Helvetica, sans-serif;
+    letter-spacing: -0.018em;
+}
+
+h1, .font-display {
+    letter-spacing: -0.025em;
+}
+
+/* -------------------------------------------------------------------------- */
+/* SERIF — applied only where italics or scholarly emphasis appears.          */
+/* The dominant character of the site stays sans-serif; the serif slips in    */
+/* for citations, quotations, and the small ornamental numerals.              */
+/* -------------------------------------------------------------------------- */
+em, i, cite, blockquote, .font-serif {
+    font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-feature-settings: "liga", "dlig";
+}
+
+cite {
+    font-style: italic;
+}
+
+blockquote {
+    font-style: italic;
+    line-height: 1.55;
+}
+
+/* -------------------------------------------------------------------------- */
+/* ORNAMENTS                                                                  */
+/* -------------------------------------------------------------------------- */
+.numeral {
+    font-family: var(--font-serif), Georgia, serif;
+    font-style: italic;
+    font-feature-settings: "onum", "lnum" 0;
+    letter-spacing: 0.01em;
+}
+
+.eyebrow {
+    font-family: var(--font-body), sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-weight: 500;
+    font-size: 0.75rem;
+}
+
+.rule-hair {
+    height: 1px;
+    background-color: var(--rule);
+}
+
+/* -------------------------------------------------------------------------- */
+/* SELECTION & FOCUS                                                          */
+/* -------------------------------------------------------------------------- */
+::selection {
+    background: #2e3f90;
+    color: #f5f2ea;
+}
+
+.dark ::selection {
+    background: #5c7cfa;
+    color: #1a1c22;
+}
+
+:focus-visible {
+    outline: 2px solid #2e3f90;
+    outline-offset: 3px;
+    border-radius: 1px;
+}
+
+.dark :focus-visible {
+    outline-color: #5c7cfa;
+}
+
+/* -------------------------------------------------------------------------- */
+/* MOTION                                                                     */
+/* CSS-only staggered reveal so server components can use it without          */
+/* paying for a client-side animation runtime.                                */
+/* -------------------------------------------------------------------------- */
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes rule-grow {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+}
+
+.animate-fade-up {
+    animation: fade-up 700ms cubic-bezier(0.2, 0.6, 0.2, 1) both;
+}
+
+.animate-fade-in {
+    animation: fade-in 900ms ease-out both;
+}
+
+.animate-rule {
+    transform-origin: left center;
+    animation: rule-grow 900ms cubic-bezier(0.2, 0.6, 0.2, 1) both;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+@media (prefers-reduced-motion: reduce) {
+    .animate-fade-up,
+    .animate-fade-in,
+    .animate-rule {
+        animation: none;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* LINK UNDERLINES — replaces the abrupt hover:underline with a hairline      */
+/* rule that grows from left, gentler and more editorial.                     */
+/* -------------------------------------------------------------------------- */
+.link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size 380ms cubic-bezier(0.2, 0.6, 0.2, 1);
+    padding-bottom: 2px;
+}
+
+.link-underline:hover,
+.group:hover .link-underline,
+.link-underline:focus-visible {
+    background-size: 100% 1px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* PAPER GRAIN — barely-there warmth on the cream surface, off in dark mode.  */
+/* -------------------------------------------------------------------------- */
+.bg-paper {
+    background-color: var(--paper);
+    background-image:
+        radial-gradient(ellipse at top left, rgba(214, 200, 170, 0.18), transparent 55%),
+        radial-gradient(ellipse at bottom right, rgba(46, 63, 144, 0.05), transparent 60%);
+}
+
+.dark .bg-paper {
+    background-color: var(--paper);
+    background-image:
+        radial-gradient(ellipse at top left, rgba(92, 124, 250, 0.06), transparent 55%),
+        radial-gradient(ellipse at bottom right, rgba(255, 255, 255, 0.02), transparent 60%);
 }

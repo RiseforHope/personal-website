@@ -12,11 +12,10 @@ type FeatureItem = {
 
 export function FeatureCards({ items }: { items: FeatureItem[] }) {
   return (
-    // Added dark:bg-[#242730] for consistent dark mode background
     <section className="bg-white dark:bg-[#242730] transition-colors duration-300">
-      <div className="mx-auto max-w-7xl space-y-16 px-6 py-16 md:px-10 md:py-20">
+      <div className="mx-auto max-w-7xl space-y-20 px-6 py-16 md:px-10 md:py-24">
         {items.map((item, i) => (
-          <FeatureCard key={item.href} item={item} reverse={i % 2 === 1} />
+          <FeatureCard key={item.href} item={item} reverse={i % 2 === 1} index={i + 1} />
         ))}
       </div>
     </section>
@@ -26,11 +25,14 @@ export function FeatureCards({ items }: { items: FeatureItem[] }) {
 function FeatureCard({
                        item,
                        reverse,
+                       index,
                      }: {
   item: FeatureItem;
   reverse: boolean;
+  index: number;
 }) {
   const { label, title, excerpt, href, imageSrc, imageAlt = "" } = item;
+  const numeral = String(index).padStart(2, "0");
 
   return (
     <article className="relative">
@@ -47,8 +49,14 @@ function FeatureCard({
             {label}
           </div>
 
+          {/* Italic numeral — academic footnote-style ornament */}
+          <div className="mt-6 hidden md:flex items-center gap-3 text-zinc-400 dark:text-zinc-500">
+            <span className="numeral text-base">nº {numeral}.</span>
+            <span className="h-px w-10 bg-zinc-300 dark:bg-zinc-700" />
+          </div>
+
           {/* Heading */}
-          <h2 className="mt-4 md:mt-10 text-4xl font-bold leading-[1.2] tracking-tight text-zinc-950 dark:text-zinc-50 md:text-5xl md:leading-[1.2]">
+          <h2 className="mt-4 md:mt-4 text-4xl font-bold leading-[1.15] tracking-[-0.022em] text-zinc-950 dark:text-zinc-50 md:text-5xl md:leading-[1.1]">
             {title}
           </h2>
 
@@ -63,17 +71,14 @@ function FeatureCard({
             className="group mt-10 inline-flex w-full items-center justify-between gap-6 md:mt-12 md:w-auto md:min-w-[420px]
                        text-[#2e3f90] dark:text-[#5c7cfa] transition-colors"
           >
-            <span className="text-base font-medium underline-offset-4 group-hover:underline">
+            <span className="link-underline text-base font-medium">
               Find out more about what {label.toLowerCase()} has to offer
             </span>
 
-            {/* Arrow Icon */}
-            {/* Note: In dark mode, we apply a brightness filter so the blue arrow is visible,
-                or you can swap this for a white SVG */}
             <img
               src="/icons/right-arrow-blue.svg"
               alt=""
-              className="h-6 w-12 transition-transform group-hover:translate-x-1 dark:brightness-150"
+              className="h-6 w-12 transition-transform duration-300 group-hover:translate-x-1.5 dark:brightness-150"
             />
           </Link>
         </div>

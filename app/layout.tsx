@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Montserrat, Fraunces } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -11,9 +11,17 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  display: "swap",
+  style: ["normal", "italic"],
+});
+
 export const metadata: Metadata = {
-  title: "Academic Portfolio",
-  description: "My academic work and research",
+  title: "J. Bladimir Garcia — Educator, Scholar, Builder",
+  description:
+    "Teaching, research, and writing on borders, technology, and language. An academic workshop in progress.",
 };
 
 export default function RootLayout({
@@ -22,12 +30,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={montserrat.variable}>
-    {/* UPDATED BODY CLASS:
-         1. bg-[#f5f2ea]: Default light background
-         2. dark:bg-[#242730]: Your global dark background
-         3. dark:text-zinc-100: Global text color for dark mode (so text is readable)
-      */}
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${montserrat.variable} ${fraunces.variable}`}
+    >
     <body className="antialiased font-sans text-body bg-[#f5f2ea] dark:bg-[#242730] dark:text-zinc-100">
     <ThemeProvider
       attribute="class"
