@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Minus, Plus, X } from "lucide-react";
+import { Loader2, Minus, Plus, X } from "lucide-react";
 import { checkout } from "@/app/actions/stripe";
 
 type Product = {
@@ -63,7 +63,7 @@ export default function ProductCard({ product }: { product: Product }) {
   };
 
   return (
-    <div className="group flex h-full flex-col">
+    <div className="group flex h-full min-w-0 flex-col">
       {/* Image — square edge, photographic */}
       <button
         type="button"
@@ -131,9 +131,14 @@ export default function ProductCard({ product }: { product: Product }) {
           type="button"
           onClick={handleBuy}
           disabled={isLoading}
-          className="flex-1 bg-ink px-6 text-xs font-semibold uppercase tracking-[0.22em] text-white transition-colors hover:bg-accent disabled:opacity-60 dark:bg-ink-panel dark:hover:bg-accent-soft"
+          aria-label={isLoading ? "Processing…" : "Buy now"}
+          className="flex min-w-0 flex-1 items-center justify-center bg-ink px-4 text-xs font-semibold uppercase tracking-[0.22em] text-white transition-colors hover:bg-accent disabled:opacity-60 dark:bg-ink-panel dark:hover:bg-accent-soft"
         >
-          {isLoading ? "Processing…" : "Buy now"}
+          {isLoading ? (
+            <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
+          ) : (
+            "Buy now"
+          )}
         </button>
       </div>
 
