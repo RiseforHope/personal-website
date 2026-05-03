@@ -3,6 +3,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { X, Instagram, Linkedin, Twitter, Facebook, Mail } from "lucide-react";
 
 const FADE_MS = 280;
@@ -12,6 +13,10 @@ export default function NavbarClient() {
   const [isMounted, setIsMounted] = useState(false);
   const closeTimerRef = useRef<number | null>(null);
   const menuId = useId();
+  const pathname = usePathname();
+  // Float over the hero on the home page only; every other route keeps the
+  // solid navbar so headings and chrome don't sit on top of body text.
+  const transparent = pathname === "/";
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "unset";
@@ -53,21 +58,30 @@ export default function NavbarClient() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <nav className="relative z-[100] w-full bg-paper px-6 py-6 transition-colors duration-300 dark:bg-ink md:px-10 md:py-8">
+    <nav
+      className={`z-[100] w-full px-6 py-6 transition-colors duration-300 md:px-10 md:py-8 ${
+        transparent
+          ? "absolute left-0 right-0 top-0 bg-transparent"
+          : "relative bg-paper dark:bg-ink"
+      }`}
+    >
       <div className="flex w-full items-center justify-between">
-        {/* LOGO */}
+        {/* LOGO — invert on transparent home (hero photo behind) so the mark
+            stays legible regardless of the photo's tonality. */}
         <Link href="/" className="relative z-[110] inline-flex items-center">
           <Image
             src="/images/logo.svg"
             alt="Brand Logo"
             width={120}
             height={40}
-            className="h-9 w-auto object-contain dark:invert md:h-10"
+            className={`h-9 w-auto object-contain md:h-10 ${
+              transparent ? "invert" : "dark:invert"
+            }`}
             priority
           />
         </Link>
 
-        {/* BURGER */}
+        {/* BURGER — glassy over the hero on home, solid otherwise. */}
         <button
           type="button"
           onClick={toggleMenu}
@@ -79,7 +93,9 @@ export default function NavbarClient() {
             ${
             isOpen
               ? "border-white/30 bg-white/10 text-white hover:bg-white/20"
-              : "border-rule bg-white/70 text-zinc-900 hover:bg-white dark:border-rule-dark dark:bg-black/40 dark:text-zinc-50"
+              : transparent
+                ? "border-white/40 bg-black/20 text-white hover:bg-black/30"
+                : "border-rule bg-white/70 text-zinc-900 hover:bg-white dark:border-rule-dark dark:bg-black/40 dark:text-zinc-50"
           }`}
         >
           {isOpen ? (
