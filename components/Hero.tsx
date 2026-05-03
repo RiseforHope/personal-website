@@ -6,9 +6,10 @@ export function Hero() {
     <section className="relative isolate flex w-full flex-col overflow-hidden md:min-h-screen">
 
       {/* ---------------------------------------------------------- */}
-      {/* MOBILE LAYOUT — image, then card, then strip (stacked).    */}
-      {/* The image gets its own dedicated 4:5 zone instead of being */}
-      {/* covered by an absolutely-positioned dark card.             */}
+      {/* MOBILE LAYOUT — image, bridge tab, card, then strip.        */}
+      {/* The image gets its own dedicated 4:5 zone; a small left-    */}
+      {/* anchored tab bridges it to the headline card, mirroring     */}
+      {/* the desktop welcome-tab pattern.                            */}
       {/* ---------------------------------------------------------- */}
       <div className="relative aspect-[4/5] w-full md:hidden">
         <Image
@@ -20,14 +21,27 @@ export function Hero() {
           className="object-cover"
         />
         <div className="absolute inset-0 bg-black/10" />
+        {/* Top contrast gradient — keeps the floating logo + burger
+            legible against bright sections of the photograph. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/35 to-transparent"
+        />
       </div>
 
-      <div className="md:hidden bg-ink px-8 py-14 text-center text-white animate-fade-up">
-        <div className="flex items-center justify-center gap-3">
-          <span className="numeral text-base text-white/50">i.</span>
+      {/* MOBILE BRIDGE TAB — left-anchored small dark strip; the cream
+          to its right is the body background showing through. */}
+      <div className="md:hidden">
+        <div className="inline-flex items-center gap-3 bg-ink px-6 py-3 text-white animate-fade-up">
+          <span className="numeral text-sm text-white/50">i.</span>
+          <span aria-hidden className="h-3 w-px bg-white/25" />
           <span className="eyebrow text-white/80">Welcome</span>
         </div>
-        <h1 className="font-display mt-6 text-3xl font-bold leading-[1.05] tracking-[-0.025em]">
+      </div>
+
+      {/* MOBILE MAIN CARD */}
+      <div className="md:hidden bg-ink px-8 pb-14 pt-10 text-center text-white animate-fade-up">
+        <h1 className="font-display text-3xl font-bold leading-[1.05] tracking-[-0.025em]">
           Educator. Scholar. Builder.
         </h1>
         <p className="mt-7 mx-auto max-w-xl text-lg leading-[1.55] text-white/80">
@@ -49,6 +63,12 @@ export function Hero() {
           className="object-cover"
         />
         <div className="absolute inset-0 bg-white/10 transition-colors duration-500 dark:bg-black/40" />
+        {/* Top contrast gradient — keeps the floating logo + burger
+            legible against bright parts of the photograph. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/30 to-transparent"
+        />
       </div>
 
       <div className="relative z-10 hidden md:flex flex-1 items-end pb-0 md:pl-10 md:pr-0">
