@@ -1,17 +1,13 @@
-"use client";
-
 import Image from "next/image";
 import ProductCard from "@/components/ProductCard";
 
-// Define your 4 items here
 const products = [
   {
     id: "prod_tshirt",
     name: "PROSLA Signature Tee",
     price: 3500,
     image: "/images/store/hoddie-beige.jpg",
-    description: "Heavyweight cotton, oversized fit. puff print logo.",
-    // NEW: Printify IDs (Replace these with real numbers from Printify later)
+    description: "Heavyweight cotton, oversized fit. Puff-print logo.",
     printifyProductId: "REPLACE_WITH_PRODUCT_ID",
     printifyVariantId: "REPLACE_WITH_VARIANT_ID",
   },
@@ -46,68 +42,71 @@ const products = [
 
 export default function Store() {
   return (
-    <main className="min-h-screen text-zinc-900 dark:text-zinc-100 overflow-x-hidden transition-colors duration-300">
+    <main className="min-h-screen overflow-x-hidden text-zinc-900 transition-colors duration-300 dark:text-zinc-100">
 
-      {/* HEADER SECTION (Grid Layout) */}
-      <section className="mx-auto max-w-7xl px-6 py-16 md:px-16 md:py-24">
-
-        {/* Label (Full Width) */}
-        <div className="mb-8 md:mb-12">
-          <span className="inline-flex bg-[#2e3f90] px-4 py-2 text-sm font-bold uppercase tracking-[0.25em] text-white md:px-5">
-            Store
-          </span>
+      {/* --- HEADER (text + image) --- */}
+      <section className="mx-auto max-w-7xl px-6 py-20 md:px-10 md:py-28">
+        <div className="mb-12 md:mb-16 animate-fade-up">
+          <span className="label-block bg-accent">Store</span>
         </div>
 
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16">
 
-          {/* LEFT COLUMN: Text Content */}
-          <div>
-            <h1 className="text-4xl font-bold leading-[1.3] tracking-tight md:text-7xl lg:text-[5.5rem] mb-8 md:mb-12">
+          {/* LEFT — text */}
+          <div className="animate-fade-up">
+            <h1 className="font-display mb-10 text-4xl font-bold leading-[1.1] tracking-[-0.025em] md:mb-12 md:text-7xl lg:text-[5.5rem] lg:leading-[1.04]">
               Support the
               <span className="block text-zinc-400 dark:text-zinc-600">
                 Work
               </span>
             </h1>
 
-            <div className="space-y-8 text-xl font-light leading-relaxed text-zinc-700 dark:text-zinc-300 md:text-2xl">
-              <p>
-                On this page, I share a small, carefully designed collection connected to my work in language, borders, and humane technology. These items are sold through my personal site, and all profits support Rise for Hope, a nonprofit I founded to serve families facing pediatric cancer.
-              </p>
+            <p className="text-2xl font-light leading-[1.4] text-zinc-900 dark:text-zinc-100 md:text-3xl md:leading-[1.4]">
+              A small, carefully chosen collection connected to my work in
+              language, borders, and humane technology. All profits support{" "}
+              <a
+                href="https://www.riseforhope.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-underline font-medium text-accent dark:text-accent-soft"
+              >
+                Rise for Hope
+              </a>
+              , a nonprofit I founded to serve families facing pediatric cancer.
+            </p>
 
-              <p>
-                If you prefer to give directly, you can always do that through the{' '}
-                <a
-                  href="https://www.riseforhope.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-[#2e3f90] hover:underline dark:text-white"
-                >
-                  <span className="bg-gradient-to-r from-[#30d4ef] via-[#3b82f6] to-[#37e581] bg-clip-text text-transparent">
-                  Rise for Hope website.
-                  </span>
-                </a>{' '}
-                This page is simply another way to help, with something practical in your hands at the end.
-              </p>
-            </div>
+            <p className="mt-8 text-lg leading-[1.62] text-zinc-600 dark:text-zinc-300">
+              If you prefer to give directly, you can do that through the{" "}
+              <a
+                href="https://www.riseforhope.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-underline text-accent dark:text-accent-soft"
+              >
+                Rise for Hope website
+              </a>
+              . This page is simply another way to help, with something practical
+              in your hands at the end.
+            </p>
           </div>
 
-          {/* RIGHT COLUMN: Image */}
-          <div className="relative h-[400px] w-full lg:h-[600px] lg:mt-4 bg-zinc-100 dark:bg-zinc-800 overflow-hidden rounded-sm">
+          {/* RIGHT — image */}
+          <div className="relative aspect-[4/5] w-full overflow-hidden bg-paper-soft dark:bg-ink-soft animate-fade-up delay-100">
             <Image
               src="/images/store-hero.jpg"
               alt="Merchandise showcase"
               fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover"
               priority
             />
           </div>
-
         </div>
       </section>
 
-      {/* PRODUCT GRID */}
-      <section className="bg-white dark:bg-[#2f333f] py-16 md:py-24 transition-colors duration-300">
-        <div className="mx-auto max-w-7xl px-6 md:px-16">
+      {/* --- PRODUCT GRID --- */}
+      <section className="bg-paper-soft py-20 transition-colors duration-300 dark:bg-ink-soft md:py-28">
+        <div className="mx-auto max-w-7xl px-6 md:px-10">
           <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-4">
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
@@ -116,36 +115,34 @@ export default function Store() {
         </div>
       </section>
 
-      {/* FOOTER DISCLAIMER: Where your purchase goes */}
-      <section className="mx-auto max-w-7xl px-6 py-16 md:px-16 md:py-24">
-        <div className="mx-auto max-w-2xl border-t border-zinc-200 pt-12 text-center dark:border-zinc-700">
-          <h3 className="mb-3 text-sm font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
+      {/* --- WHERE YOUR PURCHASE GOES --- */}
+      <section className="mx-auto max-w-7xl px-6 py-20 md:px-10 md:py-28">
+        <div className="mx-auto max-w-2xl border-t border-rule pt-12 text-center dark:border-rule-dark">
+          <h3 className="eyebrow mb-6 text-zinc-500 dark:text-zinc-400">
             Where your purchase goes
           </h3>
 
-          {/* HEART SVG LOGO SPACE */}
-          <div className="mb-6 flex justify-center">
+          <div className="mb-8 flex justify-center">
             <Image
               src="/images/hands-r4h-logo.svg"
               alt="Rise for Hope Logo"
-              width={100}
-              height={100}
-              className="w-15 h-15 object-contain"
+              width={80}
+              height={80}
+              className="h-16 w-16 object-contain"
             />
           </div>
-          <p className="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
-            Items are sold through my personal site, and after covering production costs, I send the remaining profits to{' '}
+
+          <p className="text-lg leading-[1.62] text-zinc-700 dark:text-zinc-300">
+            After covering production costs, all remaining profits go to{" "}
             <a
               href="https://www.riseforhope.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-[#2e3f90] hover:underline dark:text-white"
+              className="link-underline font-medium text-accent dark:text-accent-soft"
             >
-              <span className="bg-gradient-to-r from-[#30d4ef] via-[#3b82f6] to-[#37e581] bg-clip-text text-transparent">
               Rise for Hope
-              </span>
-            </a>
-            {' '}to support families walking through pediatric cancer.
+            </a>{" "}
+            to support families walking through pediatric cancer.
           </p>
         </div>
       </section>
