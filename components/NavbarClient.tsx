@@ -53,16 +53,16 @@ export default function NavbarClient() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <nav className="relative z-[100] w-full bg-[#f5f2ea] px-6 py-4 transition-colors duration-300 dark:bg-[#242730] md:px-10">
+    <nav className="relative z-[100] w-full bg-paper px-6 py-6 transition-colors duration-300 dark:bg-ink md:px-10 md:py-8">
       <div className="flex w-full items-center justify-between">
         {/* LOGO */}
-        <Link href="/" className="relative z-[110] mt-4">
+        <Link href="/" className="relative z-[110] inline-flex items-center">
           <Image
             src="/images/logo.svg"
             alt="Brand Logo"
             width={120}
             height={40}
-            className="h-10 w-auto object-contain dark:invert"
+            className="h-9 w-auto object-contain dark:invert md:h-10"
             priority
           />
         </Link>
@@ -74,28 +74,26 @@ export default function NavbarClient() {
           aria-label={isOpen ? "Close menu" : "Open menu"}
           aria-expanded={isOpen}
           aria-controls={menuId}
-          className={`relative z-[110] mt-4 inline-flex h-20 w-20 items-center justify-center rounded-full border backdrop-blur-md transition-colors duration-300
-            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2e3f90] focus-visible:ring-offset-2 focus-visible:ring-offset-[#f5f2ea] dark:focus-visible:ring-offset-[#242730]
+          className={`relative z-[110] inline-flex h-12 w-12 items-center justify-center rounded-full border backdrop-blur-md transition-colors duration-300
+            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-paper dark:focus-visible:ring-offset-ink
             ${
             isOpen
               ? "border-white/30 bg-white/10 text-white hover:bg-white/20"
-              : "border-zinc-200 bg-white/70 text-zinc-900 hover:bg-white dark:border-zinc-700 dark:bg-black/50 dark:text-zinc-50"
+              : "border-rule bg-white/70 text-zinc-900 hover:bg-white dark:border-rule-dark dark:bg-black/40 dark:text-zinc-50"
           }`}
         >
           {isOpen ? (
-            <X className="h-9 w-9" />
+            <X className="h-5 w-5" />
           ) : (
             <svg
-              width="36"
-              height="36"
               viewBox="0 0 24 24"
               fill="currentColor"
               xmlns="http://www.w3.org/2000/svg"
-              className="h-9 w-9"
+              className="h-5 w-5"
               aria-hidden="true"
             >
-              <rect x="2" y="7" width="20" height="3" rx="1.5" />
-              <rect x="2" y="14" width="20" height="3" rx="1.5" />
+              <rect x="3" y="8" width="18" height="2" rx="1" />
+              <rect x="3" y="14" width="18" height="2" rx="1" />
             </svg>
           )}
         </button>
@@ -121,7 +119,7 @@ export default function NavbarClient() {
 
           {/* panel fade (no slide) */}
           <div
-            className={`absolute right-0 top-0 h-full w-full bg-[#25272f] text-white shadow-2xl transition-opacity ease-out motion-reduce:transition-none md:w-[600px] ${
+            className={`absolute right-0 top-0 h-full w-full bg-ink-panel text-white shadow-2xl transition-opacity ease-out motion-reduce:transition-none md:w-[600px] ${
               isOpen ? "opacity-100" : "opacity-0"
             }`}
             style={{ transitionDuration: `${FADE_MS}ms` }}
@@ -214,7 +212,7 @@ function SocialIcon({
       target="_blank"
       rel="noreferrer"
       aria-label={label}
-      className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/90 transition-all hover:scale-110 hover:bg-white hover:text-[#2e3f90]"
+      className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/90 transition-all hover:scale-110 hover:bg-white hover:text-accent"
     >
       {children}
     </a>

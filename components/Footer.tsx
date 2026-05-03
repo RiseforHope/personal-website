@@ -8,8 +8,8 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full border-t border-zinc-100 bg-white py-12 transition-colors duration-300 dark:border-zinc-800 dark:bg-zinc-950">
-      <div className="flex w-full flex-col gap-6 px-6 md:px-10">
+    <footer className="w-full border-t border-rule bg-paper py-12 transition-colors duration-300 dark:border-rule-dark dark:bg-ink">
+      <div className="flex w-full flex-col gap-8 px-6 md:px-10">
 
         {/* TOP ROW: Social Icons (Left) and Theme Toggle (Right) */}
         <div className="flex w-full items-center justify-between">

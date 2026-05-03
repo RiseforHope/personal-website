@@ -100,6 +100,28 @@ blockquote {
     font-size: 0.75rem;
 }
 
+/* Single source of truth for the recurring blocky label that anchors each
+   section (WELCOME, TEACHING, RESEARCH, PEOPLE…). Centralizing it here means
+   one place to retune padding, tracking, or weight site-wide. */
+.label-block {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.625rem 1.25rem;       /* 10px 20px on mobile */
+    font-family: var(--font-body), sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #ffffff;
+    line-height: 1;
+}
+
+@media (min-width: 768px) {
+    .label-block {
+        padding: 0.75rem 1.5rem;     /* 12px 24px on tablet+ */
+    }
+}
+
 .rule-hair {
     height: 1px;
     background-color: var(--rule);
@@ -201,16 +223,18 @@ blockquote {
 }
 
 /* -------------------------------------------------------------------------- */
-/* PAPER GRAIN — barely-there warmth on the cream surface, off in dark mode.  */
+/* PAPER MESH — barely-there atmospheric warmth for hero/cover surfaces.       */
+/* Distinct from the Tailwind `bg-paper` utility (solid color); apply this    */
+/* on top when you want the gradient mesh as well.                             */
 /* -------------------------------------------------------------------------- */
-.bg-paper {
+.paper-mesh {
     background-color: var(--paper);
     background-image:
         radial-gradient(ellipse at top left, rgba(214, 200, 170, 0.18), transparent 55%),
         radial-gradient(ellipse at bottom right, rgba(46, 63, 144, 0.05), transparent 60%);
 }
 
-.dark .bg-paper {
+.dark .paper-mesh {
     background-color: var(--paper);
     background-image:
         radial-gradient(ellipse at top left, rgba(92, 124, 250, 0.06), transparent 55%),

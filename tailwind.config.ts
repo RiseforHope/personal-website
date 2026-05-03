@@ -16,10 +16,28 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+
+        // Semantic surface tokens — single source of truth for the cream-and-navy
+        // palette that defines the site. Use these instead of bg-[#hex] going forward.
+        paper: "#f5f2ea",
+        "paper-soft": "#f3efe6",
+        ink: "#242730",          // dominant dark surface (welcome block, dark mode bg)
+        "ink-soft": "#2f333f",   // recessed dark surface (dark-mode card bg)
+        "ink-deep": "#1a1c22",   // body text in light mode
+        "ink-panel": "#25272f",  // overlay panels (mobile nav)
+
+        // Accent — the electric blue used for active labels, links, focus rings
+        accent: "#2e3f90",
+        "accent-soft": "#5c7cfa", // dark-mode-friendly variant
+
+        // Hairline rule colors
+        rule: "#d9d3c4",
+        "rule-dark": "#3a3e4a",
       },
 
       fontFamily: {
         sans: ["var(--font-montserrat)", "system-ui", "sans-serif"],
+        serif: ["var(--font-fraunces)", "Georgia", "serif"],
       },
 
       /* -------------------------------------------------------------------------- */

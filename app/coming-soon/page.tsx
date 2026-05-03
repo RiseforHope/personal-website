@@ -1,6 +1,6 @@
 export default function ComingSoon() {
   return (
-    <main className="bg-paper relative isolate flex min-h-screen w-full flex-col overflow-hidden">
+    <main className="paper-mesh relative isolate flex min-h-screen w-full flex-col overflow-hidden">
 
       {/* Left margin rule — only on wide screens, an old-print artifact */}
       <div
@@ -26,15 +26,15 @@ export default function ComingSoon() {
 
           {/* Eyebrow */}
           <div className="flex items-center gap-3 animate-fade-up delay-100">
-            <span className="h-px w-12 bg-[#2e3f90] dark:bg-[#5c7cfa] animate-rule delay-200" />
-            <span className="eyebrow text-[#2e3f90] dark:text-[#5c7cfa]">
+            <span className="h-px w-12 bg-accent dark:bg-accent-soft animate-rule delay-200" />
+            <span className="eyebrow text-accent dark:text-accent-soft">
               Provisional notice
             </span>
           </div>
 
           {/* Display word — Fraunces serif, the moment that earns its weight */}
           <h1 className="mt-8 font-serif text-[clamp(4rem,14vw,12rem)] not-italic font-light leading-[0.92] tracking-[-0.04em] text-zinc-950 dark:text-zinc-50 animate-fade-up delay-200">
-            Forthcoming<span className="text-[#2e3f90] dark:text-[#5c7cfa]">.</span>
+            Forthcoming<span className="text-accent dark:text-accent-soft">.</span>
           </h1>
 
           {/* Italic byline */}
@@ -57,7 +57,7 @@ export default function ComingSoon() {
               the coming weeks. For correspondence in the meantime, write to{" "}
               <a
                 href="mailto:bladimir@brinl.com"
-                className="link-underline font-medium text-[#2e3f90] dark:text-[#5c7cfa]"
+                className="link-underline font-medium text-accent dark:text-accent-soft"
               >
                 bladimir@brinl.com
               </a>
