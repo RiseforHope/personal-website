@@ -1,12 +1,10 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-// Import the server action
 import { subscribeToNewsletter } from "@/app/actions/subscribe";
 
 export default function SubscribeCard() {
   const [email, setEmail] = useState("");
-  // Added 'loading' to the status types
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -15,40 +13,43 @@ export default function SubscribeCard() {
     setStatus("loading");
     setErrorMessage("");
 
-    // Call Supabase Server Action
-    const result = await subscribeToNewsletter(email);
-
-    if (result.error) {
+    try {
+      const result = await subscribeToNewsletter(email);
+      if (result?.error) {
+        setStatus("error");
+        setErrorMessage(result.error);
+      } else {
+        setStatus("success");
+        setEmail("");
+      }
+    } catch (err) {
+      console.error("Subscribe failed:", err);
       setStatus("error");
-      setErrorMessage(result.error);
-    } else {
-      setStatus("success");
-      setEmail("");
+      setErrorMessage(
+        "Couldn't reach the server. Please try again, or write to bladimir@brinl.com.",
+      );
     }
   };
 
   return (
-    // UPDATED BACKGROUND: Preserved your specific styling
-    <div className="w-full max-w-2xl bg-[#25272f] dark:bg-[#2f333f] p-6 md:p-10 shadow-lg rounded-sm transition-colors duration-300">
+    <div className="w-full max-w-2xl bg-ink-panel p-8 transition-colors duration-300 dark:bg-ink-soft md:p-10">
 
-      {/* Label */}
-      <h3 className="mb-6 text-base font-bold uppercase tracking-[0.2em] text-white/80 md:text-sm">
-        Newsletter
-      </h3>
+      {/* Eyebrow */}
+      <h3 className="eyebrow mb-6 text-white/70">Newsletter</h3>
 
       {status === "success" ? (
-        <div className="py-4 text-center animate-in fade-in zoom-in duration-300">
-          <p className="text-xl text-white md:text-lg">Thanks for subscribing!</p>
+        <div className="animate-in fade-in zoom-in py-2 duration-300">
+          <p className="font-serif text-xl italic text-white">Thanks for subscribing.</p>
           <button
             onClick={() => setStatus("idle")}
-            className="mt-4 text-sm underline decoration-white/40 underline-offset-4 hover:decoration-white text-white/60 transition-all"
+            className="link-underline mt-4 text-sm uppercase tracking-[0.22em] text-white/60"
           >
             Reset
           </button>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <div className="flex flex-col gap-4 sm:flex-row">
+          <div className="flex flex-col gap-3 sm:flex-row">
             <input
               type="email"
               required
@@ -56,28 +57,25 @@ export default function SubscribeCard() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={status === "loading"}
-              className="w-full min-w-0 bg-white/10 px-4 py-4 text-base text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-white/50 border border-transparent transition-all disabled:opacity-50"
+              className="w-full min-w-0 border border-transparent bg-white/10 px-4 py-3.5 text-base text-white placeholder:text-white/40 transition-all focus:outline-none focus:ring-2 focus:ring-white/40 disabled:opacity-50"
             />
 
             <button
               type="submit"
               disabled={status === "loading"}
-              className="shrink-0 bg-white px-8 py-4 text-base font-bold uppercase tracking-widest text-[#2e3f90] transition-colors hover:bg-zinc-100 md:px-6 md:py-3 md:text-sm disabled:opacity-70 disabled:cursor-not-allowed"
+              className="shrink-0 bg-white px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.22em] text-accent transition-colors hover:bg-zinc-100 disabled:cursor-not-allowed disabled:opacity-70"
             >
-              {status === "loading" ? "..." : "Subscribe"}
+              {status === "loading" ? "…" : "Subscribe"}
             </button>
           </div>
 
-          {/* Error Message Display */}
           {status === "error" && (
-            <p className="text-sm text-red-400 font-medium">
+            <p className="font-serif text-sm italic text-red-300">
               {errorMessage}
             </p>
           )}
 
-          <p className="text-xs text-white/40">
-            No spam. Unsubscribe at any time.
-          </p>
+          <p className="text-xs text-white/40">No spam. Unsubscribe at any time.</p>
         </form>
       )}
     </div>

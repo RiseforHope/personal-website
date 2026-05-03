@@ -16,7 +16,8 @@ const projects = [
     id: 2,
     category: "Publication",
     title: "La poesía guineoecuatoriana: Reseña académica",
-    intro: "La literatura guineoecuatoriana escrita en español en su entorno colonial y (trans)nacional.",
+    intro:
+      "La literatura guineoecuatoriana escrita en español en su entorno colonial y (trans)nacional.",
     date: "Sep 28, 2024",
     href: "/blog/poesia-guineoecuatoriana",
   },
@@ -24,7 +25,8 @@ const projects = [
     id: 3,
     category: "Publication",
     title: "The Future of Nonprofit Language Education",
-    intro: "Discussing sustainable models for community-based education programs in under-served areas.",
+    intro:
+      "Discussing sustainable models for community-based education programs in under-served areas.",
     date: "Aug 15, 2024",
     href: "/blog/post-3",
   },
@@ -32,7 +34,8 @@ const projects = [
     id: 4,
     category: "Event",
     title: "Annual Educator Symposium 2025",
-    intro: "Join us for a weekend of collaborative learning, strategy sharing, and curriculum development.",
+    intro:
+      "Join us for a weekend of collaborative learning, strategy sharing, and curriculum development.",
     date: "July 22, 2024",
     href: "/blog/post-4",
   },
@@ -40,94 +43,93 @@ const projects = [
 
 export default function NewsSection() {
   return (
-    <section className="bg-[#f5f2ea] dark:bg-[#242730] py-20 text-zinc-900 dark:text-zinc-100 transition-colors duration-300">
+    <section className="bg-paper py-20 text-zinc-900 transition-colors duration-300 dark:bg-ink dark:text-zinc-100 md:py-28">
       <div className="mx-auto max-w-7xl">
 
         {/* HEADER */}
-        {/* Has px-6 (Mobile) / px-16 (Desktop) */}
-        <div className="mb-12 px-6 md:px-16">
-          <div className="flex items-center gap-4 mb-6">
-            <span className="inline-flex bg-[#2e3f90] px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-white md:text-sm">
-              Updates
-            </span>
+        <div className="mb-12 px-6 md:px-10 md:mb-16">
+          <div className="mb-6">
+            <span className="label-block bg-accent">Updates</span>
           </div>
 
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <h2 className="text-3xl font-bold tracking-tight md:text-5xl text-zinc-900 dark:text-white">
+          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+            <h2 className="font-display text-3xl font-bold tracking-[-0.022em] text-zinc-900 dark:text-white md:text-5xl md:leading-[1.08]">
               Current Projects &amp; News
             </h2>
 
-            <div className="hidden md:flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 animate-pulse">
+            <div className="hidden items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-zinc-400 dark:text-zinc-500 md:flex">
               <span>Scroll</span>
               <ArrowRight className="h-4 w-4" />
             </div>
 
-            <div className="md:hidden text-xs font-bold uppercase tracking-widest text-zinc-400 mt-2">
+            <div className="text-xs font-semibold uppercase tracking-[0.22em] text-zinc-400 dark:text-zinc-500 md:hidden">
               Swipe to explore →
             </div>
           </div>
         </div>
 
-        {/* CARDS SCROLL */}
-        {/* 1. NO PADDING HERE (px-0). We use spacers instead. */}
-        <div className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto pb-12 scrollbar-hide cursor-grab active:cursor-grabbing">
+        {/* CARDS — horizontal snap scroll */}
+        <div className="scrollbar-hide flex w-full cursor-grab snap-x snap-mandatory gap-6 overflow-x-auto pb-4 active:cursor-grabbing">
 
-          {/* FIX: LEFT SPACER */}
-          {/* This matches the header padding: w-6 (24px) on mobile, w-16 (64px) on desktop */}
-          <div className="w-6 shrink-0 md:w-16" />
+          {/* Left edge spacer — matches header padding */}
+          <div className="w-6 shrink-0 md:w-10" />
 
           {projects.map((item) => (
-            <div
+            <article
               key={item.id}
-              className="group relative flex min-w-[85vw] flex-col bg-white dark:bg-[#2f333f] shadow-sm transition-all hover:shadow-md md:min-w-[400px] snap-start p-8"
+              className="group relative flex min-w-[85vw] snap-start flex-col bg-paper-soft p-8 transition-colors duration-300 dark:bg-ink-soft md:min-w-[420px]"
             >
+              {/* Category */}
               <div className="mb-6">
-                <span className="inline-block bg-[#f5f2ea] dark:bg-[#242730] px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#2e3f90] dark:text-zinc-300">
+                <span className="inline-block bg-paper px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.22em] text-accent dark:bg-ink dark:text-accent-soft">
                   {item.category}
                 </span>
               </div>
 
+              {/* Title + intro */}
               <div className="flex flex-1 flex-col">
                 <div className="mb-8">
-                  <h3 className="mb-3 text-xl font-bold leading-tight text-[#0b0f2b] dark:text-white md:text-2xl">
-                    <Link href={item.href} className="hover:text-[#2e3f90] dark:hover:text-[#5c7cfa] transition-colors">
+                  <h3 className="font-display mb-3 text-xl font-bold leading-[1.18] tracking-[-0.018em] text-zinc-950 dark:text-white md:text-2xl">
+                    <Link
+                      href={item.href}
+                      className="transition-colors hover:text-accent dark:hover:text-accent-soft"
+                    >
                       {item.title}
                     </Link>
                   </h3>
-                  <p className="text-base leading-relaxed text-zinc-600 dark:text-zinc-400 line-clamp-3">
+                  <p className="text-base leading-[1.55] text-zinc-600 line-clamp-3 dark:text-zinc-400">
                     {item.intro}
                   </p>
                 </div>
 
-                <div className="mt-auto">
-                  <Link href={item.href} className="group block">
-                    <div className="inline-flex items-center gap-3">
-                      <div className="text-sm font-light uppercase tracking-[0.12em] text-zinc-800 dark:text-zinc-200 sm:text-xl md:text-sm md:font-normal md:tracking-widest underline-offset-4 transition-colors group-hover:underline group-hover:text-[#2e3f90] dark:group-hover:text-[#5c7cfa]">
-                        {item.date}
-                      </div>
-
-                      <img
-                        src="/icons/right-arrow-blk.svg"
-                        alt="Arrow"
-                        className="h-9 w-9 transition-transform group-hover:translate-x-1 dark:invert"
-                      />
-                    </div>
-                  </Link>
-                </div>
+                {/* Date + arrow */}
+                <Link href={item.href} className="group/cta mt-auto inline-flex items-center gap-3">
+                  <span className="link-underline numeral text-sm text-zinc-700 group-hover/cta:text-accent dark:text-zinc-300 dark:group-hover/cta:text-accent-soft">
+                    {item.date}
+                  </span>
+                  <img
+                    src="/icons/right-arrow-blk.svg"
+                    alt=""
+                    className="h-6 w-7 transition-transform duration-300 group-hover/cta:translate-x-1.5 dark:invert"
+                  />
+                </Link>
               </div>
-            </div>
+            </article>
           ))}
 
-          {/* FIX: RIGHT SPACER */}
-          {/* Matches Left Spacer to ensure symmetry at the end of the list */}
-          <div className="w-6 shrink-0 md:w-16" />
-
+          {/* Right edge spacer */}
+          <div className="w-6 shrink-0 md:w-10" />
         </div>
       </div>
 
       <style jsx global>{`
-        .scrollbar-hide::-webkit-scrollbar { display: none; }
-        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
       `}</style>
     </section>
   );
