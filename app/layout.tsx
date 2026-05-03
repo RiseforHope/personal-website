@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat, Fraunces } from "next/font/google";
+import { headers } from "next/headers";
 import Navbar from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -24,11 +25,16 @@ export const metadata: Metadata = {
     "Teaching, research, and writing on borders, technology, and language. An academic workshop in progress.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
                                      children,
                                    }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headerList = await headers();
+  const pathname = headerList.get("x-pathname") ?? "";
+  const isComingSoon =
+    pathname === "/coming-soon" || pathname.startsWith("/coming-soon/");
+
   return (
     <html
       lang="en"
@@ -42,9 +48,9 @@ export default function RootLayout({
       enableSystem
       disableTransitionOnChange
     >
-      <Navbar />
+      {!isComingSoon && <Navbar />}
       {children}
-      <Footer />
+      {!isComingSoon && <Footer />}
     </ThemeProvider>
     </body>
     </html>

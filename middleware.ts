@@ -40,10 +40,20 @@ export async function middleware(request: NextRequest) {
     (p) => pathname === p || pathname.startsWith(`${p}/`),
   );
 
+  // Forward the resolved pathname to server components via a request header
+  // so the root layout can hide site chrome on /coming-soon (whether reached
+  // directly or through the gate rewrite).
+  const requestHeaders = new Headers(request.headers);
+  const resolvedPath =
+    comingSoon && !isPreviewing && !isAllowed ? "/coming-soon" : pathname;
+  requestHeaders.set("x-pathname", resolvedPath);
+
   if (comingSoon && !isPreviewing && !isAllowed) {
     const rewriteUrl = request.nextUrl.clone();
     rewriteUrl.pathname = "/coming-soon";
-    const gated = NextResponse.rewrite(rewriteUrl);
+    const gated = NextResponse.rewrite(rewriteUrl, {
+      request: { headers: requestHeaders },
+    });
     // Keep the gated homepage out of search indexes while the flag is on,
     // so the real homepage isn't replaced in Google's snapshot.
     gated.headers.set("X-Robots-Tag", "noindex, nofollow");
@@ -53,7 +63,7 @@ export async function middleware(request: NextRequest) {
   // ----- Supabase session refresh (existing behavior) -----
   let response = NextResponse.next({
     request: {
-      headers: request.headers,
+      headers: requestHeaders,
     },
   });
 
@@ -71,7 +81,7 @@ export async function middleware(request: NextRequest) {
           );
           response = NextResponse.next({
             request: {
-              headers: request.headers,
+              headers: requestHeaders,
             },
           });
           cookiesToSet.forEach(({ name, value, options }) =>

@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import Link from "next/link";
 import { subscribeToNewsletter } from "@/app/actions/subscribe";
 
 export default function ComingSoon() {
@@ -11,15 +10,32 @@ export default function ComingSoon() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    const trimmed = email.trim();
+    if (!trimmed || !/^\S+@\S+\.\S+$/.test(trimmed)) {
+      setStatus("error");
+      setErrorMessage("Please enter a valid email address.");
+      return;
+    }
+
     setStatus("loading");
     setErrorMessage("");
-    const result = await subscribeToNewsletter(email);
-    if (result.error) {
+
+    try {
+      const result = await subscribeToNewsletter(trimmed);
+      if (result?.error) {
+        setStatus("error");
+        setErrorMessage(result.error);
+      } else {
+        setStatus("success");
+        setEmail("");
+      }
+    } catch (err) {
+      console.error("Subscribe failed:", err);
       setStatus("error");
-      setErrorMessage(result.error);
-    } else {
-      setStatus("success");
-      setEmail("");
+      setErrorMessage(
+        "Couldn't reach the server. Please try again, or write to bladimir@brinl.com.",
+      );
     }
   };
 
@@ -136,16 +152,13 @@ export default function ComingSoon() {
       </section>
 
       {/* Footer line — set in italic, gives the page a closing cadence */}
-      <footer className="relative z-10 flex w-full items-end justify-between px-6 pb-12 pt-16 md:px-16 md:pb-14">
-        <div className="font-serif italic text-sm text-zinc-500 dark:text-zinc-400 animate-fade-up delay-500">
-          Composed in College Station, Texas.
+      <footer className="relative z-10 flex w-full items-end px-6 pb-12 pt-16 md:px-16 md:pb-14">
+        <div className="flex items-center gap-3 animate-fade-up delay-500">
+          <span aria-hidden className="h-px w-8 bg-[var(--rule)]" />
+          <span className="font-serif italic text-sm text-zinc-500 dark:text-zinc-400">
+            Composed in Pennsburg, PA.
+          </span>
         </div>
-        <Link
-          href="/about"
-          className="link-underline numeral text-sm text-zinc-600 hover:text-[#2e3f90] dark:text-zinc-400 dark:hover:text-[#5c7cfa] animate-fade-up delay-500"
-        >
-          About the author →
-        </Link>
       </footer>
     </main>
   );
