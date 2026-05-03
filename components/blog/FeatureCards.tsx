@@ -82,8 +82,10 @@ function FeatureCard({
         </div>
 
         {/* --- IMAGE CONTENT --- */}
+        {/* flex flex-col on the parent removes the inline-baseline gap that
+            otherwise sits between the image container and the mobile label. */}
         <div
-          className={`group/img order-1 md:col-span-7 ${
+          className={`group/img order-1 flex flex-col md:col-span-7 md:block ${
             reverse ? "md:order-1" : "md:order-2"
           }`}
         >
@@ -99,10 +101,11 @@ function FeatureCard({
             </div>
           </div>
 
-          {/* Mobile label bar — sits flush under the image */}
-          <div className="md:hidden">
-            <span className="label-block bg-accent">{label}</span>
-          </div>
+          {/* Mobile label bar — flush to the image bottom, flex parent removes
+              the sub-pixel whitespace gap. */}
+          <span className="label-block bg-accent self-start md:hidden">
+            {label}
+          </span>
         </div>
 
       </div>
