@@ -1,46 +1,6 @@
-"use client";
-
-import { FormEvent, useState } from "react";
-import { subscribeToNewsletter } from "@/app/actions/subscribe";
-
 export default function ComingSoon() {
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [errorMessage, setErrorMessage] = useState("");
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
-    const trimmed = email.trim();
-    if (!trimmed || !/^\S+@\S+\.\S+$/.test(trimmed)) {
-      setStatus("error");
-      setErrorMessage("Please enter a valid email address.");
-      return;
-    }
-
-    setStatus("loading");
-    setErrorMessage("");
-
-    try {
-      const result = await subscribeToNewsletter(trimmed);
-      if (result?.error) {
-        setStatus("error");
-        setErrorMessage(result.error);
-      } else {
-        setStatus("success");
-        setEmail("");
-      }
-    } catch (err) {
-      console.error("Subscribe failed:", err);
-      setStatus("error");
-      setErrorMessage(
-        "Couldn't reach the server. Please try again, or write to bladimir@brinl.com.",
-      );
-    }
-  };
-
   return (
-    <main className="bg-paper relative isolate flex min-h-[calc(100vh-9rem)] w-full flex-col overflow-hidden">
+    <main className="bg-paper relative isolate flex min-h-screen w-full flex-col overflow-hidden">
 
       {/* Left margin rule — only on wide screens, an old-print artifact */}
       <div
@@ -89,64 +49,20 @@ export default function ComingSoon() {
           {/* Hairline separator */}
           <div className="mt-12 h-px w-32 bg-[var(--rule)] animate-rule delay-400" />
 
-          {/* Body note — kept short and editorial */}
-          <div className="mt-12 grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
-            <p className="text-lg leading-[1.7] text-zinc-700 dark:text-zinc-300 md:col-span-7 md:text-xl animate-fade-up delay-400">
+          {/* Body note — kept short and editorial, with mailto inline */}
+          <div className="mt-12 max-w-2xl animate-fade-up delay-400">
+            <p className="text-lg leading-[1.7] text-zinc-700 dark:text-zinc-300 md:text-xl">
               The site is under careful revision. Notes, essays, courses, and a small
-              collection of <em>tools for teachers</em> will reappear here over the
-              coming weeks. If you would like a quiet line when the chapters
-              return, leave your address below.
+              collection of <em>tools for teachers</em> will reappear here over
+              the coming weeks. For correspondence in the meantime, write to{" "}
+              <a
+                href="mailto:bladimir@brinl.com"
+                className="link-underline font-medium text-[#2e3f90] dark:text-[#5c7cfa]"
+              >
+                bladimir@brinl.com
+              </a>
+              .
             </p>
-
-            {/* Subscribe — minimal, single line, no card */}
-            <div className="md:col-span-5 animate-fade-up delay-500">
-              {status === "success" ? (
-                <div className="flex flex-col gap-2 border-l-2 border-[#2e3f90] dark:border-[#5c7cfa] pl-5 py-1">
-                  <p className="font-serif italic text-lg text-zinc-800 dark:text-zinc-100">
-                    Noted — thank you.
-                  </p>
-                  <p className="text-sm text-zinc-500">
-                    A first letter will arrive when the workshop reopens.
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-                  <label
-                    htmlFor="cs-email"
-                    className="eyebrow text-zinc-500 dark:text-zinc-400"
-                  >
-                    To be notified
-                  </label>
-                  <div className="flex items-end gap-4 border-b border-zinc-400 dark:border-zinc-500 pb-2 transition-colors focus-within:border-[#2e3f90] dark:focus-within:border-[#5c7cfa]">
-                    <input
-                      id="cs-email"
-                      type="email"
-                      required
-                      placeholder="your@address.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      disabled={status === "loading"}
-                      className="w-full bg-transparent text-lg text-zinc-900 placeholder:text-zinc-400 focus:outline-none disabled:opacity-60 dark:text-zinc-100 dark:placeholder:text-zinc-500"
-                    />
-                    <button
-                      type="submit"
-                      disabled={status === "loading"}
-                      className="link-underline shrink-0 text-sm font-medium uppercase tracking-[0.22em] text-[#2e3f90] dark:text-[#5c7cfa] disabled:opacity-50"
-                    >
-                      {status === "loading" ? "…" : "Submit"}
-                    </button>
-                  </div>
-                  {status === "error" && (
-                    <p className="font-serif italic text-sm text-red-600 dark:text-red-400">
-                      {errorMessage}
-                    </p>
-                  )}
-                  <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                    No advertising. One letter, occasionally.
-                  </p>
-                </form>
-              )}
-            </div>
           </div>
         </div>
       </section>
