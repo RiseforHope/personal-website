@@ -9,16 +9,19 @@
 /* surfaces a refined serif (Fraunces) for italics, quotes, and ornaments.    */
 /* -------------------------------------------------------------------------- */
 :root {
-    --background: #f5f2ea;
-    --foreground: #1a1c22;
+    /* Stone-graphite-vermilion brand palette. Keep these in lockstep with
+       the tokens defined in tailwind.config.ts so utilities and CSS vars
+       resolve to the same swatches. */
+    --background: #f5f4ee;
+    --foreground: #0a0b0e;
 
-    --paper: #f5f2ea;
-    --ink: #1a1c22;
+    --paper: #f5f4ee;
+    --ink: #0a0b0e;
     --ink-soft: #4a4d56;
-    --rule: #d9d3c4;
+    --rule: #d8d4c8;
 
-    --accent: #2e3f90;
-    --accent-soft: #5c7cfa;
+    --accent: #ff4a00;
+    --accent-soft: #ff7340;
 
     --font-body: var(--font-montserrat);
     --font-title: var(--font-montserrat);
@@ -26,13 +29,13 @@
 }
 
 .dark {
-    --background: #242730;
+    --background: #16181e;
     --foreground: #ededed;
 
-    --paper: #242730;
+    --paper: #16181e;
     --ink: #ededed;
     --ink-soft: #a8acb8;
-    --rule: #3a3e4a;
+    --rule: #2a2c33;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -230,13 +233,13 @@ blockquote {
 .paper-mesh {
     background-color: var(--paper);
     background-image:
-        radial-gradient(ellipse at top left, rgba(214, 200, 170, 0.18), transparent 55%),
-        radial-gradient(ellipse at bottom right, rgba(46, 63, 144, 0.05), transparent 60%);
+        radial-gradient(ellipse at top left, rgba(216, 212, 200, 0.45), transparent 55%),
+        radial-gradient(ellipse at bottom right, rgba(255, 74, 0, 0.035), transparent 60%);
 }
 
 .dark .paper-mesh {
     background-color: var(--paper);
     background-image:
-        radial-gradient(ellipse at top left, rgba(92, 124, 250, 0.06), transparent 55%),
+        radial-gradient(ellipse at top left, rgba(255, 115, 64, 0.04), transparent 55%),
         radial-gradient(ellipse at bottom right, rgba(255, 255, 255, 0.02), transparent 60%);
 }

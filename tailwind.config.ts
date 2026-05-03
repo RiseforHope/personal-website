@@ -17,22 +17,24 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
 
-        // Semantic surface tokens — single source of truth for the cream-and-navy
-        // palette that defines the site. Use these instead of bg-[#hex] going forward.
-        paper: "#f5f2ea",
-        "paper-soft": "#f3efe6",
-        ink: "#242730",          // dominant dark surface (welcome block, dark mode bg)
-        "ink-soft": "#2f333f",   // recessed dark surface (dark-mode card bg)
-        "ink-deep": "#1a1c22",   // body text in light mode
-        "ink-panel": "#25272f",  // overlay panels (mobile nav)
+        // Semantic surface tokens — single source of truth for the
+        // stone-graphite-vermilion brand palette. Use these instead of
+        // bg-[#hex] going forward.
+        paper: "#f5f4ee",        // stone white — neutral warm, doesn't fight the accent
+        "paper-soft": "#ece9e0", // recessed surface (cards, second band)
 
-        // Accent — the electric blue used for active labels, links, focus rings
-        accent: "#2e3f90",
-        "accent-soft": "#5c7cfa", // dark-mode-friendly variant
+        ink: "#16181e",          // deep graphite (welcome block, dark mode bg)
+        "ink-soft": "#1e2128",   // dark-mode card surface
+        "ink-deep": "#0a0b0e",   // true text black on light mode
+        "ink-panel": "#1a1c22",  // overlay panels (mobile nav)
+
+        // Vermilion accent — the only chromatic voice in the brand
+        accent: "#ff4a00",
+        "accent-soft": "#ff7340", // lighter for dark-mode hover/active
 
         // Hairline rule colors
-        rule: "#d9d3c4",
-        "rule-dark": "#3a3e4a",
+        rule: "#d8d4c8",
+        "rule-dark": "#2a2c33",
       },
 
       fontFamily: {
