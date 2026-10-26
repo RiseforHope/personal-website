@@ -1,10 +1,10 @@
-/* Faculty-profile theme: Tiempos Text headings, DM Sans body and UI,
+/* Faculty-profile theme: Merriweather serif headings, DM Sans body and UI,
    blue accents, white page. All pages are rendered to static HTML by Astro. */
 
 /* ---------------------------------------------------------------------------
    DM Sans (body and UI, variable wght 100-1000) — self-hosted, SIL OFL 1.1,
-   see src/fonts/OFL-DMSans.txt. Tiempos Text (headings, 400 and 700) is
-   a commercial Klim Type Foundry face — do not redistribute the font files.
+   see src/fonts/OFL-DMSans.txt. Merriweather (headings, variable wght
+   300-900) is also self-hosted under the OFL, see OFL-Merriweather.txt.
    Paths stay relative so Vite rewrites them with the correct deploy base;
    never change these to leading-slash URLs.
    --------------------------------------------------------------------------- */
@@ -42,18 +42,22 @@
 }
 
 @font-face {
-  font-family: 'Tiempos Text';
+  font-family: 'Merriweather';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300 900;
+  font-stretch: 100%;
   font-display: swap;
-  src: url('../fonts/tiempos-text-regular.woff2') format('woff2');
+  src: url('../fonts/merriweather-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Tiempos Text';
+  font-family: 'Merriweather';
   font-style: normal;
-  font-weight: 700;
+  font-weight: 300 900;
+  font-stretch: 100%;
   font-display: swap;
-  src: url('../fonts/tiempos-text-bold.woff2') format('woff2');
+  src: url('../fonts/merriweather-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 :root {
@@ -72,7 +76,7 @@
   --accent-dot: #8ab1f7;    /* list bullets */
   --rule: #e4e4e4;
   --sans: 'DM Sans', 'Segoe UI', Helvetica, Arial, sans-serif;
-  --serif: 'Tiempos Text', Georgia, 'Times New Roman', serif;
+  --serif: 'Merriweather', Georgia, 'Times New Roman', serif;
   --container: 1150px;
 }
 *, *::before, *::after { box-sizing: border-box; }
