@@ -1,10 +1,10 @@
-/* Faculty-profile theme: Tiempos Fine headings, DM Sans body and UI,
+/* Faculty-profile theme: Tiempos Text headings, DM Sans body and UI,
    blue accents, white page. All pages are rendered to static HTML by Astro. */
 
 /* ---------------------------------------------------------------------------
    DM Sans (body and UI, variable wght 100-1000) — self-hosted, SIL OFL 1.1,
-   see src/fonts/OFL-DMSans.txt. Tiempos Fine (headings, 400 and 700) is
-   licensed from Klim Type Foundry — do not redistribute the font files.
+   see src/fonts/OFL-DMSans.txt. Tiempos Text (headings, 400 and 700) is
+   a commercial Klim Type Foundry face — do not redistribute the font files.
    Paths stay relative so Vite rewrites them with the correct deploy base;
    never change these to leading-slash URLs.
    --------------------------------------------------------------------------- */
@@ -42,18 +42,18 @@
 }
 
 @font-face {
-  font-family: 'Tiempos Fine';
+  font-family: 'Tiempos Text';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('../fonts/tiempos-fine-regular.woff2') format('woff2');
+  src: url('../fonts/tiempos-text-regular.woff2') format('woff2');
 }
 @font-face {
-  font-family: 'Tiempos Fine';
+  font-family: 'Tiempos Text';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('../fonts/tiempos-fine-bold.woff2') format('woff2');
+  src: url('../fonts/tiempos-text-bold.woff2') format('woff2');
 }
 
 :root {
@@ -72,7 +72,7 @@
   --accent-dot: #8ab1f7;    /* list bullets */
   --rule: #e4e4e4;
   --sans: 'DM Sans', 'Segoe UI', Helvetica, Arial, sans-serif;
-  --serif: 'Tiempos Fine', Georgia, 'Times New Roman', serif;
+  --serif: 'Tiempos Text', Georgia, 'Times New Roman', serif;
   --container: 1150px;
 }
 *, *::before, *::after { box-sizing: border-box; }
