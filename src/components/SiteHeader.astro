@@ -1,0 +1,29 @@
+---
+import { navigation, site } from '../data/site';
+import { withBase } from '../utils/paths';
+const currentPath = Astro.url.pathname;
+const active = (href: string) => currentPath === withBase(href) || (href !== '/' && currentPath.startsWith(withBase(href)));
+/* Teaching, Research, and Publications are reached through the profile tabs;
+   the header keeps only the pages the tabs do not cover. */
+const headerNavigation = navigation.filter((item) => item.href === '/writing/' || item.href === '/about/');
+---
+<header class="site-header">
+  <div class="container header-inner">
+    <a href={withBase('/')} class="identity" aria-label={`${site.name}, homepage`}>{site.givenName}</a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      {headerNavigation.map((item) => (
+        <a href={withBase(item.href)} aria-current={active(item.href) ? 'page' : undefined}>{item.label}</a>
+      ))}
+    </nav>
+    <details class="mobile-nav">
+      <summary aria-label="Open navigation menu">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </summary>
+      <nav aria-label="Mobile navigation">
+        {headerNavigation.map((item) => (
+          <a href={withBase(item.href)} aria-current={active(item.href) ? 'page' : undefined}>{item.label}</a>
+        ))}
+      </nav>
+    </details>
+  </div>
+</header>

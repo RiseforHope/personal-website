@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { withBase } from '../../utils/paths';
+const essays = (await getCollection('writing', ({ data }) => !data.draft)).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+<BaseLayout title="Writing" description="The Human Measure: independent philosophical essays on contemporary human concerns.">
+  <section class="container section-page">
+    <h1>The Human Measure</h1>
+    <p class="lead">A developing series of independent philosophical essays on contemporary life and the questions that remain human amid technological change.</p>
+
+    <h2>About the series</h2>
+    <p><em>The Human Measure</em> is conceived as a sequence of rigorous, accessible philosophical reflections. Among its subjects is teaching in the wake of artificial intelligence and the obligations that endure when technologies alter the conditions of learning.</p>
+    <p>The series is being developed through Lumenwell Press. It belongs to his independent philosophical writing and should not be confused with his scholarly research in Hispanic Studies.</p>
+
+    <h2>Essays &amp; notes</h2>
+    {essays.length === 0
+      ? <p class="empty-note">New essays will appear here when they are ready for publication.</p>
+      : <ul class="bullets">
+          {essays.map((essay) => <li>
+            <a href={withBase(`/writing/${essay.id}/`)}>{essay.data.title}</a> <span class="meta">({essay.data.category} · {essay.data.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}.)</span><br />{essay.data.description}
+          </li>)}
+        </ul>}
+  </section>
+</BaseLayout>

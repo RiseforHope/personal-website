@@ -1,0 +1,56 @@
+---
+/**
+ * Teaching / Research / Publications as in-page tabs: all three panels are
+ * rendered and a small script swaps them below the bar. Without JavaScript
+ * the tabs fall back to ordinary links to the standalone section pages.
+ */
+import { withBase } from '../utils/paths';
+import TeachingSection from './TeachingSection.astro';
+import ResearchSection from './ResearchSection.astro';
+import PublicationsSection from './PublicationsSection.astro';
+interface Props { active?: 'teaching' | 'research' | 'publications'; }
+const { active = 'teaching' } = Astro.props;
+const tabs = [
+  { key: 'teaching', label: 'Teaching', href: '/teaching/' },
+  { key: 'research', label: 'Research', href: '/research/' },
+  { key: 'publications', label: 'Publications', href: '/publications/' },
+] as const;
+---
+<div class="tab-bar container" role="tablist" aria-label="Profile sections">
+  {tabs.map((tab) => (
+    <a
+      id={`tab-${tab.key}`}
+      href={withBase(tab.href)}
+      class:list={['tab', { active: active === tab.key }]}
+      role="tab"
+      aria-selected={active === tab.key ? 'true' : 'false'}
+      aria-controls={`panel-${tab.key}`}
+      data-tab={tab.key}
+    >{tab.label}</a>
+  ))}
+</div>
+<section id="panel-teaching" class="container section-page tab-panel" role="tabpanel" aria-labelledby="tab-teaching" hidden={active !== 'teaching'}><TeachingSection /></section>
+<section id="panel-research" class="container section-page tab-panel" role="tabpanel" aria-labelledby="tab-research" hidden={active !== 'research'}><ResearchSection /></section>
+<section id="panel-publications" class="container section-page tab-panel" role="tabpanel" aria-labelledby="tab-publications" hidden={active !== 'publications'}><PublicationsSection /></section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[role="tablist"]').forEach((bar) => {
+    const tabs = Array.from(bar.querySelectorAll<HTMLAnchorElement>('[data-tab]'));
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', (event) => {
+        event.preventDefault();
+        const key = tab.dataset.tab;
+        tabs.forEach((other) => {
+          const selected = other === tab;
+          other.classList.toggle('active', selected);
+          other.setAttribute('aria-selected', String(selected));
+        });
+        document.querySelectorAll<HTMLElement>('.tab-panel').forEach((panel) => {
+          panel.hidden = panel.id !== `panel-${key}`;
+        });
+        // Keep the address bar in step with the visible section.
+        history.replaceState(null, '', tab.href);
+      });
+    });
+  });
+</script>

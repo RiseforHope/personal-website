@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PersonalProfile from '../components/PersonalProfile.astro';
+import ArrowLink from '../components/ArrowLink.astro';
+import { site } from '../data/site';
+import { withBase } from '../utils/paths';
+---
+<BaseLayout title="About" description="Biography and academic background of J. Bladimir García, scholar of Hispanic Studies.">
+  <section class="container section-page">
+    <h1>About</h1>
+    <PersonalProfile />
+
+    <h2>Education</h2>
+    <ul class="bullets">
+      <li><strong>Ph.D., Hispanic Studies</strong> — Texas A&amp;M University. <span class="meta">(Dissertation defended in 2026.)</span></li>
+      <li><strong>M.A., Political Science</strong> — Villanova University.</li>
+      <li><strong>B.A., Philosophy</strong> — Columbia University.</li>
+    </ul>
+
+    {(site.email || site.cvAvailable) && <>
+      <h2>Academic correspondence</h2>
+      <p>For conversations about research and academic collaboration.</p>
+      {site.email && <ArrowLink href={`mailto:${site.email}`} text={`Email ${site.name}`} />}
+      {site.cvAvailable && <ArrowLink href={withBase('/cv.pdf')} text="Download curriculum vitae" />}
+    </>}
+  </section>
+</BaseLayout>

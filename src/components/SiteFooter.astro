@@ -1,0 +1,14 @@
+---
+import { site } from '../data/site';
+import { withBase } from '../utils/paths';
+---
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>{site.copyright}</span>
+    <nav aria-label="Supplementary navigation">
+      <a href={withBase('/teaching/')}>Teaching</a>
+      <a href={withBase('/rss.xml')}>RSS</a>
+      {site.email && <a href={`mailto:${site.email}`}>Contact</a>}
+    </nav>
+  </div>
+</footer>

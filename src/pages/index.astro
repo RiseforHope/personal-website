@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProfileSections from '../components/ProfileSections.astro';
+import PersonalProfile from '../components/PersonalProfile.astro';
+import { site } from '../data/site';
+import { withBase } from '../utils/paths';
+---
+<BaseLayout>
+  <section class="container profile-header" aria-labelledby="home-title">
+    <!-- Replace public/portrait.svg with a real photograph (same path or update the src) when one is ready. -->
+    <img class="profile-photo" src={withBase('/portrait.svg')} alt="" width="300" height="360" />
+    <div class="profile-id">
+      <h1 id="home-title">{site.name}</h1>
+      <p class="profile-role">{site.title}</p>
+      <ul class="contact-list">
+        <li>
+          <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7.9 2 4.5 5.4 4.5 9.5c0 5.6 6.6 11.8 6.9 12.1.3.3.9.3 1.2 0 .3-.3 6.9-6.5 6.9-12.1C19.5 5.4 16.1 2 12 2zm0 10.2a2.7 2.7 0 1 1 0-5.4 2.7 2.7 0 0 1 0 5.4z"/></svg>
+          <span>{site.location}</span>
+        </li>
+        {site.email && <li>
+          <svg aria-hidden="true" width="17" height="14" viewBox="0 0 24 20" fill="currentColor"><path d="M2 0h20c1.1 0 2 .9 2 2v16c0 1.1-.9 2-2 2H2c-1.1 0-2-.9-2-2V2C0 .9.9 0 2 0zm10 11L2.5 3.6v13.9h19V3.6L12 11zm0-2.6L20.9 2H3.1L12 8.4z"/></svg>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </li>}
+        {site.cvAvailable && <li>
+          <svg aria-hidden="true" width="15" height="17" viewBox="0 0 20 24" fill="currentColor"><path d="M12 0H2C.9 0 0 .9 0 2v20c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8l-8-8zm6 22H2V2h9v7h7v13zM5 13h10v2H5v-2zm0 4h10v2H5v-2z"/></svg>
+          <a href={withBase('/cv.pdf')}>Curriculum vitae</a>
+        </li>}
+      </ul>
+    </div>
+    <div class="profile-quals">
+      <h2>Qualifications</h2>
+      <ul class="bullets">
+        <li>Ph.D. (Hispanic Studies, Texas A&amp;M University), M.A. (Political Science, Villanova University), B.A. (Philosophy, Columbia University).</li>
+      </ul>
+      <h2>Areas of interest</h2>
+      <ul class="bullets">
+        <li>Identity and belonging amid territorial disputes.</li>
+        <li>The Belize–Guatemala territorial dispute.</li>
+        <li>Phenomenological and hermeneutic approaches to political questions.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="container" aria-label="Personal profile">
+    <PersonalProfile class="home-card" />
+  </section>
+
+  <ProfileSections />
+</BaseLayout>

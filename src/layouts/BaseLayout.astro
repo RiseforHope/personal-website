@@ -1,0 +1,48 @@
+---
+import '../styles/global.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { site } from '../data/site';
+import { withBase } from '../utils/paths';
+interface Props { title?: string; description?: string; }
+const { title, description = site.description } = Astro.props;
+const documentTitle = title ? `${title} | ${site.name}` : `${site.name} | Hispanic Studies`;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://example.org').toString();
+const socialImage = new URL(withBase('/og-cover.svg'), Astro.site ?? 'https://example.org').toString();
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  description: site.description,
+  jobTitle: site.title,
+  knowsAbout: ['Hispanic Studies', 'Identity and belonging', 'Belize–Guatemala territorial dispute'],
+};
+---
+<!doctype html>
+<html lang="en" id="top">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={documentTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    <link rel="alternate" type="application/rss+xml" title="Writing by J. Bladimir García" href={withBase('/rss.xml')} />
+    <title>{documentTitle}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <SiteHeader />
+    <main id="main"><slot /></main>
+    <SiteFooter />
+  </body>
+</html>

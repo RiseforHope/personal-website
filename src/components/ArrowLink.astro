@@ -1,0 +1,8 @@
+---
+interface Props { href: string; text: string; light?: boolean; }
+const { href, text, light = false } = Astro.props;
+---
+<a class:list={['arrow-link', { 'arrow-link-light': light }]} href={href}>
+  <span>{text}</span>
+  <svg aria-hidden="true" width="17" height="17" viewBox="0 0 17 17" fill="none"><path d="M2 8.5h12m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square" stroke-linejoin="miter"/></svg>
+</a>
