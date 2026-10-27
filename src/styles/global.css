@@ -160,8 +160,7 @@ strong { font-weight: 700; }
 /* Header: name and navigation only. */
 .site-header { position: relative; z-index: 20; border-bottom: 1px solid var(--rule); }
 .header-inner { min-height: 84px; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
-.identity { display: flex; align-items: center; gap: 13px; font-family: var(--sans); font-size: 19px; font-weight: 700; line-height: 1.25; color: var(--ink); white-space: nowrap; }
-.identity-logo { display: block; flex: none; color: var(--accent); }
+.identity { font-family: var(--sans); font-size: 19px; font-weight: 700; line-height: 1.25; color: var(--ink); white-space: nowrap; }
 .desktop-nav { display: flex; align-items: center; gap: clamp(20px, 3vw, 36px); }
 .desktop-nav a { color: var(--ink-muted); font-family: var(--sans); font-size: 15px; line-height: 1.4; text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 4px; text-underline-offset: 8px; }
 .desktop-nav a:hover { color: var(--ink); text-decoration-color: var(--accent-under); }
@@ -262,8 +261,7 @@ strong { font-weight: 700; }
   body { font-size: 16.5px; }
   .container { width: calc(100% - 36px); }
   .header-inner { min-height: 72px; }
-  .identity { font-size: 17px; white-space: normal; gap: 10px; }
-  .identity-logo { width: 36px; height: 27px; }
+  .identity { font-size: 17px; white-space: normal; }
   .desktop-nav { display: none; }
   .mobile-nav { display: block; position: relative; }
   .mobile-nav > summary { display: flex; align-items: center; cursor: pointer; list-style: none; color: var(--ink); padding: 12px 0 12px 14px; }
