@@ -68,12 +68,12 @@
   --ink-body: #333333;     /* body text */
   --ink-muted: #5f5f5f;
   --ink-soft: #7a7a7a;
-  --accent: #357AF1;        /* links, active tab */
-  --accent-dark: #1d5fd3;   /* pressed/darker accent */
-  --accent-under: #c3d7fb;  /* soft link underline */
-  --accent-tint: #dce8fd;   /* inactive tab */
-  --accent-tint-hover: #c9dcfc;
-  --accent-dot: #8ab1f7;    /* list bullets */
+  --accent: #2C59AE;        /* links, active tab */
+  --accent-dark: #224689;   /* pressed/darker accent */
+  --accent-under: #c3d2ec;  /* soft link underline */
+  --accent-tint: #dbe4f4;   /* inactive tab */
+  --accent-tint-hover: #cad8ef;
+  --accent-dot: #7e9ed6;    /* list bullets */
   --rule: #e4e4e4;
   --sans: 'DM Sans', 'Segoe UI', Helvetica, Arial, sans-serif;
   --serif: 'Merriweather', Georgia, 'Times New Roman', serif;
