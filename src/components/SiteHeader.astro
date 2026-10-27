@@ -11,7 +11,6 @@ const headerNavigation = navigation.filter((item) => item.href === '/writing/' |
   <div class="container header-inner">
     <a href={withBase('/')} class="identity" aria-label={`${site.name}, homepage`}>
       <img class="identity-logo" src={withBase('/b-logo-blue.svg')} alt="" width="40" height="38" />
-      <span>{site.givenName}</span>
     </a>
     <nav class="desktop-nav" aria-label="Primary navigation">
       {headerNavigation.map((item) => (
