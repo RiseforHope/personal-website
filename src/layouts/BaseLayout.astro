@@ -23,8 +23,22 @@ const jsonLd = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="light" />
+    <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#ffffff" />
+    <script is:inline>
+      // Resolve the theme before first paint: a saved choice wins, otherwise
+      // follow the system preference. Keep in sync with the toggle in SiteHeader.
+      (() => {
+        let stored = null;
+        try { stored = localStorage.getItem('theme'); } catch {}
+        const theme = stored === 'light' || stored === 'dark'
+          ? stored
+          : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', theme === 'dark' ? '#15181e' : '#ffffff');
+      })();
+    </script>
     <meta name="description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />

@@ -6,8 +6,35 @@ import { withBase } from '../utils/paths';
   <div class="container footer-inner">
     <span>{site.copyright}</span>
     <nav aria-label="Supplementary navigation">
+      <button class="theme-toggle" type="button" aria-label="Switch between light and dark mode">
+        <svg class="icon-moon" aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
       <a href={withBase('/rss.xml')}>RSS</a>
       {site.email && <a href={`mailto:${site.email}`}>Contact</a>}
     </nav>
   </div>
 </footer>
+<script>
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
+  const applyTheme = (theme: 'light' | 'dark') => {
+    document.documentElement.dataset.theme = theme;
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute('content', theme === 'dark' ? '#15181e' : '#ffffff');
+  };
+  document.querySelector('.theme-toggle')?.addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    // Store the choice only when it differs from the system preference, so a
+    // visitor back in sync with their OS keeps following it automatically.
+    try {
+      if (next === (media.matches ? 'dark' : 'light')) localStorage.removeItem('theme');
+      else localStorage.setItem('theme', next);
+    } catch {}
+  });
+  media.addEventListener('change', (event) => {
+    try { if (localStorage.getItem('theme')) return; } catch {}
+    applyTheme(event.matches ? 'dark' : 'light');
+  });
+</script>

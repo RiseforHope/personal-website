@@ -1,5 +1,6 @@
 /* Faculty-profile theme: Merriweather serif headings, DM Sans body and UI,
-   blue accents, white page. All pages are rendered to static HTML by Astro. */
+   blue accents, light and dark color schemes. All pages are rendered to
+   static HTML by Astro. */
 
 /* ---------------------------------------------------------------------------
    DM Sans (body and UI, variable wght 100-1000) — self-hosted, SIL OFL 1.1,
@@ -79,6 +80,43 @@
   --serif: 'Merriweather', Georgia, 'Times New Roman', serif;
   --container: 1150px;
 }
+/* Dark theme tokens. The inline script in BaseLayout resolves the theme
+   (saved choice, else system preference) and sets data-theme before paint;
+   the media-query block below covers visitors with JavaScript disabled. */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --paper: #15181e;
+  --card: #1f242c;
+  --ink: #e9eaec;
+  --ink-body: #d3d6db;
+  --ink-muted: #a1a7b0;
+  --ink-soft: #888e97;
+  --accent: #7da3e8;
+  --accent-dark: #a2bfee;
+  --accent-under: #3b5078;
+  --accent-tint: #232e44;
+  --accent-tint-hover: #2a3852;
+  --accent-dot: #6587c2;
+  --rule: #2b2f37;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --paper: #15181e;
+    --card: #1f242c;
+    --ink: #e9eaec;
+    --ink-body: #d3d6db;
+    --ink-muted: #a1a7b0;
+    --ink-soft: #888e97;
+    --accent: #7da3e8;
+    --accent-dark: #a2bfee;
+    --accent-under: #3b5078;
+    --accent-tint: #232e44;
+    --accent-tint-hover: #2a3852;
+    --accent-dot: #6587c2;
+    --rule: #2b2f37;
+  }
+}
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
@@ -104,7 +142,7 @@ p { margin: 0; }
 h1, h2, h3, h4 { margin: 0; font-family: var(--serif); font-weight: 400; color: var(--ink); text-wrap: balance; }
 strong { font-weight: 700; }
 .container { width: min(calc(100% - 80px), var(--container)); margin-inline: auto; }
-.skip-link { position: fixed; top: -100px; left: 20px; padding: 13px 20px; background: var(--accent-dark); color: white; font-family: var(--sans); font-size: 14px; z-index: 500; }
+.skip-link { position: fixed; top: -100px; left: 20px; padding: 13px 20px; background: var(--accent-dark); color: var(--paper); font-family: var(--sans); font-size: 14px; z-index: 500; }
 .skip-link:focus { top: 15px; }
 
 /* Content links: ink-colored text over a soft, thick blue underline that saturates on hover. */
@@ -128,6 +166,17 @@ strong { font-weight: 700; }
 .desktop-nav a:hover { color: var(--ink); text-decoration-color: var(--accent-under); }
 .desktop-nav a[aria-current='page'] { color: var(--ink); text-decoration-color: var(--accent); }
 .mobile-nav { display: none; font-family: var(--sans); }
+
+/* Light/dark theme toggle in the footer. Hidden without JavaScript (no
+   data-theme is set), where the media query above follows the system
+   preference instead. */
+.theme-toggle { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--ink-muted); cursor: pointer; }
+.theme-toggle:hover { color: var(--ink); background: var(--card); }
+.theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.theme-toggle .icon-sun { display: none; }
+:root[data-theme='dark'] .theme-toggle .icon-sun { display: block; }
+:root[data-theme='dark'] .theme-toggle .icon-moon { display: none; }
+:root:not([data-theme]) .theme-toggle { display: none; }
 
 /* Small uppercase label (essay pages, 404). */
 .eyebrow { display: flex; align-items: center; gap: 12px; color: var(--accent-dark); font-family: var(--sans); font-size: 12.5px; font-weight: 700; line-height: 1.5; text-transform: uppercase; letter-spacing: .09em; }
@@ -166,7 +215,7 @@ strong { font-weight: 700; }
 .tab-bar { display: flex; gap: 3px; margin-top: 48px; margin-bottom: 0; }
 .tab { flex: 1; display: flex; align-items: center; justify-content: center; min-height: 58px; padding: 8px 14px; background: var(--accent-tint); color: var(--ink); font-family: var(--sans); font-size: 16.5px; line-height: 1.3; text-align: center; border-radius: 2px; }
 .tab:hover { background: var(--accent-tint-hover); }
-.tab.active { background: var(--accent); color: #ffffff; font-weight: 700; }
+.tab.active { background: var(--accent); color: var(--paper); font-weight: 700; }
 
 /* Section pages beneath the tabs. */
 .section-page { padding-top: 48px; padding-bottom: 112px; }
