@@ -9,7 +9,10 @@ const headerNavigation = navigation.filter((item) => item.href === '/writing/' |
 ---
 <header class="site-header">
   <div class="container header-inner">
-    <a href={withBase('/')} class="identity" aria-label={`${site.name}, homepage`}>{site.givenName}</a>
+    <a href={withBase('/')} class="identity" aria-label={`${site.name}, homepage`}>
+      <img class="identity-logo" src={withBase('/b-logo-blue.svg')} alt="" width="40" height="38" />
+      <span>{site.givenName}</span>
+    </a>
     <nav class="desktop-nav" aria-label="Primary navigation">
       {headerNavigation.map((item) => (
         <a href={withBase(item.href)} aria-current={active(item.href) ? 'page' : undefined}>{item.label}</a>
