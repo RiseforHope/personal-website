@@ -119,6 +119,10 @@
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+/* Never allow content wider than the viewport to cause horizontal scroll. */
+html, body { overflow-x: clip; }
+img, video { max-width: 100%; height: auto; }
+svg { max-width: 100%; }
 body {
   margin: 0;
   background: var(--paper);
@@ -236,6 +240,7 @@ strong { font-weight: 700; }
 .essay-body h2 { font-size: 26px; margin: 38px 0 14px; }
 .essay-body h3 { font-size: 20px; margin: 30px 0 10px; }
 .essay-body p, .essay-body li { font-size: 17px; line-height: 1.75; margin: 0 0 18px; }
+.essay-body a, .bullets a { overflow-wrap: anywhere; }
 .essay-body li { margin-bottom: 10px; }
 .essay-body blockquote { margin: 28px 0; padding-left: 22px; border-left: 3px solid var(--accent-under); color: var(--ink-muted); }
 .essay-body strong { color: var(--ink); }
