@@ -150,14 +150,14 @@ strong { font-weight: 700; }
 .skip-link:focus { top: 15px; }
 
 /* Content links: ink-colored text over a soft, thick blue underline that saturates on hover. */
-.profile-card a, .bullets a, .contact-list a, .essay-body a, .note-body a, .arrow-link, .lead a {
+.profile-card a, .bullets a, .contact-list a, .essay-body a, .arrow-link, .lead a {
   color: inherit;
   text-decoration: underline;
   text-decoration-color: var(--accent-under);
   text-decoration-thickness: 4px;
   text-underline-offset: 4px;
 }
-.profile-card a:hover, .bullets a:hover, .contact-list a:hover, .essay-body a:hover, .note-body a:hover, .arrow-link:hover, .lead a:hover {
+.profile-card a:hover, .bullets a:hover, .contact-list a:hover, .essay-body a:hover, .arrow-link:hover, .lead a:hover {
   text-decoration-color: var(--accent);
 }
 
@@ -257,17 +257,9 @@ strong { font-weight: 700; }
 .essay-return { margin-top: 55px; }
 .empty-note { color: var(--ink-muted); }
 
-/* Notes page. */
+/* Notes. */
 .notes-page { max-width: 840px; }
-.note-item { border-top: 1px solid var(--rule); margin-top: 36px; padding-top: 30px; scroll-margin-top: 28px; }
-.note-item:first-of-type { border-top: 0; margin-top: 24px; padding-top: 0; }
-.note-item h2 { font-size: 23px; line-height: 1.35; margin: 0 0 6px; }
-.note-date { display: block; margin: 0 0 14px; font-family: var(--sans); font-size: 13.5px; color: var(--ink-muted); }
-.note-body p, .note-body li { font-size: 17px; line-height: 1.75; margin: 0 0 14px; }
-.note-body p:last-child { margin-bottom: 0; }
-.note-body a { overflow-wrap: anywhere; }
-.note-body blockquote { margin: 22px 0; padding-left: 22px; border-left: 3px solid var(--accent-under); color: var(--ink-muted); }
-.note-share { margin-top: 20px; font-family: var(--sans); font-size: 13.5px; color: var(--ink-muted); }
+.note-share { margin-top: 36px; font-family: var(--sans); font-size: 13.5px; color: var(--ink-muted); }
 .note-share a {
   color: inherit;
   text-decoration: underline;

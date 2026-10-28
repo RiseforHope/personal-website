@@ -18,7 +18,7 @@ const essays = (await getCollection('writing', ({ data }) => !data.draft)).sort(
       ? <p class="empty-note">New essays will appear here when they are ready for publication.</p>
       : <ul class="bullets">
           {essays.map((essay) => <li>
-            <a href={withBase(`/writing/${essay.id}/`)}>{essay.data.title}</a> <span class="meta">({essay.data.category} · {essay.data.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}.)</span><br />{essay.data.description}
+            <a href={withBase(`/writing/${essay.id}/`)}>{essay.data.title}</a> <span class="meta">({essay.data.category} · {essay.data.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}.)</span><br />{essay.data.description}
           </li>)}
         </ul>}
   </section>

@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { withBase } from '../../utils/paths';
+const notes = (await getCollection('notes', ({ data }) => !data.draft)).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+<BaseLayout title="Notes" description="Short notes for interested visitors.">
+  <section class="container section-page notes-page">
+    <h1>Notes</h1>
+
+    {notes.length === 0
+      ? <p class="empty-note">New notes will appear here when they are published.</p>
+      : <ul class="bullets">
+          {notes.map((note) => <li>
+            <a href={withBase(`/notes/${note.id}/`)}>{note.data.title}</a> <span class="meta">({note.data.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}.)</span>
+          </li>)}
+        </ul>}
+  </section>
+</BaseLayout>
