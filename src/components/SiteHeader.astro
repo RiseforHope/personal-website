@@ -5,7 +5,7 @@ const currentPath = Astro.url.pathname;
 const active = (href: string) => currentPath === withBase(href) || (href !== '/' && currentPath.startsWith(withBase(href)));
 /* Teaching, Research, and Publications are reached through the profile tabs;
    the header keeps only the pages the tabs do not cover. */
-const headerNavigation = navigation.filter((item) => item.href === '/writing/' || item.href === '/about/');
+const headerNavigation = navigation.filter((item) => item.href === '/writing/' || item.href === '/notes/' || item.href === '/about/');
 ---
 <header class="site-header">
   <div class="container header-inner">

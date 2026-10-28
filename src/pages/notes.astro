@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+const notes = (await getCollection('notes', ({ data }) => !data.draft)).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const rendered = await Promise.all(notes.map(async (note) => ({ note, Content: (await render(note)).Content })));
+---
+<BaseLayout title="Notes" description="Short notes for interested visitors.">
+  <section class="container section-page notes-page">
+    <h1>Notes</h1>
+
+    {rendered.length === 0
+      ? <p class="empty-note">New notes will appear here when they are published.</p>
+      : rendered.map(({ note, Content }) => (
+          <article class="note-item">
+            <h2>{note.data.title}</h2>
+            <p class="meta note-date">{note.data.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+            <div class="note-body"><Content /></div>
+          </article>
+        ))}
+  </section>
+</BaseLayout>
