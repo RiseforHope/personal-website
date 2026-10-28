@@ -32,12 +32,10 @@ import cvIcon from '../../public/download-2.svg?raw';
       </ul>
       <nav class="id-links" aria-label="Academic profiles and contact">
         <div class="id-links-row">
-          <a href="mailto:bladimir@brinl.com"><Fragment set:html={mailIcon} /> Email</a>
-        </div>
-        <div class="id-links-row">
           <a href="https://orcid.org/0009-0006-2616-9586" target="_blank" rel="noopener"><Fragment set:html={orcidIcon} /> ORCID</a>
           <a href="https://scholar.google.com/citations?user=A0sKcGEAAAAJ" target="_blank" rel="noopener"><Fragment set:html={scholarIcon} /> Google Scholar</a>
           <a href={withBase('/bladimir-cv-2026.pdf')}><Fragment set:html={cvIcon} /> Academic CV</a>
+          <a href="mailto:bladimir@brinl.com"><Fragment set:html={mailIcon} /> Email</a>
         </div>
       </nav>
     </div>
