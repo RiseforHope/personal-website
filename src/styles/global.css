@@ -150,14 +150,14 @@ strong { font-weight: 700; }
 .skip-link:focus { top: 15px; }
 
 /* Content links: ink-colored text over a soft, thick blue underline that saturates on hover. */
-.profile-card a, .bullets a, .contact-list a, .essay-body a, .arrow-link, .lead a {
+.profile-card a, .bullets a, .contact-list a, .essay-body a, .note-body a, .arrow-link, .lead a {
   color: inherit;
   text-decoration: underline;
   text-decoration-color: var(--accent-under);
   text-decoration-thickness: 4px;
   text-underline-offset: 4px;
 }
-.profile-card a:hover, .bullets a:hover, .contact-list a:hover, .essay-body a:hover, .arrow-link:hover, .lead a:hover {
+.profile-card a:hover, .bullets a:hover, .contact-list a:hover, .essay-body a:hover, .note-body a:hover, .arrow-link:hover, .lead a:hover {
   text-decoration-color: var(--accent);
 }
 
