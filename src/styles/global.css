@@ -259,6 +259,7 @@ strong { font-weight: 700; }
 
 /* Notes. */
 .notes-page { max-width: 840px; }
+.note-eyebrow { font-family: var(--serif); font-weight: 400; font-size: 15.5px; text-transform: none; letter-spacing: normal; color: var(--accent); }
 .note-share { margin-top: 36px; font-family: var(--sans); font-size: 13.5px; color: var(--ink-muted); }
 .note-share a {
   color: inherit;
