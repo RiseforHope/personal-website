@@ -199,7 +199,7 @@ strong { font-weight: 700; }
 .cv-link:hover { color: var(--accent-dark); }
 
 /* Icon links beneath the name: Email on its own row, then ORCID / Scholar / CV. */
-.id-links { margin-top: 12px; font-family: var(--sans); font-size: 15.5px; }
+.id-links { margin-top: 22px; font-family: var(--sans); font-size: 15.5px; }
 .id-links-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px; }
 .id-links-row + .id-links-row { margin-top: 9px; }
 .id-links a { display: inline-flex; align-items: center; gap: 7px; color: var(--ink-body); }
