@@ -4,25 +4,32 @@ import ProfileSections from '../components/ProfileSections.astro';
 import PersonalProfile from '../components/PersonalProfile.astro';
 import { site } from '../data/site';
 import { withBase } from '../utils/paths';
+// Icon files live in public/; inlined here so they inherit the theme color.
+import mailIcon from '../../public/mail-3.svg?raw';
+import orcidIcon from '../../public/fingerprint-pattern.svg?raw';
+import scholarIcon from '../../public/book-open.svg?raw';
+import cvIcon from '../../public/download-2.svg?raw';
 ---
 <BaseLayout>
   <section class="container profile-header" aria-labelledby="home-title">
     <img class="profile-photo" src={withBase('/bladimir-bruno.jpeg')} alt={site.name} width="300" height="400" />
     <div class="profile-id">
       <h1 id="home-title">{site.name}</h1>
-      <p class="profile-role">{site.title}
-        <a class="cv-link" href={withBase('/bladimir-cv-2026.pdf')} aria-label="Curriculum vitae (PDF)" title="Curriculum vitae (PDF)">
-          <svg aria-hidden="true" width="15" height="17" viewBox="0 0 20 24" fill="currentColor"><path d="M12 0H2C.9 0 0 .9 0 2v20c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8l-8-8zm6 22H2V2h9v7h7v13zM5 13h10v2H5v-2zm0 4h10v2H5v-2z"/></svg>
-        </a>
-      </p>
+      <nav class="id-links" aria-label="Academic profiles and contact">
+        <div class="id-links-row">
+          <a href="#"><Fragment set:html={mailIcon} /> Email</a>
+        </div>
+        <div class="id-links-row">
+          <a href="#"><Fragment set:html={orcidIcon} /> ORCID</a>
+          <a href="https://scholar.google.com/citations?user=A0sKcGEAAAAJ" target="_blank" rel="noopener"><Fragment set:html={scholarIcon} /> Google Scholar</a>
+          <a href={withBase('/bladimir-cv-2026.pdf')}><Fragment set:html={cvIcon} /> Academic CV</a>
+        </div>
+      </nav>
+      <p class="profile-role">{site.title}</p>
       <ul class="contact-list">
         <li>
           <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7.9 2 4.5 5.4 4.5 9.5c0 5.6 6.6 11.8 6.9 12.1.3.3.9.3 1.2 0 .3-.3 6.9-6.5 6.9-12.1C19.5 5.4 16.1 2 12 2zm0 10.2a2.7 2.7 0 1 1 0-5.4 2.7 2.7 0 0 1 0 5.4z"/></svg>
           <span>{site.location}</span>
-        </li>
-        <li>
-          <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 1 9l11 6 7-3.82V17h2V9.5L12 3zM5 13.18v4.27L12 21l7-3.55v-4.27L12 17l-7-3.82z"/></svg>
-          <a href="https://scholar.google.com/citations?user=A0sKcGEAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
         </li>
         {site.email && <li>
           <svg aria-hidden="true" width="17" height="14" viewBox="0 0 24 20" fill="currentColor"><path d="M2 0h20c1.1 0 2 .9 2 2v16c0 1.1-.9 2-2 2H2c-1.1 0-2-.9-2-2V2C0 .9.9 0 2 0zm10 11L2.5 3.6v13.9h19V3.6L12 11zm0-2.6L20.9 2H3.1L12 8.4z"/></svg>
